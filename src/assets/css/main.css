@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  body {
+    @apply bg-background text-primary;
+  }
+}
+
+/* Globale Stile für Links */
+a {
+    @apply text-primary hover:text-accent;
+}
+
+/* Beispiel für Überschriften */
+h1,
+h2,
+h3 {
+    @apply text-primary;
+}
