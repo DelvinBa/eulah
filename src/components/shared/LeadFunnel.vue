@@ -8,8 +8,8 @@
     <!-- Schritt 1: Interesse auswählen -->
     <div v-if="step === 1" class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div
-        @click="setInterest('Softwareentwicklung')"
         class="p-6 bg-black-glossy rounded-lg border border-gray-700 hover:border-accent hover:shadow-accent transition duration-300 cursor-pointer"
+        @click="setInterest('Softwareentwicklung')"
       >
         <div class="text-4xl mb-2 text-white">💻</div>
         <h3 class="text-lg font-semibold text-white">Softwareentwicklung</h3>
@@ -17,8 +17,8 @@
       </div>
 
       <div
-        @click="setInterest('Digitales Marketing')"
         class="p-6 bg-black-glossy rounded-lg border border-gray-700 hover:border-accent hover:shadow-accent transition duration-300 cursor-pointer"
+        @click="setInterest('Digitales Marketing')"
       >
         <div class="text-4xl mb-2 text-white">📈</div>
         <h3 class="text-lg font-semibold text-white">Digitales Marketing</h3>
@@ -26,8 +26,8 @@
       </div>
 
       <div
-        @click="setInterest('Web Scraping')"
         class="p-6 bg-black-glossy rounded-lg border border-gray-700 hover:border-accent hover:shadow-accent transition duration-300 cursor-pointer"
+        @click="setInterest('Web Scraping')"
       >
         <div class="text-4xl mb-2 text-white">⚙️</div>
         <h3 class="text-lg font-semibold text-white">Web Scraping</h3>
@@ -45,11 +45,11 @@
         <div v-for="option in softwareOptions" :key="option" class="space-y-2">
           <label class="text-white">
             <input
-              type="radio"
               v-model="form.details.softwareType"
+              type="radio"
               :value="option"
               class="mr-2"
-            />
+            >
             {{ option }}
           </label>
         </div>
@@ -59,11 +59,11 @@
         <div v-for="option in marketingOptions" :key="option" class="space-y-2">
           <label class="text-white">
             <input
-              type="checkbox"
               v-model="form.details.marketingStrategies"
+              type="checkbox"
               :value="option"
               class="mr-2"
-            />
+            >
             {{ option }}
           </label>
         </div>
@@ -73,18 +73,18 @@
         <div v-for="option in scrapingOptions" :key="option" class="space-y-2">
           <label class="text-white">
             <input
-              type="radio"
               v-model="form.details.scrapingType"
+              type="radio"
               :value="option"
               class="mr-2"
-            />
+            >
             {{ option }}
           </label>
         </div>
       </div>
       <button
-        @click="nextStep"
         class="w-full py-3 px-6 mt-4 rounded-lg bg-transparent border border-gray-700 text-white hover:border-accent hover:shadow-accent transition"
+        @click="nextStep"
       >
         Weiter
       </button>
@@ -93,28 +93,28 @@
     <!-- Schritt 3: Kontaktdaten -->
     <div v-else-if="step === 3" class="space-y-6">
       <p class="text-lg text-white mb-4">Bitte geben Sie Ihre Kontaktdaten ein:</p>
-      <form @submit.prevent="submitForm" class="space-y-4">
+      <form class="space-y-4" @submit.prevent="submitForm">
         <input
           v-model="form.name"
           type="text"
           placeholder="Ihr Name"
           class="w-full p-3 bg-black text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent"
           required
-        />
+        >
         <input
           v-model="form.email"
           type="email"
           placeholder="Ihre E-Mail-Adresse"
           class="w-full p-3 bg-black text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent"
           required
-        />
+        >
         <input
           v-model="form.phone"
           type="tel"
           placeholder="Ihre Telefonnummer"
           class="w-full p-3 bg-black text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent"
           required
-        />
+        >
         <button
           type="submit"
           class="w-full py-3 px-6 rounded-lg bg-transparent border border-gray-700 text-white hover:border-accent hover:shadow-accent transition"

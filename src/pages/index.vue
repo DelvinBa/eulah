@@ -7,11 +7,12 @@
         Willkommen bei <span class="text-gray-300">Eulah</span>
       </h1>
       <p class="text-xl text-gray-400 mb-8 animate-slide-in">
-        Ihr Partner für <span class="text-white">Softwareentwicklung</span>, 
-        <span class="text-white">Digitales Marketing</span> und 
+        Ihr Partner für <span class="text-white">Softwareentwicklung</span>,
+        <span class="text-white">Digitales Marketing</span> und
         <span class="text-white">Automatisierung</span>.
       </p>
-      <button class="bg-transparent border border-gray-600 text-white py-3 px-8 rounded-full shadow-lg hover:border-accent hover:text-accent transition">
+      <button
+        class="bg-transparent border border-gray-600 text-white py-3 px-8 rounded-full shadow-lg hover:border-accent hover:text-accent transition">
         Jetzt entdecken
       </button>
     </div>
@@ -22,11 +23,9 @@
         <h2 class="text-4xl font-bold mb-4 animate-fade-in">Über Eulah</h2>
         <p class="text-gray-400 text-lg animate-slide-in">
           Bei Eulah setzen wir auf Innovation und Präzision, um außergewöhnliche digitale Erlebnisse zu schaffen.
-          Unsere Lösungen in den Bereichen Softwareentwicklung, Marketing und Automatisierung helfen Ihnen, Ihre Vision zu verwirklichen.
+          Unsere Lösungen in den Bereichen Softwareentwicklung, Marketing und Automatisierung helfen Ihnen, Ihre Vision
+          zu verwirklichen.
         </p>
-      </div>
-      <div class="lg:w-1/2 mt-8 lg:mt-0">
-
       </div>
     </div>
 
@@ -37,8 +36,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
           <!-- Card 1 -->
           <div
-            class="p-6 bg-black rounded-lg shadow-lg border border-gray-700 hover:border-accent hover:shadow-accent transition duration-300 animate-slide-in"
-          >
+            class="p-6 bg-black rounded-lg shadow-lg border border-gray-700 hover:border-accent hover:shadow-accent transition duration-300 animate-slide-in">
             <h3 class="text-2xl font-semibold text-white">Software</h3>
             <p class="text-gray-400 mt-4">
               Maßgeschneiderte Softwarelösungen, die Innovation und Effizienz vereinen.
@@ -46,8 +44,7 @@
           </div>
           <!-- Card 2 -->
           <div
-            class="p-6 bg-black rounded-lg shadow-lg border border-gray-700 hover:border-accent hover:shadow-accent transition duration-300 animate-slide-in"
-          >
+            class="p-6 bg-black rounded-lg shadow-lg border border-gray-700 hover:border-accent hover:shadow-accent transition duration-300 animate-slide-in">
             <h3 class="text-2xl font-semibold text-white">Digitales Marketing</h3>
             <p class="text-gray-400 mt-4">
               Ihre Marke sichtbar machen – mit Strategien, die wirken.
@@ -55,8 +52,7 @@
           </div>
           <!-- Card 3 -->
           <div
-            class="p-6 bg-black rounded-lg shadow-lg border border-gray-700 hover:border-accent hover:shadow-accent transition duration-300 animate-slide-in"
-          >
+            class="p-6 bg-black rounded-lg shadow-lg border border-gray-700 hover:border-accent hover:shadow-accent transition duration-300 animate-slide-in">
             <h3 class="text-2xl font-semibold text-white">Automatisierung</h3>
             <p class="text-gray-400 mt-4">
               Intelligente Prozesse für maximale Produktivität.
