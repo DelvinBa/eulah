@@ -1,4 +1,4 @@
-import { createConfigForNuxt } from '@nuxt/eslint-config/flat'
+//import { createConfigForNuxt } from '@nuxt/eslint-config/flat'
 
 export default createConfigForNuxt({
   //   rules: {
@@ -29,7 +29,7 @@ export default createConfigForNuxt({
   // },
   // extends: [
   //   'plugin:nuxt/recommended',
-  //   'plugin:vue/vue3-recommended',
+  //   'plugin:vue/vu3-recommended',
   //   'plugin:prettier/recommended'
   // ]
 })
