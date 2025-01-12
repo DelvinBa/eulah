@@ -43,34 +43,31 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "GradientButton",
-  props: {
-    /**
-     * Ziel-URL des Links
-     */
-    href: {
-      type: String,
-      default: "#",
-    },
-    /**
-     * Der Farbverlauf, der als Rahmen und Text-Gradient verwendet wird.
-     * Du kannst hier z. B. 'linear-gradient(to right, #EF4444, #F59E0B)' angeben.
-     */
-    gradient: {
-      type: String,
-      default: "linear-gradient(to right, #38bdf8, #8b5cf6)",
-    },
-    /**
-     * Die Dicke des Rahmens in px
-     */
-    borderWidth: {
-      type: Number,
-      default: 2,
-    },
+<script setup>
+const props = defineProps({
+  /**
+   * Ziel-URL des Links
+   */
+  href: {
+    type: String,
+    default: "#",
   },
-};
+  /**
+   * Der Farbverlauf, der als Rahmen und Text-Gradient verwendet wird.
+   * Du kannst hier z. B. 'linear-gradient(to right, #EF4444, #F59E0B)' angeben.
+   */
+  gradient: {
+    type: String,
+    default: "linear-gradient(to right, #38bdf8, #8b5cf6)",
+  },
+  /**
+   * Die Dicke des Rahmens in px
+   */
+  borderWidth: {
+    type: Number,
+    default: 2,
+  },
+});
 </script>
 
 <style scoped>

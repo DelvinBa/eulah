@@ -16,20 +16,10 @@
       </p>
     </div>
   </footer>
-</template>
+    </template>
 
-<script>
-import LeadFunnel from '~/components/shared/LeadFunnel.vue';
+<script setup>
 
-export default {
-  name: 'Footer',
-  components: {
-    LeadFunnel,
-  },
-  data() {
-    return {
-      currentYear: new Date().getFullYear(), // Automatisches aktuelles Jahr
-    };
-  },
-};
+const currentYear = ref(new Date().getFullYear());
+
 </script>

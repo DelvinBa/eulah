@@ -69,15 +69,8 @@
   </section>
 </template>
 
-<script>
-import Header from '~/components/shared/Header.vue';
+<script setup>
 
 
 
-export default {
-  name: "HomePage",
-  components: {
-    Header,
-  },
-};
 </script>

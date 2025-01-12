@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-// Falls nötig, kannst du hier Skripte hinzufügen
+
 </script>
 
 <style scoped>

@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
     '@primevue/nuxt-module',
@@ -8,24 +7,30 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
     '@nuxt/fonts',
+    [
+      'nuxt-mail',
+      {
+        message: {
+          to: 'info@eulah.de',
+          from: 'info@eulah.de',
+        },
+        smtp: {
+          host: 'smtp.hostinger.com',
+          port: 465,
+          auth: {
+            user: 'bachodelvin@gmail.com',
+            pass: 'Wirkillen88!',
+          },
+        },
+      },
+    ],
   ],
 
-  app: {
-    head: {
-      link: [
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap',
-        },
-      ],
+  primevue: {
+    options: {
+      theme: 'none',
     },
   },
-
-  primevue: {
-        options: {
-            theme: 'none'
-        }
-    },
 
   srcDir: 'src/', // Der src-Ordner als Quellverzeichnis
 

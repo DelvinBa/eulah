@@ -133,43 +133,35 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'LeadFunnel',
-  data() {
-    return {
-      step: 1,
-      form: {
-        interest: '',
-        details: {},
-        name: '',
-        email: '',
-        phone: '',
-      },
-      softwareOptions: ['Web-App', 'Mobile-App', 'Desktop-Software'],
-      marketingOptions: [
-        'SEO',
-        'Social Media',
-        'Content Marketing',
-        'Email Marketing',
-      ],
-      scrapingOptions: ['Produktdaten', 'Websites', 'Preise & Angebote'],
-    };
-  },
-  methods: {
-    setInterest(interest) {
-      this.form.interest = interest;
-      this.step = 2;
-    },
-    nextStep() {
-      this.step = 3;
-    },
-    submitForm() {
-      console.log('Form submitted:', this.form);
-      this.step = 4;
-      // API-Aufruf oder Backend-Verarbeitung hier einfügen
-    },
-  },
+<script setup>
+import { ref } from 'vue';
+
+const step = ref(1);
+const form = ref({
+  interest: '',
+  details: {},
+  name: '',
+  email: '',
+  phone: '',
+});
+
+const softwareOptions = ['Web-App', 'Mobile-App', 'Desktop-Software'];
+const marketingOptions = ['SEO', 'Social Media', 'Content Marketing', 'Email Marketing'];
+const scrapingOptions = ['Produktdaten', 'Websites', 'Preise & Angebote'];
+
+const setInterest = (interest) => {
+  form.value.interest = interest;
+  step.value = 2;
+};
+
+const nextStep = () => {
+  step.value = 3;
+};
+
+const submitForm = () => {
+  console.log('Form submitted:', form.value);
+  step.value = 4;
+  // API-Aufruf oder Backend-Verarbeitung hier einfügen
 };
 </script>
 

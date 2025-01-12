@@ -63,47 +63,40 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import Image1 from "@/assets/images/1.jpg";
 import Image2 from "@/assets/images/2.jpg";
 import Image3 from "@/assets/images/3.jpg";
 
-export default {
-  name: "ProjectsPage",
-  data() {
-    return {
-      projects: [
-        {
-          id: 1,
-          title: "Projekt Alpha",
-          description:
-            "Eine innovative Plattform, die die Benutzererfahrung revolutioniert.",
-          image: Image1,
-          icon: "💡",
-          link: "https://example.com",
-        },
-        {
-          id: 2,
-          title: "Beta Marketing",
-          description:
-            "Strategisches digitales Marketing, das Ergebnisse liefert.",
-          image: Image2,
-          icon: "📊",
-          link: "https://example.com",
-        },
-        {
-          id: 3,
-          title: "Gamma Scraping",
-          description:
-            "Eine leistungsstarke Web-Scraping-Lösung für Datenextraktion.",
-          image: Image3,
-          icon: "🔍",
-          link: "https://example.com",
-        },
-      ],
-    };
+const projects = ref([
+  {
+    id: 1,
+    title: "Projekt Alpha",
+    description:
+      "Eine innovative Plattform, die die Benutzererfahrung revolutioniert.",
+    image: Image1,
+    icon: "💡",
+    link: "https://example.com",
   },
-};
+  {
+    id: 2,
+    title: "Beta Marketing",
+    description:
+      "Strategisches digitales Marketing, das Ergebnisse liefert.",
+    image: Image2,
+    icon: "📊",
+    link: "https://example.com",
+  },
+  {
+    id: 3,
+    title: "Gamma Scraping",
+    description:
+      "Eine leistungsstarke Web-Scraping-Lösung für Datenextraktion.",
+    image: Image3,
+    icon: "🔍",
+    link: "https://example.com",
+  },
+]);
 </script>
 
 <style scoped>
