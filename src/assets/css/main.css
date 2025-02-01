@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "../primevue/tailwind.css";
+@import "tailwindcss/utilities";
 
 
 @layer base {
@@ -15,8 +16,13 @@ a {
 }
 
 /* Beispiel für Überschriften */
-h1,
-h2,
-h3 {
+h1, h2, h3 {
     @apply text-primary;
 }
+
+p, span, li, a, blockquote {
+  @apply text-2xl;
+  /* Macht normalen Text größer */
+}
+
+

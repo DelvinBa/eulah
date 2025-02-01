@@ -1,25 +1,28 @@
 <template>
-  <footer class="bg-black text-white py-12">
-    <div class="container mx-auto px-6 text-center space-y-8">
+  <footer class="bg-black text-white py-8 md:py-12">
+    <div class="container mx-auto px-4 md:px-6 text-center space-y-6 md:space-y-8">
       <!-- Lead Funnel -->
-      <LeadFunnel />
+      <div id="lead-funnel">
+        <LeadFunnel />
+      </div>
 
       <!-- Links -->
-      <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-8">
-        <a href="/impressum" class="hover:text-accent transition">Impressum</a>
-        <a href="/datenschutz" class="hover:text-accent transition">Datenschutz</a>
+      <div class="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-6">
+        <a href="/impressum" class="text-sm md:text-base hover:text-accent transition">Impressum</a>
+        <a href="/datenschutz" class="text-sm md:text-base hover:text-accent transition">Datenschutz</a>
       </div>
 
       <!-- Footer Note -->
-      <p class="text-gray-400 text-sm">
+      <p class="text-gray-400 text-xs md:text-sm">
         All rights reserved © Eulah {{ currentYear }}
       </p>
     </div>
   </footer>
-    </template>
+</template>
 
 <script setup>
+import LeadFunnel from './LeadFunnel.vue';
+import { ref } from 'vue';
 
 const currentYear = ref(new Date().getFullYear());
-
 </script>

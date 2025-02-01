@@ -60,10 +60,13 @@ const pointsData = [
 ];
 
 const initGlobe = async (Globe) => {
-  console.log("Initializing globe");
+  const containerWidth = globeEl.value.offsetWidth;
+  const containerHeight = globeEl.value.offsetHeight;
+  const isMobile = window.innerWidth < 768;
+
   globeInstance.value = Globe()(globeEl.value)
-    .width(600)
-    .height(600)
+    .width(containerWidth)
+    .height(containerHeight)
     .backgroundColor("#000000")
     .globeImageUrl("//unpkg.com/three-globe/example/img/earth-blue-marble.jpg")
     .bumpImageUrl("//unpkg.com/three-globe/example/img/earth-topology.png")
@@ -74,13 +77,13 @@ const initGlobe = async (Globe) => {
     .arcDashLength(0.4)
     .arcDashGap(0.2)
     .arcDashAnimateTime(1500)
-    .arcStroke(0.5)
-    .arcAltitude(0.3)
+    .arcStroke(isMobile ? 0.2 : 0.4)
+    .arcAltitude(0.2)
     .pointsData(pointsData)
     .pointColor('color')
     .pointsMerge(true)
     .pointAltitude(0.01)
-    .pointRadius('size')
+    .pointRadius(d => isMobile ? (d.size * 0.5) : d.size)
     .pointLabel('label')
     .pointLat('lat')
     .pointLng('lng')
@@ -88,13 +91,70 @@ const initGlobe = async (Globe) => {
     .onGlobeReady(() => {
       console.log("Globe ready");
       addCloudsLayer();
+      // Nähere Kameraposition für größere Erddarstellung
       globeInstance.value.pointOfView({
-        lat: 25.0,
-        lng: 18.0,
-        altitude: 2.5
+        lat: isMobile ? 20.0 : 25.0,
+        lng: isMobile ? 15.0 : 18.0,
+        altitude: isMobile ? 1.5 : 1.8  // Reduzierte altitude für größere Erddarstellung
       }, 1000);
     });
 
+  // Langsamere Rotation auf mobilen Geräten
+  globeInstance.value.controls().autoRotate = true;
+  globeInstance.value.controls().autoRotateSpeed = isMobile ? 0.3 : 0.8;
+
+  // Einschränkung der Kamerasteuerung
+  if (isMobile) {
+    const controls = globeInstance.value.controls();
+    controls.minDistance = 150;  // Minimaler Zoom-Abstand
+    controls.maxDistance = 400;  // Maximaler Zoom-Abstand
+    controls.minPolarAngle = Math.PI / 3;
+    controls.maxPolarAngle = Math.PI * 2 / 3;
+    controls.enableZoom = false;
+  }
+
+  // Add resize handler
+  const handleResize = () => {
+    const width = globeEl.value.offsetWidth;
+    const height = globeEl.value.offsetHeight;
+    const newIsMobile = window.innerWidth < 768;
+
+    globeInstance.value
+      .width(width)
+      .height(height)
+      .arcStroke(newIsMobile ? 0.2 : 0.4)
+      .pointRadius(d => newIsMobile ? (d.size * 0.5) : d.size);
+
+    // Kameraposition beim Resize anpassen
+    globeInstance.value.pointOfView({
+      lat: newIsMobile ? 20.0 : 25.0,
+      lng: newIsMobile ? 15.0 : 18.0,
+      altitude: newIsMobile ? 2.2 : 1.8
+    }, 0);
+
+    globeInstance.value.controls().autoRotateSpeed = newIsMobile ? 0.3 : 0.8;
+
+    const controls = globeInstance.value.controls();
+    if (newIsMobile) {
+      controls.minDistance = 150;
+      controls.maxDistance = 400;
+      controls.minPolarAngle = Math.PI / 3;
+      controls.maxPolarAngle = Math.PI * 2 / 3;
+      controls.enableZoom = false;
+    } else {
+      controls.minDistance = 200;
+      controls.maxDistance = 800;
+      controls.minPolarAngle = 0;
+      controls.maxPolarAngle = Math.PI;
+      controls.enableZoom = true;
+    }
+  };
+
+  window.addEventListener('resize', handleResize);
+  onBeforeUnmount(() => {
+    window.removeEventListener('resize', handleResize);
+  });
+  
   // Add hover effect for points
   globeInstance.value
     .onPointHover(point => {
@@ -171,10 +231,7 @@ defineExpose({
 <style scoped>
 .globe-container {
   width: 100%;
-  max-width: 600px;
-  height: 600px;
-  margin: 0 auto;
+  height: 100%;
   position: relative;
-  border-radius: 40px;
 }
 </style>
