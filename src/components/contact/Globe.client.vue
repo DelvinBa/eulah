@@ -69,7 +69,6 @@ const initGlobe = async (Globe) => {
     .height(containerHeight)
     .backgroundColor("#000000")
     .globeImageUrl("/images/earth-blue-marble.jpg")
-    .bumpImageUrl("/images/earth-topology.png")
     .atmosphereColor("#3D5AF1")
     .atmosphereAltitude(0.15)
     .arcsData(arcsData)
