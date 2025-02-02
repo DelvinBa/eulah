@@ -4,7 +4,7 @@
 
 <script setup>
 import * as THREE from 'three';
-import cloudsImg from "@/assets/images/clouds.png";
+const cloudsImg = "/images/clouds.png";
 
 const globeEl = ref(null);
 const globeInstance = ref(null);
@@ -68,8 +68,8 @@ const initGlobe = async (Globe) => {
     .width(containerWidth)
     .height(containerHeight)
     .backgroundColor("#000000")
-    .globeImageUrl("//unpkg.com/three-globe/example/img/earth-blue-marble.jpg")
-    .bumpImageUrl("//unpkg.com/three-globe/example/img/earth-topology.png")
+    .globeImageUrl("/images/earth-blue-marble.jpg")
+    .bumpImageUrl("/images/earth-topology.png")
     .atmosphereColor("#3D5AF1")
     .atmosphereAltitude(0.15)
     .arcsData(arcsData)

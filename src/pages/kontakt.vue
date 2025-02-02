@@ -9,7 +9,7 @@
       <div class="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-12">
         <!-- Globe container -->
         <div class="relative w-[280px] h-[180px] sm:w-[400px] sm:h-[250px] lg:w-[500px] lg:h-[400px]">
-          <Globe ref="globeEl" class="w-full h-full rounded-2xl sm:rounded-3xl lg:rounded-4xl"></Globe>
+          <ContactGlobe ref="globeEl" class="w-full h-full rounded-2xl sm:rounded-3xl lg:rounded-4xl"></ContactGlobe>
         </div>
 
         <form @submit.prevent="submitForm" class="w-full max-w-lg lg:w-2/3 space-y-4 md:space-y-6">
@@ -62,7 +62,17 @@
 </template>
 
 <script setup>
-import Globe from '~/components/contact/Globe.client.vue';
+
+useSeoMeta({
+  title: 'Kontakt – Eulah',
+  description: 'Kontaktiere uns für digitale Lösungen in Softwareentwicklung, Marketing & Automatisierung. Sitz in Deutschland, Projekte weltweit.',
+  ogTitle: 'Kontakt – Eulah',
+  ogDescription: 'Lass uns zusammenarbeiten! Wir entwickeln digitale Lösungen für Unternehmen & Startups weltweit.',
+  // ogImage: 'https://eulah.de/images/contact-og.jpg', // Replace with a real image
+  // twitterCard: 'summary_large_image',
+  canonical: 'https://eulah.de/kontakt'
+})
+
 const mail = useMail();
 
 // Form data and state

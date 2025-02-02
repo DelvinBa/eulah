@@ -7,6 +7,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+    middleware: 'redirect',
+});
+
 const allPosts = await queryCollection('blog').all()
 
 

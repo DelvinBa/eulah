@@ -1,700 +1,522 @@
 <template>
-  <div class="particle-container">
-    <!-- Canvas für die Partikelanimation -->
-    <canvas ref="canvas" class="particle-canvas"></canvas>
-    <!-- Overlay mit Tagline und Call-to-Action -->
-    <div class="overlay">
-      <div class="tagline">Innovative Softwarelösungen für eine vernetzte Welt.</div>
-      <button class="cta-button">Erfahre mehr →</button>
+    <div class="particle-container">
+        <!-- Canvas für die Partikelanimation -->
+        <canvas ref="canvas" class="particle-canvas"></canvas>
+        <!-- Overlay mit Typewriter-Text und Call-to-Action -->
+        <div class="overlay">
+            <div class="typewriter">{{ typedText }}<span class="cursor">|</span></div>
+            <button class="button" @click="scrollToFunnel">Jetzt Projekt starten</button>
+        </div>
     </div>
-  </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-// Referenz zum Canvas-Element
-const canvas = ref(null);
+// Prüfe, ob es sich um ein mobiles Gerät handelt:
+const isMobile = window.innerWidth < 768;
 
-// Globale Variablen für Canvas und Partikel
-let ctx;
+/* =============================================================================
+   GLOBALE VARIABLEN & SETUP
+   ============================================================================= */
 let canvasWidth, canvasHeight;
+const canvas = ref(null);
+let ctx;
 let particlesArray = [];
-
-// Globale Variablen für Explosionseffekt
-const explosionDuration = 2000; // Dauer der Explosionsphase in ms
+// Phasen: "initial" (Wortformation), "explosion" (Partikel explodieren), "final" (finaler Text "Eulah Software")
+let phase = "initial";
+const explosionDuration = 2000; // Dauer der Explosion in ms
 let explosionStartTime;
-let explosionComplete = false;
 
-// Mausobjekt zur Speicherung der aktuellen Position und des Einflussbereichs
+// Raster für Partikel im initialen Zustand
+let particleStep = 6;
+
+// Mausobjekt (optional)
 const mouse = {
-  x: undefined,
-  y: undefined,
-  radius: 100 // Einfluss-Radius der Maus
+    x: undefined,
+    y: undefined,
+    radius: 100
 };
 
-// Event-Listener für Mausbewegungen: Berechnet die relative Position
 function handleMouseMove(event) {
-  const rect = canvas.value.getBoundingClientRect();
-  mouse.x = event.clientX - rect.left;
-  mouse.y = event.clientY - rect.top;
+    const rect = canvas.value.getBoundingClientRect();
+    mouse.x = event.clientX - rect.left;
+    mouse.y = event.clientY - rect.top;
 }
 
-/*
-  =============================================================================
-  Particle-Klasse
-  =============================================================================
-  Jedes Particle repräsentiert einen Punkt, der Teil des Textes "Eulah Software" ist.
-  Neben der Basisposition (baseX, baseY) speichert es auch die Startposition (in der Mitte)
-  und eine Anfangsgeschwindigkeit, die für den Explosionseffekt sorgt.
-  =============================================================================
-*/
+/* =============================================================================
+   PARTICLE-KLASSE
+   ============================================================================= */
 class Particle {
-  constructor(x, y) {
-    // Speichere die Zielposition (Basisposition) anhand der Text-Pixel
-    this.baseX = x;
-    this.baseY = y;
-    // Initial alle Partikel in der Mitte des Canvas platzieren
-    this.x = canvasWidth / 2;
-    this.y = canvasHeight / 2;
-    this.size = 2; // Größe des Partikels
-    // Zufälliger Dichtewert, um die Bewegung variiert erscheinen zu lassen
-    this.density = Math.random() * 30 + 1;
+    constructor(x, y) {
+        this.baseX = x;
+        this.baseY = y;
+        this.x = x;
+        this.y = y;
+        this.size = 1.5; // Reduced from 2 to 1.5 to accommodate higher density
+        this.density = Math.random() * 30 + 1;
+        const centerX = canvasWidth / 2;
+        const centerY = canvasHeight / 2;
+        const dx = this.x - centerX;
+        const dy = this.y - centerY;
+        let angle = Math.atan2(dy, dx);
+        const randomAngleOffset = (Math.random() - 0.5) * Math.PI / 8;
+        angle += randomAngleOffset;
+        const speed = Math.random() * 10 + 8;
+        this.velocityX = Math.cos(angle) * speed;
+        this.velocityY = Math.sin(angle) * speed;
+    }
 
-    // Berechne den Vektor von der Mitte zur Basisposition
-    const centerX = canvasWidth / 2;
-    const centerY = canvasHeight / 2;
-    const dx = this.baseX - centerX;
-    const dy = this.baseY - centerY;
-    let angle = Math.atan2(dy, dx);
-    // Optional: Leichte zufällige Abweichung des Winkels
-    const randomAngleOffset = (Math.random() - 0.5) * Math.PI / 8;
-    angle += randomAngleOffset;
-    // Zufällige Geschwindigkeit (explosionsartiger Impuls)
-    const speed = Math.random() * 5 + 3; // zwischen 3 und 8
-    this.velocityX = Math.cos(angle) * speed;
-    this.velocityY = Math.sin(angle) * speed;
-  }
+    // Zeichnet den Partikel
+    draw() {
+        ctx.fillStyle = '#00d4ff';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fill();
+    }
 
-  // Zeichnet das Particle als Kreis
-  draw() {
-    ctx.fillStyle = '#00d4ff';
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.closePath();
-    ctx.fill();
-  }
+    // Bewegt den Partikel sanft zurück zur Basisposition
+    update() {
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const forceDirectionX = dx / distance;
+        const forceDirectionY = dy / distance;
+        const maxDistance = mouse.radius;
+        const force = (maxDistance - distance) / maxDistance;
+        if (distance < mouse.radius) {
+            const directionX = forceDirectionX * force * this.density;
+            const directionY = forceDirectionY * force * this.density;
+            this.x -= directionX;
+            this.y -= directionY;
+        } else {
+            if (this.x !== this.baseX) {
+                const dx = this.x - this.baseX;
+                this.x -= dx / 10;
+            }
+            if (this.y !== this.baseY) {
+                const dy = this.y - this.baseY;
+                this.y -= dy / 10;
+            }
+        }
+    }
 
-  // Normaler Update-Mechanismus: Mausinteraktion + Rückkehr zur Basisposition
-  update() {
-    // Berechne den Abstand zwischen Maus und Partikel
-    const dx = mouse.x - this.x;
-    const dy = mouse.y - this.y;
-    const distance = Math.sqrt(dx * dx + dy * dy);
+    // Für die Explosionsphase
+    explosionUpdate() {
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+        // Leichte Reibung
+        this.velocityX *= 0.95;
+        this.velocityY *= 0.95;
+    }
+}
 
-    // Berechne Richtungsvektor und relative Stärke der Abstoßung
-    const forceDirectionX = dx / distance;
-    const forceDirectionY = dy / distance;
-    const maxDistance = mouse.radius;
-    const force = (maxDistance - distance) / maxDistance;
+/* =============================================================================
+   INITIALISIERUNG DER ERSTEN PHASE (Wortformation)
+   =============================================================================
+   Mithilfe eines Offscreen-Canvas werden die Wörter gerendert, aus denen
+   Partikel erstellt werden. Auf mobilen Geräten wird nur ein einziges Wort
+   ("Exzellenz") mittig angezeigt.
+   ============================================================================= */
+function initInitial() {
+    const textCanvas = document.createElement('canvas');
+    const textCtx = textCanvas.getContext('2d');
+    canvasWidth = canvas.value.width = window.innerWidth;
+    canvasHeight = canvas.value.height = window.innerHeight;
+    particleStep = 6;
+    textCanvas.width = canvasWidth;
+    textCanvas.height = canvasHeight;
 
-    // Wenn der Mauszeiger in Reichweite ist, wehre das Partikel ab
-    if (distance < mouse.radius) {
-      const directionX = forceDirectionX * force * this.density;
-      const directionY = forceDirectionY * force * this.density;
-      this.x -= directionX;
-      this.y -= directionY;
+    textCtx.fillStyle = 'white';
+
+    let initialWords;
+    if (isMobile) {
+        textCtx.font = 'bold 50px Arial';
+        // Damit "Exzellenz" zentriert erscheint:
+        textCtx.textAlign = 'center';
+        textCtx.textBaseline = 'middle';
+        // Nur ein Wort "Exzellenz" in der Mitte
+        initialWords = [
+            { word: "Exzellenz", x: canvasWidth / 2, y: canvasHeight / 2 }
+        ];
     } else {
-      // Andernfalls kehre sanft zur Basisposition zurück
-      if (this.x !== this.baseX) {
-        const dx = this.x - this.baseX;
-        this.x -= dx / 10;
-      }
-      if (this.y !== this.baseY) {
-        const dy = this.y - this.baseY;
-        this.y -= dy / 10;
-      }
+        textCtx.font = 'bold 60px Arial';
+        // Desktop-Initialpositionen
+        initialWords = [
+            { word: "Erfolg", x: canvasWidth * 0.15, y: canvasHeight * 0.3 },
+            { word: "Exponentiell", x: canvasWidth * 0.75, y: canvasHeight * 0.3 },
+            { word: "Effizienz", x: canvasWidth * 0.25, y: canvasHeight * 0.5 },
+            { word: "Energie", x: canvasWidth * 0.65, y: canvasHeight * 0.5 },
+            { word: "Evolution", x: canvasWidth * 0.15, y: canvasHeight * 0.7 },
+            { word: "Engagement", x: canvasWidth * 0.75, y: canvasHeight * 0.7 },
+            { word: "Exzellenz", x: canvasWidth * 0.45, y: canvasHeight * 0.2 }
+        ];
     }
-  }
 
-  // Update-Methode für die Explosionsphase: Partikel bewegen sich anhand ihrer
-  // Anfangsgeschwindigkeit, welche langsam abgebaut wird.
-  explosionUpdate() {
-    this.x += this.velocityX;
-    this.y += this.velocityY;
-    // Langsames Abbremsen (Friction)
-    this.velocityX *= 0.95;
-    this.velocityY *= 0.95;
-  }
+    initialWords.forEach(item => {
+        textCtx.fillText(item.word, item.x, item.y);
+    });
+
+    const textCoordinates = textCtx.getImageData(0, 0, canvasWidth, canvasHeight);
+    particlesArray = [];
+    for (let y = 0; y < canvasHeight; y += particleStep) {
+        for (let x = 0; x < canvasWidth; x += particleStep) {
+            const index = (y * canvasWidth + x) * 4;
+            if (textCoordinates.data[index + 3] > 128) {
+                particlesArray.push(new Particle(x, y));
+            }
+        }
+    }
 }
 
-/*
-  =============================================================================
-  Funktion init()
-  =============================================================================
-  Diese Funktion erstellt einen Offscreen-Canvas, auf dem der Text "Eulah Software"
-  in weißer Farbe und in einem fetten Font gerendert wird. Anschließend werden alle
-  Pixel des Offscreen-Canvas ausgelesen, und für jeden Pixel, der eine ausreichende
-  Deckkraft aufweist, wird ein Particle-Objekt in particlesArray gespeichert.
-  =============================================================================
-*/
-function init() {
-  // Erstelle einen Offscreen-Canvas zur Textgenerierung
-  const textCanvas = document.createElement('canvas');
-  const textCtx = textCanvas.getContext('2d');
+/* =============================================================================
+   FINAL TEXT FORMATION ("Eulah Software")
+   =============================================================================
+   Mithilfe eines Offscreen-Canvas wird der finale Text gerendert.
+   Um das Wort weniger dicht zu machen, wird ein gröberes Raster (finalStep = 4)
+   verwendet. Wichtig: Der Text wird exakt mittig (y = canvasHeight/2) gezeichnet,
+   sodass die untere Hälfte genauso vollständig ist wie die obere.
+   ============================================================================= */
+function getFinalPositions() {
+    const finalPositions = [];
+    const textCanvas = document.createElement('canvas');
+    textCanvas.width = canvasWidth;
+    textCanvas.height = canvasHeight;
+    const textCtx = textCanvas.getContext('2d');
+    textCtx.fillStyle = 'white';
 
-  // Setze die Abmessungen beider Canvas (Offscreen und Haupt-Canvas)
-  canvasWidth = canvas.value.width = window.innerWidth;
-  canvasHeight = canvas.value.height = window.innerHeight;
-  textCanvas.width = canvasWidth;
-  textCanvas.height = canvasHeight;
-
-  // Konfiguriere den Textstil für den Offscreen-Canvas
-  textCtx.fillStyle = 'white';
-  textCtx.font = 'bold 120px Arial';
-  textCtx.textAlign = 'center';
-  textCtx.textBaseline = 'middle';
-
-  // Definiere den Text und dessen Position (zentriert)
-  const text = 'Eulah Software';
-  const posX = canvasWidth / 2;
-  const posY = canvasHeight / 2;
-  textCtx.fillText(text, posX, posY);
-
-  // Hole die Bilddaten des gesamten Offscreen-Canvas
-  const textCoordinates = textCtx.getImageData(0, 0, canvasWidth, canvasHeight);
-
-  // Lösche vorherige Partikel (falls vorhanden)
-  particlesArray = [];
-
-  // Durchlaufe die Bilddaten und erstelle Partikel für Pixel mit ausreichender Deckkraft.
-  // Wir überspringen einige Pixel (z. B. alle 6 Pixel), um die Partikelanzahl zu reduzieren.
-  for (let y = 0; y < canvasHeight; y += 6) {
-    for (let x = 0; x < canvasWidth; x += 6) {
-      const index = (y * canvasWidth + x) * 4;
-      if (textCoordinates.data[index + 3] > 128) {
-        particlesArray.push(new Particle(x, y));
-      }
+    let font, text, posY;
+    if (isMobile) {
+        font = 'bold 60px Arial';
+        text = "Eulah\nSoftware";
+        posY = canvasHeight / 2;
+    } else {
+        font = 'bold 120px Arial';
+        text = "Eulah Software";
+        posY = canvasHeight / 2;
     }
-  }
+
+    textCtx.font = font;
+    textCtx.textAlign = 'center';
+    textCtx.textBaseline = 'middle';
+    const posX = canvasWidth / 2;
+
+    // Clear the canvas before drawing
+    textCtx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+    // Draw the text
+    if (text.includes("\n")) {
+        const lines = text.split("\n");
+        const fontSize = isMobile ? 60 : 120;
+        const lineHeight = fontSize * 1.2;
+        for (let i = 0; i < lines.length; i++) {
+            textCtx.fillText(
+                lines[i],
+                posX,
+                posY - (lines.length - 1) * lineHeight / 2 + i * lineHeight
+            );
+        }
+    } else {
+        textCtx.fillText(text, posX, posY);
+    }
+
+    // Get image data
+    const textCoordinates = textCtx.getImageData(0, 0, canvasWidth, canvasHeight);
+    // Reduced step size for higher density
+    const finalStep = 2; // Changed from 4 to 2 for more sampling points
+
+    // First pass: Count total available positions
+    let availablePositions = 0;
+    for (let y = 0; y < canvasHeight; y += finalStep) {
+        for (let x = 0; x < canvasWidth; x += finalStep) {
+            const index = (y * canvasWidth + x) * 4;
+            if (textCoordinates.data[index + 3] > 128) {
+                availablePositions++;
+            }
+        }
+    }
+
+    // Increased desired particles for better readability
+    const desiredParticles = Math.min(availablePositions, 4000); // Increased from 2000 to 4000
+    const samplingRate = availablePositions / desiredParticles;
+    let currentSample = 0;
+
+    // Second pass: Sample positions based on calculated rate
+    for (let y = 0; y < canvasHeight; y += finalStep) {
+        for (let x = 0; x < canvasWidth; x += finalStep) {
+            const index = (y * canvasWidth + x) * 4;
+            if (textCoordinates.data[index + 3] > 128) {
+                currentSample++;
+                if (currentSample % Math.ceil(samplingRate) === 0) {
+                    // Reduced random offset for tighter text formation
+                    const offsetX = (Math.random() - 0.5) * finalStep * 0.8;
+                    const offsetY = (Math.random() - 0.5) * finalStep * 0.8;
+                    finalPositions.push({
+                        x: x + offsetX,
+                        y: y + offsetY
+                    });
+                }
+            }
+        }
+    }
+
+    // Additional particles for enhanced density
+    const basePositions = [...finalPositions];
+    basePositions.forEach(basePos => {
+        // Add cluster particles around base positions
+        const clusterCount = Math.floor(Math.random() * 2) + 1; // 1-2 additional particles per base
+        for (let i = 0; i < clusterCount; i++) {
+            finalPositions.push({
+                x: basePos.x + (Math.random() - 0.5) * finalStep,
+                y: basePos.y + (Math.random() - 0.5) * finalStep
+            });
+        }
+    });
+
+    // Ensure minimum particle density
+    if (finalPositions.length < desiredParticles) {
+        const additionalParticles = Math.floor(desiredParticles - finalPositions.length);
+        for (let i = 0; i < additionalParticles; i++) {
+            const basePos = finalPositions[Math.floor(Math.random() * finalPositions.length)];
+            if (basePos) {
+                finalPositions.push({
+                    x: basePos.x + (Math.random() - 0.5) * finalStep,
+                    y: basePos.y + (Math.random() - 0.5) * finalStep
+                });
+            }
+        }
+    }
+
+    return finalPositions;
 }
 
-/*
-  =============================================================================
-  Funktion animate()
-  =============================================================================
-  Diese Funktion wird in einer Endlosschleife mittels requestAnimationFrame
-  aufgerufen. Während der ersten explosionDuration ms wird der Explosionseffekt
-  ausgeführt, danach erfolgt die normale Animation (inklusive Mausinteraktion).
-  =============================================================================
-*/
+/* =============================================================================
+   TRANSITION ZUM FINALEN TEXT
+   =============================================================================
+   Allen Partikeln werden neue Basispositionen (basierend auf den finalen Text-Pixeln)
+   zugewiesen. Falls es weniger Partikel gibt als finale Positionen, werden zusätzliche
+   Partikel erzeugt.
+   ============================================================================= */
+function transitionToFinal() {
+    const finalPositions = getFinalPositions();
+
+    // Adjust existing particles
+    particlesArray.forEach((particle, index) => {
+        if (index < finalPositions.length) {
+            particle.baseX = finalPositions[index].x;
+            particle.baseY = finalPositions[index].y;
+        } else {
+            // Remove excess particles
+            particlesArray.splice(index);
+        }
+    });
+
+    // Add new particles if needed
+    while (particlesArray.length < finalPositions.length) {
+        const pos = finalPositions[particlesArray.length];
+        const centerX = canvasWidth / 2;
+        const centerY = canvasHeight / 2;
+        const newParticle = new Particle(centerX, centerY);
+        newParticle.baseX = pos.x;
+        newParticle.baseY = pos.y;
+        particlesArray.push(newParticle);
+    }
+}
+
+/* =============================================================================
+   ANIMATION
+   =============================================================================
+   Je nach Phase werden die Partikel animiert:
+   - "initial": Partikel bilden die Anfangswörter.
+   - "explosion": Partikel explodieren.
+   - "final": Partikel formen den finalen Text.
+   ============================================================================= */
 function animate() {
-  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  const elapsed = performance.now() - explosionStartTime;
-
-  if (elapsed < explosionDuration) {
-    // Explosionsphase
-    for (let i = 0; i < particlesArray.length; i++) {
-      particlesArray[i].explosionUpdate();
-      particlesArray[i].draw();
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    if (phase === "initial") {
+        particlesArray.forEach(particle => particle.draw());
+    } else if (phase === "explosion") {
+        const elapsed = performance.now() - explosionStartTime;
+        if (elapsed < explosionDuration) {
+            particlesArray.forEach(particle => {
+                particle.explosionUpdate();
+                particle.draw();
+            });
+        } else {
+            transitionToFinal();
+            phase = "final";
+        }
+    } else if (phase === "final") {
+        particlesArray.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
     }
-  } else {
-    // Explosionsphase abgeschlossen – normale Animation
-    explosionComplete = true;
-    for (let i = 0; i < particlesArray.length; i++) {
-      particlesArray[i].update();
-      particlesArray[i].draw();
-    }
-  }
-  requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
 }
 
-/*
-  =============================================================================
-  Funktion handleResize()
-  =============================================================================
-  Bei einer Größenänderung des Fensters werden Canvas-Dimensionen neu gesetzt und
-  die Partikel neu initialisiert, um das Layout beizubehalten.
-  =============================================================================
-*/
 function handleResize() {
-  canvasWidth = canvas.value.width = window.innerWidth;
-  canvasHeight = canvas.value.height = window.innerHeight;
-  init();
+    canvasWidth = canvas.value.width = window.innerWidth;
+    canvasHeight = canvas.value.height = window.innerHeight;
+    if (phase === "initial") {
+        initInitial();
+    }
 }
 
+/* =============================================================================
+   TYPEWRITER-EFFEKT
+   ============================================================================= */
+// Auf mobilen Geräten ein verkürzter Text mit Zeilenumbruch
+const finalTypewriterText = isMobile
+    ? "Von Code zu Cashflow –\nwir bauen dein Business."
+    : "Von Code zu Cashflow – wir bauen Geschäftsmodelle, die wachsen.";
+const typedText = ref("");
+let typeIndex = 0;
+function typeWriter() {
+    if (typeIndex < finalTypewriterText.length) {
+        typedText.value += finalTypewriterText.charAt(typeIndex);
+        typeIndex++;
+        setTimeout(typeWriter, 50);
+    }
+}
+
+/* =============================================================================
+   SCROLL TO LEADFUNNEL
+   =============================================================================
+   Beim Klick scrollt der Button zum Element mit der ID "lead-funnel".
+   ============================================================================= */
+function scrollToFunnel() {
+    const funnelSection = document.getElementById('lead-funnel');
+    if (funnelSection) {
+        funnelSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+/* =============================================================================
+   LIFECYCLE
+   ============================================================================= */
 onMounted(() => {
-  canvasWidth = window.innerWidth;
-  canvasHeight = window.innerHeight;
-  ctx = canvas.value.getContext('2d');
-
-  // Starte den Timer für den Explosionseffekt
-  explosionStartTime = performance.now();
-
-  // Event-Listener für Mausbewegungen hinzufügen
-  canvas.value.addEventListener('mousemove', handleMouseMove);
-
-  // Partikel aus dem Text initialisieren
-  init();
-  // Animation starten
-  animate();
-  // Fenstergrößenänderungen überwachen
-  window.addEventListener('resize', handleResize);
+    canvasWidth = window.innerWidth;
+    canvasHeight = window.innerHeight;
+    ctx = canvas.value.getContext('2d');
+    canvas.value.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize);
+    // Initialphase starten
+    initInitial();
+    animate();
+    // Nach 2 Sekunden in die Explosionsphase wechseln
+    setTimeout(() => {
+        phase = "explosion";
+        explosionStartTime = performance.now();
+    }, 2000);
+    // Typewriter-Effekt starten
+    typeWriter();
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', handleResize);
-  canvas.value.removeEventListener('mousemove', handleMouseMove);
+    window.removeEventListener('resize', handleResize);
+    canvas.value.removeEventListener('mousemove', handleMouseMove);
 });
 </script>
 
 <style scoped>
-/* =============================================================================
-    Basis-Styles & Globaler Reset
-    ============================================================================= */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html,
 body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
-/* =============================================================================
-    Container für die Partikelanimation
-    ============================================================================= */
 .particle-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background-color: #000;
-  overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: transparent;
+    overflow: hidden;
 }
 
-/* =============================================================================
-    Canvas für die Partikel
-    ============================================================================= */
 .particle-canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
-/* =============================================================================
-    Overlay für Tagline und Call-to-Action
-    ============================================================================= */
 .overlay {
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #fff;
-  z-index: 10;
-}
-.overlay .tagline {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-.overlay .cta-button {
-  background-color: #00d4ff;
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  color: #000;
-  cursor: pointer;
-  border-radius: 8px;
-  animation: sine 2s infinite;
-  /* Optional: sanfter Hover-Effekt */
-  transition: transform 0.3s ease;
-}
-.overlay .cta-button:hover {
-  transform: scale(1.05);
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 10;
+    padding: 1rem;
 }
 
-/* Sinusförmige Animation für den Button */
-@keyframes sine {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+.typewriter {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    /* Auf Desktop ohne Zeilenumbruch */
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-/* =============================================================================
-    Utility-Klassen und weitere Styles (wie zuvor)
-    ============================================================================= */
-/* Flexbox */
-.flex {
-  display: flex;
+.cursor {
+    display: inline-block;
+    animation: blink 1s infinite;
 }
 
-.flex-column {
-  flex-direction: column;
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
-.flex-center {
-  justify-content: center;
-  align-items: center;
+.button {
+    position: relative;
+    padding: 1.5rem;
+    background: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    color: #ffffff;
+    font-size: 1.2rem;
 }
 
-.flex-between {
-  justify-content: space-between;
+.button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.7),
+        0 0 25px rgba(0, 176, 232, 0.5),
+        inset 0 0 15px rgba(0, 212, 255, 0.3);
+    border-color: #00d4ff;
 }
 
-/* Textausrichtung und Transformation */
-.text-center {
-  text-align: center;
-}
-
-.text-uppercase {
-  text-transform: uppercase;
-}
-
-.text-lowercase {
-  text-transform: lowercase;
-}
-
-.text-bold {
-  font-weight: bold;
-}
-
-.text-italic {
-  font-style: italic;
-}
-
-.text-shadow {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* Margin- und Padding-Utilities */
-.mt-1 {
-  margin-top: 1rem;
-}
-
-.mt-2 {
-  margin-top: 2rem;
-}
-
-.mb-1 {
-  margin-bottom: 1rem;
-}
-
-.mb-2 {
-  margin-bottom: 2rem;
-}
-
-.pt-1 {
-  padding-top: 1rem;
-}
-
-.pt-2 {
-  padding-top: 2rem;
-}
-
-.pb-1 {
-  padding-bottom: 1rem;
-}
-
-.pb-2 {
-  padding-bottom: 2rem;
-}
-
-.p-1 {
-  padding: 1rem;
-}
-
-.p-2 {
-  padding: 2rem;
-}
-
-/* Background-Farben */
-.bg-dark {
-  background-color: #000;
-}
-
-.bg-light {
-  background-color: #fff;
-}
-
-.bg-primary {
-  background-color: #00d4ff;
-}
-
-.bg-secondary {
-  background-color: #222;
-}
-
-/* Border-Utilities */
-.border {
-  border: 1px solid #00d4ff;
-}
-
-.border-rounded {
-  border-radius: 8px;
-}
-
-.border-rounded-full {
-  border-radius: 50%;
-}
-
-/* Animationen */
-.animate-fade-in {
-  animation: fadeIn 1s ease-in-out forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-pulse {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Spacing */
-.m-0 {
-  margin: 0;
-}
-
-.p-0 {
-  padding: 0;
-}
-
-/* Breite und Höhe */
-.w-100 {
-  width: 100%;
-}
-
-.h-100 {
-  height: 100%;
-}
-
-.min-h-100 {
-  min-height: 100vh;
-}
-
-/* Positionierung */
-.relative {
-  position: relative;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.fixed {
-  position: fixed;
-}
-
-.top-0 {
-  top: 0;
-}
-
-.left-0 {
-  left: 0;
-}
-
-.right-0 {
-  right: 0;
-}
-
-.bottom-0 {
-  bottom: 0;
-}
-
-/* Z-Index */
-.z-0 {
-  z-index: 0;
-}
-
-.z-1 {
-  z-index: 1;
-}
-
-.z-2 {
-  z-index: 2;
-}
-
-.z-3 {
-  z-index: 3;
-}
-
-.z-4 {
-  z-index: 4;
-}
-
-.z-5 {
-  z-index: 5;
-}
-
-/* =============================================================================
-    Zusätzliche Placeholder-Styles für Erweiterungen
-    ============================================================================= */
-.loader {
-  border: 4px solid rgba(0, 212, 255, 0.3);
-  border-top: 4px solid #00d4ff;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-  margin: auto;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.shadow-small {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.shadow-medium {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.shadow-large {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-.hover-scale:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
-}
-
-.hover-shadow:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-  transition: box-shadow 0.3s ease;
-}
-
-/* =============================================================================
-    Responsive Design: Anpassungen für verschiedene Bildschirmgrößen
-    ============================================================================= */
+/* Mobile Anpassungen */
 @media (max-width: 768px) {
-  .text-large {
-    font-size: 1.5rem;
-  }
-  .text-medium {
-    font-size: 1.2rem;
-  }
-  .text-small {
-    font-size: 1rem;
-  }
-}
+    .typewriter {
+        font-size: 1.2rem;
+        white-space: pre-line;
+    }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .text-large {
-    font-size: 2rem;
-  }
-  .text-medium {
-    font-size: 1.5rem;
-  }
-  .text-small {
-    font-size: 1.2rem;
-  }
+    .button {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
 }
-
-@media (min-width: 1025px) {
-  .text-large {
-    font-size: 3rem;
-  }
-  .text-medium {
-    font-size: 2rem;
-  }
-  .text-small {
-    font-size: 1.5rem;
-  }
-}
-
-/* =============================================================================
-    Extra Placeholder-Klassen für zukünftige Features
-    ============================================================================= */
-.placeholder-bg {
-  background-image: url('https://via.placeholder.com/150');
-  background-size: cover;
-  background-position: center;
-}
-
-.placeholder-text {
-  color: #ccc;
-  font-size: 1rem;
-}
-
-.placeholder-border {
-  border: 2px dashed #00d4ff;
-}
-
-.extra-margin {
-  margin: 2rem;
-}
-
-.extra-padding {
-  padding: 2rem;
-}
-
-.extra-rounded {
-  border-radius: 10px;
-}
-
-.extra-shadow {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-.extra-gradient {
-  background: linear-gradient(45deg, #000, #222, #000);
-}
-
-.extra-transform {
-  transform: translate(0, 0);
-}
-
-.extra-transition {
-  transition: all 0.3s ease-in-out;
-}
-
-.extra-opacity {
-  opacity: 0.9;
-}
-
-.extra-filter {
-  filter: brightness(1.1);
-}
-
-.extra-backdrop {
-  backdrop-filter: blur(5px);
-}
-
-/* =============================================================================
-    Ende der Styles
-    ============================================================================= */
 </style>

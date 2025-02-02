@@ -39,8 +39,19 @@
 
 <script setup>
 
+useSeoMeta({
+  title: 'Eulah – Digitale Lösungen für Unternehmen & Startups',
+  description: 'Von der ersten Code-Zeile bis zur Skalierung – wir entwickeln Software, digitale Produkte & Marketingstrategien für nachhaltigen Erfolg.',
+  ogTitle: 'Eulah – Digitale Lösungen für Unternehmen & Startups',
+  ogDescription: 'Von Code zu Cashflow – wir entwickeln digitale Produkte mit echtem Marktwert. Skalierbar, innovativ & wirtschaftlich erfolgreich.',
+  ogImage: 'https://eulah.de/images/og-image.jpg', // Ersetze mit einem echten Bild
+  // twitterCard: 'summary_large_image',
+  canonical: 'https://eulah.de'
+})
+
 
 </script>
+
 
 <style scoped>
 

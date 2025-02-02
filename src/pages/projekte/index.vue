@@ -44,11 +44,26 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
-import Image1 from "@/assets/images/solarrex2.jpg";
-import Image2 from "@/assets/images/babylon2.jpg";
-import Image3 from "@/assets/images/3.jpg";
-import Image4 from "@/assets/images/schneiderei.jpg";
+
+useSeoMeta({
+  title: 'Unsere Projekte – Eulah',
+  description: 'Entdecke unsere erfolgreich umgesetzten digitalen Projekte in Softwareentwicklung, Marketing & Automatisierung.',
+  ogTitle: 'Unsere Projekte – Eulah',
+  ogDescription: 'Von innovativen Web-Plattformen bis zu automatisierten Marketingstrategien – ein Überblick über unsere digitalen Erfolge.',
+  ogImage: 'https://eulah.de/images/projects-og.jpg', // Replace with a real image
+  twitterCard: 'summary_large_image',
+  canonical: 'https://eulah.de/projekte'
+})
+
+definePageMeta({
+  middleware: 'redirect',
+});
+
+
+const Image1 = "/images/solarrex2.jpg";
+const Image2 = "/images/babylon2.jpg";
+const Image3 = "/images/3.jpg";
+const Image4 = "/images/schneiderei.jpg";
 
 const projects = ref([
   {

@@ -20,7 +20,9 @@
 <script setup>
 const logos = [
     { src: "/images/solarrex_logo.png", alt: "Solarrex Logo", class: "logo" },
-    { src: "/images/babylon_logo.png", alt: "Babylon Bahndienste Logo", class: "logo large-logo" }
+    { src: "/images/babylon_logo.png", alt: "Babylon Bahndienste Logo", class: "logo large-logo" },
+    { src: "/images/getlink_logo.svg", alt: "GetLink Logo", class: "logo" },
+    { src: "/images/debac_logo.png", alt: "Debacq Logo", class: "logo" }
 ];
 </script>
 
