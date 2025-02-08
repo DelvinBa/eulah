@@ -46,7 +46,6 @@
 <script setup>
 
 
-import videoSolar from "@/assets/videos/solar.mp4";
 
 const projects = [
     {
