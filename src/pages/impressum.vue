@@ -7,13 +7,14 @@
       </p>
       <p class="text-gray-400 mb-4">
         Eulah Software GbR<br />
-        48599 Gronau, Albrechtstraße 25<br />
+        <!-- 48599 Gronau, Albrechtstraße 25<br /> -->
+        48599 Gronau, <br />
         Deutschland
       </p>
-      <p class="text-gray-400 mb-4">
+      <!-- <p class="text-gray-400 mb-4">
         <strong>Vertreten durch:</strong><br />
         Delvin Bacho und Lucas Aslan
-      </p>
+      </p> -->
       <p class="text-gray-400 mb-4">
         <strong>Kontakt:</strong><br />
         E-Mail: <a href="mailto:info@eulah.de" class="text-accent hover:underline">info@eulah.de</a>
@@ -28,6 +29,7 @@
 
 <style scoped>
 .text-accent {
-  color: #ffd700; /* Beispiel für Akzentfarbe */
+  color: #ffd700;
+  /* Beispiel für Akzentfarbe */
 }
 </style>

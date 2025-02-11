@@ -131,6 +131,9 @@ function initInitial() {
     textCtx.fillStyle = 'white';
 
     let initialWords;
+    const currentWidth = window.innerWidth;
+    const isLaptop = currentWidth >= 768 && currentWidth <= 1200;
+
     if (isMobile) {
         textCtx.font = 'bold 50px Arial';
         // Damit "Exzellenz" zentriert erscheint:
@@ -139,6 +142,17 @@ function initInitial() {
         // Nur ein Wort "Exzellenz" in der Mitte
         initialWords = [
             { word: "Exzellenz", x: canvasWidth / 2, y: canvasHeight / 2 }
+        ];
+    } else if (isLaptop) {
+        textCtx.font = 'bold 50px Arial';  // Leicht kleinere Schrift
+        initialWords = [
+            { word: "Erfolg", x: canvasWidth * 0.2, y: canvasHeight * 0.3 },
+            { word: "Exponentiell", x: canvasWidth * 0.8, y: canvasHeight * 0.3 },
+            { word: "Effizienz", x: canvasWidth * 0.35, y: canvasHeight * 0.5 },
+            { word: "Energie", x: canvasWidth * 0.65, y: canvasHeight * 0.5 },
+            { word: "Evolution", x: canvasWidth * 0.2, y: canvasHeight * 0.7 },
+            { word: "Engagement", x: canvasWidth * 0.8, y: canvasHeight * 0.7 },
+            { word: "Exzellenz", x: canvasWidth * 0.9, y: canvasHeight * 0.2 }
         ];
     } else {
         textCtx.font = 'bold 60px Arial';

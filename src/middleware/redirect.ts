@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware((to) => {
   console.log("Middleware triggered:", to.path);
 
-  const blockedPaths = ["/blog/", "/projekte/", "/projekte", "/blog"];
+  const blockedPaths = ["/projekte/", "/projekte"];
 
   if (blockedPaths.includes(to.path)) {
     console.log("Redirecting to homepage");

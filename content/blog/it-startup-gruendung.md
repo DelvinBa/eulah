@@ -1,15 +1,14 @@
 ---
-title: "Wie gründet man ein IT-Startup im Jahr {{ new Date().getFullYear() }}?"
+title: "Wie gründet man ein IT-Startup im Jahr 2025?"
 description: "Erfahre, welche Schritte notwendig sind, um ein erfolgreiches IT-Startup zu gründen. Von der Idee bis zur Skalierung – mit echten Beispielen und wertvollen Tipps."
-date: "{{ new Date().toISOString().split('T')[0] }}"
+date: 2025-02-09
 author: "Eulah Software"
 tags: ["Startup", "Gründung", "IT-Branche", "Entrepreneurship", "Nische"]
-image: "src/assets/images/blog/it-startup-gruendung.jpeg"
+image: "/images/blog/it-startup-gruendung.jpeg"
 ---
 
-## Wie gründet man ein IT-Startup im Jahr {{ new Date().getFullYear() }}?
 
-### Der Weg zur erfolgreichen Gründung in der Tech-Branche
+## Der Weg zur erfolgreichen Gründung in der Tech-Branche
 
 Die IT-Branche boomt – doch wie startet man ein eigenes IT-Startup? Welche Herausforderungen gibt es, und welche Fehler sollte man vermeiden? In diesem Artikel geben wir einen detaillierten Überblick über die wichtigsten Schritte von der Idee bis zur Markteinführung.
 
@@ -61,16 +60,6 @@ Wichtige Wachstumsstrategien:
 - **Internationalisierung**, falls der heimische Markt begrenzt ist
 
 Es ist entscheidend, in dieser Phase die Finanzplanung im Blick zu behalten. Ein zu schnelles Wachstum ohne stabile Einnahmen kann ein Unternehmen finanziell überfordern.
-
-## Call to Action: Wähle deine nächste Aktion
-
-**Für Unternehmen, die digitale Lösungen suchen:**  
-✅ Lassen SIe uns gemeinsam Ihr digitales Projekt umsetzen! Buche ein kostenloses Erstgespräch.  
-[Jetzt unverbindlich beraten lassen](http://eulah.de/kontakt)
-
-**Für Startup-Gründer & Innovatoren:**  
-✅ Hast du eine Idee für ein digitales Produkt? Lass uns gemeinsam daran arbeiten!  
-[Technischen Co-Founder finden – Hier anfragen!](http://eulah.de/kontakt)
 
 ---
 

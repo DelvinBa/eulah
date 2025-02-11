@@ -30,14 +30,28 @@ export default defineNuxtConfig({
     ],
   ],
   robots: {
-    disallow: ["/blog", "/projekte"],
+    disallow: ["/projekte"],
   },
+  content: {
+    build: {
+      markdown: {
+        remarkPlugins: {
+          // 'remark-reading-time': {},  // Remove or comment out this line
+          "remark-emoji": {
+            options: { emoticon: true },
+          },
+          "remark-gfm": false,
+        },
+      },
+    },
+  },
+
   routeRules: {},
   particles: {
     mode: "full",
     lazy: true,
   },
-  ogImage: {enabled: false},
+  ogImage: { enabled: false },
   site: {
     url: "https://eulah.de",
     name: "Eulah Webseite",

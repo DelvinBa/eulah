@@ -18,10 +18,10 @@
           class="relative px-6 py-3 text-lg font-medium text-white bg-gray-600/30 rounded-full border-2 border-gray-500/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
           Projekte
         </a> -->
-        <!-- <a href="/blog"
+        <a href="/blog"
           class="relative px-6 py-3 text-lg font-medium text-white bg-gray-600/30 rounded-full border-2 border-gray-500/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
           Blog
-        </a> -->
+        </a>
         <a href="/kontakt"
           class="relative px-6 py-3 text-lg font-medium text-white bg-gray-600/30 rounded-full border-2 border-gray-500/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
           Kontakt
