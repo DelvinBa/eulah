@@ -65,7 +65,7 @@
         class="fixed inset-0 bg-black/90 flex flex-col items-center justify-center space-y-6 text-white text-lg z-50"
         role="dialog" aria-modal="true">
         <a href="/" @click="toggleMenu" class="hover:text-accent transition">Home</a>
-        <!-- <a href="/projekte" @click="toggleMenu" class="hover:text-accent transition">Projekte</a> -->
+        <a href="/blog" @click="toggleMenu" class="hover:text-accent transition">Blog</a>
         <a href="/kontakt" @click="toggleMenu" class="hover:text-accent transition">Kontakt</a>
         <button @click="scrollToFunnel"
           class="px-6 py-3 text-lg font-medium text-white bg-gray-600/30 rounded-full border-2 border-gray-500/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform">
