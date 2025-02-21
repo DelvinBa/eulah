@@ -153,7 +153,7 @@ const initGlobe = async (Globe) => {
   onBeforeUnmount(() => {
     window.removeEventListener('resize', handleResize);
   });
-  
+
   // Add hover effect for points
   globeInstance.value
     .onPointHover(point => {

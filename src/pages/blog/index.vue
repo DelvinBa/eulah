@@ -12,7 +12,7 @@
 
             <!-- List of Blog Posts -->
             <div v-else class="space-y-8">
-                <article v-for="post in allPosts" :key="post._id"
+                <article v-for="post in allPosts ?? []" :key="post._id"
                     class="group relative bg-gradient-to-br from-gradient-start to-gradient-end p-6 rounded-lg shadow-xl transition-all hover:shadow-2xl">
                     <!-- Construct the link using the cleaned-up path -->
                     <NuxtLink :to="post.path" class="absolute inset-0 z-10" />
@@ -47,12 +47,20 @@
 </template>
 
 <script setup>
-const { data: allPosts, error, isFetching } = await useAsyncData('blog-posts', () =>
-    queryCollection('blog')
+const { data: allPosts, error, isFetching } = await useAsyncData('blog-posts', async () => {
+    try {
+    const posts = await queryCollection('blog')
         .order('date', 'DESC')
         .select('path', 'title', 'description', 'date', 'author', 'tags')
-        .all()
-);
+        .all();
+    return posts || []; // Gib immer ein Array zurück
+} catch (err) {
+    console.error("🔥 Fehler beim Laden der Blog-Posts:", err);
+    throw new Error("Konnte Blog-Posts nicht laden");
+}
+}, {
+    default: () => [] // WICHTIG: Verhindert Hydration-Fehler bei Preview
+});
 
 // Format the date to a German locale
 const formatDate = (dateString) => {

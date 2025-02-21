@@ -9,7 +9,9 @@
       <div class="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-12">
         <!-- Globe container -->
         <div class="relative w-[280px] h-[180px] sm:w-[400px] sm:h-[250px] lg:w-[500px] lg:h-[400px]">
-          <ContactGlobe ref="globeEl" class="w-full h-full rounded-2xl sm:rounded-3xl lg:rounded-4xl"></ContactGlobe>
+          <ClientOnly>
+            <ContactGlobe ref="globeEl" class="w-full h-full rounded-2xl sm:rounded-3xl lg:rounded-4xl" />
+          </ClientOnly>
         </div>
 
         <form @submit.prevent="submitForm" class="w-full max-w-lg lg:w-2/3 space-y-4 md:space-y-6">

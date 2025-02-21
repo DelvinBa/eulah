@@ -1,8 +1,6 @@
 <template>
-    <div class="particle-container">
-        <!-- Canvas für die Partikelanimation -->
+    <div v-show="animationReady" class="particle-container">
         <canvas ref="canvas" class="particle-canvas"></canvas>
-        <!-- Overlay mit Typewriter-Text und Call-to-Action -->
         <div class="overlay">
             <div class="typewriter">{{ typedText }}<span class="cursor">|</span></div>
             <button class="button" @click="scrollToFunnel">Jetzt Projekt starten</button>
@@ -11,7 +9,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+
+const animationReady = ref(false);
 
 // Prüfe, ob es sich um ein mobiles Gerät handelt:
 const isMobile = window.innerWidth < 768;
@@ -136,35 +135,43 @@ function initInitial() {
 
     if (isMobile) {
         textCtx.font = 'bold 50px Arial';
-        // Damit "Exzellenz" zentriert erscheint:
         textCtx.textAlign = 'center';
         textCtx.textBaseline = 'middle';
-        // Nur ein Wort "Exzellenz" in der Mitte
+        // Center "Exzellenz" on mobile:
         initialWords = [
             { word: "Exzellenz", x: canvasWidth / 2, y: canvasHeight / 2 }
         ];
     } else if (isLaptop) {
-        textCtx.font = 'bold 50px Arial';  // Leicht kleinere Schrift
+        textCtx.font = 'bold 50px Arial';
+        textCtx.textAlign = 'center';
+        textCtx.textBaseline = 'middle';
+        const leftX = canvasWidth * 0.2;   // 20% of width
+        const rightX = canvasWidth * 0.8;  // 80% of width
+        const centerX = canvasWidth * 0.5; // centered
         initialWords = [
-            { word: "Erfolg", x: canvasWidth * 0.2, y: canvasHeight * 0.3 },
-            { word: "Exponentiell", x: canvasWidth * 0.8, y: canvasHeight * 0.3 },
-            { word: "Effizienz", x: canvasWidth * 0.35, y: canvasHeight * 0.5 },
-            { word: "Energie", x: canvasWidth * 0.65, y: canvasHeight * 0.5 },
-            { word: "Evolution", x: canvasWidth * 0.2, y: canvasHeight * 0.7 },
-            { word: "Engagement", x: canvasWidth * 0.8, y: canvasHeight * 0.7 },
-            { word: "Exzellenz", x: canvasWidth * 0.9, y: canvasHeight * 0.2 }
+            { word: "Erfolg", x: leftX, y: canvasHeight * 0.3 },
+            { word: "Exponentiell", x: rightX, y: canvasHeight * 0.3 },
+            { word: "Effizienz", x: leftX, y: canvasHeight * 0.5 },
+            { word: "Energie", x: rightX, y: canvasHeight * 0.5 },
+            { word: "Evolution", x: leftX, y: canvasHeight * 0.7 },
+            { word: "Engagement", x: rightX, y: canvasHeight * 0.7 },
+            { word: "Exzellenz", x: centerX, y: canvasHeight * 0.2 }
         ];
     } else {
         textCtx.font = 'bold 60px Arial';
-        // Desktop-Initialpositionen
+        textCtx.textAlign = 'center';
+        textCtx.textBaseline = 'middle';
+        const leftX = canvasWidth * 0.2;   // 20% of width
+        const rightX = canvasWidth * 0.8;  // 80% of width
+        const centerX = canvasWidth * 0.5; // centered
         initialWords = [
-            { word: "Erfolg", x: canvasWidth * 0.15, y: canvasHeight * 0.3 },
-            { word: "Exponentiell", x: canvasWidth * 0.75, y: canvasHeight * 0.3 },
-            { word: "Effizienz", x: canvasWidth * 0.25, y: canvasHeight * 0.5 },
-            { word: "Energie", x: canvasWidth * 0.65, y: canvasHeight * 0.5 },
-            { word: "Evolution", x: canvasWidth * 0.15, y: canvasHeight * 0.7 },
-            { word: "Engagement", x: canvasWidth * 0.75, y: canvasHeight * 0.7 },
-            { word: "Exzellenz", x: canvasWidth * 0.45, y: canvasHeight * 0.2 }
+            { word: "Erfolg", x: leftX, y: canvasHeight * 0.3 },
+            { word: "Exponentiell", x: rightX, y: canvasHeight * 0.3 },
+            { word: "Effizienz", x: leftX, y: canvasHeight * 0.5 },
+            { word: "Energie", x: rightX, y: canvasHeight * 0.5 },
+            { word: "Evolution", x: leftX, y: canvasHeight * 0.7 },
+            { word: "Engagement", x: rightX, y: canvasHeight * 0.7 },
+            { word: "Exzellenz", x: centerX, y: canvasHeight * 0.2 }
         ];
     }
 
@@ -411,6 +418,11 @@ function scrollToFunnel() {
    LIFECYCLE
    ============================================================================= */
 onMounted(() => {
+    if (!canvas.value) {
+        console.error('Canvas element not found');
+        return;
+    }
+
     canvasWidth = window.innerWidth;
     canvasHeight = window.innerHeight;
     ctx = canvas.value.getContext('2d');
@@ -426,6 +438,7 @@ onMounted(() => {
     }, 2000);
     // Typewriter-Effekt starten
     typeWriter();
+    animationReady.value = true;
 });
 
 onBeforeUnmount(() => {

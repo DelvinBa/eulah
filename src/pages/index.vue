@@ -3,7 +3,13 @@
     <HomeParticles class="absolute inset-0 z-0 pointer-events-none" />
 
     <!-- Hero Section -->
-    <HomeEulahAnimation />
+    <ClientOnly>
+      <template #fallback>
+        <!-- This empty container will display until HomeEulahAnimation is loaded -->
+        <div style="height: 100vh;"></div>
+      </template>
+      <HomeEulahAnimation />
+    </ClientOnly>
 
     <!-- Wer wir sind -->
     <HomeAbout />
@@ -54,8 +60,6 @@ useSeoMeta({
 
 
 <style scoped>
-
-
 .particles-container,
 .particles-container canvas {
   pointer-events: none;
