@@ -33,7 +33,7 @@ Der erste Schritt zur Conversion-Optimierung ist, deinen Shop und das Nutzerverh
 
 ---
 
-### 2. Verbesserung der Nutzererfahrung (UX)
+### 2. Verbesserung der User Experience
 
 Ein reibungsloses und ansprechendes Nutzererlebnis ist entscheidend für eine hohe Conversion-Rate. Kleine Optimierungen können hier große Wirkung zeigen.
 

@@ -47,7 +47,7 @@ Sobald die strategische Grundlage steht, folgt die technische Umsetzung. Dabei i
 2. **Technologieauswahl:**  
    - Setze auf moderne, skalierbare Technologien und Cloud-Dienste, um Stabilität und Wachstum zu gewährleisten.
 3. **Design und Usability:**  
-   - Gestalte ein ansprechendes User Interface (UI) und eine intuitive User Experience (UX), die den Nutzer in den Mittelpunkt stellt.
+   - Gestalte ein ansprechendes User Interface und eine intuitive User Experience, die den Nutzer in den Mittelpunkt stellt.
 4. **Entwicklung und Testing:**  
    - Arbeite in iterativen Entwicklungszyklen und führe kontinuierliche Tests durch, um eine fehlerfreie Funktionalität sicherzustellen.
 

@@ -1,41 +1,34 @@
 <template>
     <div class="min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl font-heading font-bold text-primary mb-8">Blog</h1>
-
-            <!-- Loading and Error States -->
-            <div v-if="isFetching" class="text-secondary">Loading posts...</div>
-            <div v-else-if="error" class="text-red-500">
-                Error loading posts.
-                <pre class="mt-2 text-xs">{{ error.message }}</pre>
-            </div>
+            <h1 class="text-3xl sm:text-4xl font-heading font-bold text-primary mb-6 sm:mb-8 text-center sm:text-left">
+                Blog
+            </h1>
 
             <!-- List of Blog Posts -->
-            <div v-else class="space-y-8">
+            <div class="space-y-6 sm:space-y-8">
                 <article v-for="post in allPosts ?? []" :key="post._id"
-                    class="group relative bg-gradient-to-br from-gradient-start to-gradient-end p-6 rounded-lg shadow-xl transition-all hover:shadow-2xl">
-                    <!-- Construct the link using the cleaned-up path -->
+                    class="group relative bg-gradient-to-br from-gradient-start to-gradient-end p-4 sm:p-6 rounded-lg shadow-xl transition-all hover:shadow-2xl">
                     <NuxtLink :to="post.path" class="absolute inset-0 z-10" />
 
-                    <div class="flex flex-col space-y-4">
-                        <div class="flex items-center space-x-2 text-secondary">
-                            <time class="text-sm font-body">{{ formatDate(post.date) }}</time>
+                    <div class="flex flex-col space-y-3 sm:space-y-4">
+                        <div class="flex flex-wrap items-center space-x-2 text-secondary text-xs sm:text-sm">
+                            <time class="font-body">{{ formatDate(post.date) }}</time>
                             <span class="text-accent">•</span>
-                            <span class="text-sm font-body">{{ post.author }}</span>
+                            <span class="font-body">{{ post.author }}</span>
                         </div>
 
-                        <h2 class="text-2xl font-heading font-bold text-primary">
+                        <h2 class="text-xl sm:text-2xl font-heading font-bold text-primary">
                             {{ post.title }}
                         </h2>
 
-                        <p class="text-secondary font-body leading-relaxed">
+                        <p class="text-sm sm:text-base text-secondary font-body leading-relaxed">
                             {{ post.description }}
                         </p>
 
                         <div class="flex flex-wrap gap-2">
-                            <!-- Updated tag styling with a darker blue background for better contrast -->
                             <span v-for="tag in post.tags" :key="tag"
-                                class="px-3 py-1 text-sm font-body bg-accent-dark rounded-full text-white transition-colors">
+                                class="px-2 sm:px-3 py-1 text-xs sm:text-sm font-body bg-accent-dark rounded-full text-white transition-colors">
                                 {{ tag }}
                             </span>
                         </div>
@@ -47,20 +40,44 @@
 </template>
 
 <script setup>
-const { data: allPosts, error, isFetching } = await useAsyncData('blog-posts', async () => {
+const route = useRoute()
+
+
+const { data: allPosts, error, isFetching } = await useAsyncData(route.path, async () => {
     try {
-    const posts = await queryCollection('blog')
-        .order('date', 'DESC')
-        .select('path', 'title', 'description', 'date', 'author', 'tags')
-        .all();
-    return posts || []; // Gib immer ein Array zurück
-} catch (err) {
-    console.error("🔥 Fehler beim Laden der Blog-Posts:", err);
-    throw new Error("Konnte Blog-Posts nicht laden");
-}
+        const posts = await queryCollection('blog')
+            .order('date', 'DESC')
+            .select('path', 'title', 'description', 'date', 'author', 'tags')
+            .all();
+        return posts || []; // Gib immer ein Array zurück
+    } catch (err) {
+        console.error("🔥 Fehler beim Laden der Blog-Posts:", err);
+        throw new Error("Konnte Blog-Posts nicht laden");
+    }
 }, {
     default: () => [] // WICHTIG: Verhindert Hydration-Fehler bei Preview
 });
+
+
+// Clean up when leaving the page
+onBeforeUnmount(() => {
+    if (import.meta.client) {
+        // Remove the reload status for this page
+        sessionStorage.removeItem(`reloaded-${route.path}`)
+    }
+})
+// Add onMounted hook to reload page once
+onMounted(() => {
+    // Check if we haven't reloaded yet
+    const hasReloaded = sessionStorage.getItem(`reloaded-${route.path}`)
+
+    if (!hasReloaded && import.meta.client) {
+        // Mark this page as reloaded
+        sessionStorage.setItem(`reloaded-${route.path}`, 'true')
+        // Reload the page
+        window.location.reload()
+    }
+})
 
 // Format the date to a German locale
 const formatDate = (dateString) => {
@@ -75,33 +92,23 @@ const formatDate = (dateString) => {
 
 </script>
 
-
 <style scoped>
 article {
-    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
-    background-color: #1E1E1E;
-    /* Standard Hintergrund */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    /* Dezente Umrandung */
-    border-radius: 8px;
-    /* Leichte Abrundung */
-    padding: 1.5rem;
-    color: #A3A3A3;
-    /* Standard Textfarbe */
+    padding: 1rem;
+    border-radius: 6px;
 }
 
 article:hover {
     background-color: #003F5C;
-    /* Sanfter Wechsel zu einem dunklen Blauton */
     border-color: #00D4FF;
-    /* Kräftigere Outline */
     color: #FFFFFF;
-    /* Weißer Text für bessere Sichtbarkeit */
 }
 
-article:focus-within {
-    outline: 2px solid #00D4FF;
-    outline-offset: 3px;
+/* Ensure better mobile spacing */
+@media (max-width: 640px) {
+    .min-h-screen {
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+    }
 }
 </style>
-
