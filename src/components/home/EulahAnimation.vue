@@ -34,7 +34,7 @@ let particleStep = 6;
 const mouse = {
     x: undefined,
     y: undefined,
-    radius: 75
+    radius: 50
 };
 
 function handleMouseMove(event) {
