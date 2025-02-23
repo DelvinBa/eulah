@@ -163,11 +163,19 @@ const MyH3 = defineComponent({
 })
 const customHeadings = { h1: MyH1, h2: MyH2, h3: MyH3 }
 
+const config = useRuntimeConfig()
+const canonicalUrl = `${config.public.siteUrl}${route.path}`
 // SEO: Set meta tags using useHead once the post is loaded
 useHead(() => ({
     title: post.value
         ? `${post.value.title} | Eulah Software Blog`
         : 'Blog Post',
+    link: [
+        {
+            rel: 'canonical',
+            href: canonicalUrl
+        }
+    ],
     meta: [
         {
             name: 'description',
