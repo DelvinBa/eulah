@@ -11,10 +11,13 @@
         48599 Gronau, <br />
         Deutschland
       </p>
-      <!-- <p class="text-gray-400 mb-4">
+      <p class="text-gray-400 mb-4">
         <strong>Vertreten durch:</strong><br />
-        Delvin Bacho und Lucas Aslan
-      </p> -->
+        <a href="https://www.linkedin.com/in/delvin-bacho-ba7740221/" target="_blank"
+          class="text-blue-500 hover:underline">Delvin Bacho</a> und
+        <a href="https://www.linkedin.com/in/lucas-aslan-b22ba7225/" target="_blank"
+          class="text-blue-500 hover:underline">Lucas Aslan</a>
+      </p>
       <p class="text-gray-400 mb-4">
         <strong>Kontakt:</strong><br />
         E-Mail: <a href="mailto:info@eulah.de" class="text-accent hover:underline">info@eulah.de</a>

@@ -77,7 +77,7 @@ const projects = ref([
   {
     slug: "shortify",
     title: "Shortify",
-    description: "Automatisierte Short-Videos aus Finanznews & FinaFinanznzdaten",
+    description: "Automatisierte Short-Videos aus Finanznews & Finanzdaten",
     image: shortifyImg,  //  <-– dein Bildimport
     icon: "🎬",
   },
