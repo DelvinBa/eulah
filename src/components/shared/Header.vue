@@ -65,6 +65,7 @@
         class="fixed inset-0 bg-black/90 flex flex-col items-center justify-center space-y-6 text-white text-lg z-50"
         role="dialog" aria-modal="true">
         <a href="/" @click="toggleMenu" class="hover:text-accent transition">Home</a>
+        <a href="/projekte" @click="toggleMenu" class="hover:text-accent transition">Projekte</a>
         <a href="/blog" @click="toggleMenu" class="hover:text-accent transition">Blog</a>
         <a href="/kontakt" @click="toggleMenu" class="hover:text-accent transition">Kontakt</a>
         <button @click="scrollToFunnel"

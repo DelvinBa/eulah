@@ -61,6 +61,7 @@ const solardetectionImg = "/images/solarpanel.jpg";
 const shortifyImg = "/images/shortify.png";
 const projects = ref([
   {
+    id: 0,
     slug: "solarrex",
     title: "Solarrex GmbH",
     description: "PV-Installation - Leads-Generierung",
@@ -68,6 +69,7 @@ const projects = ref([
     icon: "☀️",
   },
   {
+    id: 1,
     slug: "solardetection",
     title: "Solarpanel Detection System",
     description: "KI-gestützte Solaranlagen-Erkennung & Energie-Effizienz-Klassen",
@@ -75,6 +77,7 @@ const projects = ref([
     icon: "🛰️",
   },
   {
+    id: 2,
     slug: "shortify",
     title: "Shortify",
     description: "Automatisierte Short-Videos aus Finanznews & Finanzdaten",
