@@ -21,9 +21,9 @@
 
             <!-- Video -->
             <section v-if="post.video" class="flex justify-center">
-                <div class="relative w-full max-w-3xl rounded-2xl overflow-hidden shadow-2xl group">
+                <div class="relative inline-block mx-auto max-w-3xl rounded-2xl overflow-hidden shadow-2xl group">
                     <video ref="videoPlayer" :src="post.video" autoplay loop playsinline :muted="isMuted"
-                        class="w-full rounded-2xl" />
+                        class="w-auto max-w-full h-auto max-h-[80vh] rounded-2xl object-contain" />
 
                     <!-- Video Controls Overlay - Appears on Hover -->
                     <div
@@ -92,8 +92,8 @@
                     class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent">
                 </div>
                 <h2 class="text-3xl font-semibold text-center mb-10 text-amber-200">The Journey</h2>
-                <div class="prose prose-invert prose-lg mx-auto max-w-prose">
-                    <p class="text-gray-300 text-lg whitespace-pre-line leading-relaxed">{{ formattedStory }}</p>
+                <div class="prose prose-invert prose-lg text-gray-300 leading-relaxed" v-html="formattedStory">
+
                 </div>
             </section>
 
@@ -195,9 +195,11 @@ const { data: post } = await useAsyncData(route.path, () =>
     queryCollection('projekte').path(route.path).first()
 )
 
-const formattedStory = computed(() =>
-    post.value.story.replace(/\\n/g, '\n')
-)
+const formattedStory = computed(() => {
+    if (!post.value?.story) return ''
+
+    return post.value.story.replace(/\\n/g, '\n').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')
+})
 
 const formattedNumbers = computed(() =>
     post.value.numbers.replace(/\\n/g, '\n')

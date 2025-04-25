@@ -41,7 +41,7 @@
                     <p class="text-gray-400 text-sm md:text-lg lg:text-xl">Durchschnittlicher Anstieg der Klickrate</p>
                 </div>
                 <div class="mt-1 md:mt-2 flex items-center space-x-3 md:space-x-4">
-                    <span class="text-accent text-2xl md:text-3xl lg:text-4xl font-bold">5,600+</span>
+                    <span class="text-accent text-2xl md:text-3xl lg:text-4xl font-bold">1,600+</span>
                     <p class="text-gray-400 text-sm md:text-lg lg:text-xl">Leads in den letzten 12 Monaten generiert</p>
                 </div>
             </template>

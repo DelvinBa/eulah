@@ -56,16 +56,30 @@ useSeoMeta({
 })
 
 
-const Image1 = "/images/solarrex2.jpg";
-
-
+const solarrexImg = "/images/solarrex2.jpg";
+const solardetectionImg = "/images/solarpanel.jpg";
+const shortifyImg = "/images/shortify.png";
 const projects = ref([
   {
     slug: "solarrex",
-    title: "Solarrex Gmbh",
+    title: "Solarrex GmbH",
     description: "PV-Installation - Leads-Generierung",
-    image: Image1,
+    image: solarrexImg,
     icon: "☀️",
+  },
+  {
+    slug: "solardetection",
+    title: "Solarpanel Detection System",
+    description: "KI-gestützte Solaranlagen-Erkennung & Energie-Effizienz-Klassen",
+    image: solardetectionImg,   // <- dein Bildimport
+    icon: "🛰️",
+  },
+  {
+    slug: "shortify",
+    title: "Shortify",
+    description: "Automatisierte Short-Videos aus Finanznews & FinaFinanznzdaten",
+    image: shortifyImg,  //  <-– dein Bildimport
+    icon: "🎬",
   },
 ]);
 

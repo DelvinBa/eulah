@@ -17,7 +17,7 @@
                             Software, Webseiten & Marketing <br> individuell & zielgerichtet.
                         </p>
                         <div class="mt-6 md:mt-8">
-                            <span class="text-accent text-4xl md:text-5xl font-bold">80+</span>
+                            <span class="text-accent text-4xl md:text-5xl font-bold">50+</span>
                             <p class="text-gray-400 mt-2 text-lg md:text-2xl">Projekte erfolgreich umgesetzt</p>
                         </div>
                     </template>
@@ -33,7 +33,7 @@
                             Ihr habt eine Software-Idee? <br> Wir setzen sie mit euch um.
                         </p>
                         <div class="mt-6 md:mt-8">
-                            <span class="text-accent text-4xl md:text-5xl font-bold">6</span>
+                            <span class="text-accent text-4xl md:text-5xl font-bold">3</span>
                             <p class="text-gray-400 mt-2 text-lg md:text-2xl">Innovative Startup-Ideen realisiert</p>
                         </div>
                     </template>

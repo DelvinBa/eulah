@@ -1,6 +1,6 @@
 ---
 title: "Solarrex GmbH"
-subtitle: "Mit gezieltem Google-SEO von 0 auf 10 Leads pro Monat im 150 km-Radius um Düren"
+subtitle: "Mit gezieltem Google-SEO von 0 auf 30 Leads pro Monat im 150 km-Radius um Düren"
 story: |
    Solarrex war ein neues Unternehmen im Markt für Photovoltaik-Installationen – ohne Markenbekanntheit, ohne Website-Traffic und ohne Google-Präsenz. Das Ziel war klar: durch gezielte SEO-Maßnahmen sollte eine starke organische Sichtbarkeit aufgebaut werden, um regelmäßig Anfragen potenzieller Kunden zu generieren.
 
@@ -15,7 +15,7 @@ images:
 
 video: "/videos/solarrex.mp4"
 numbers: |
-  • Leads pro Monat von 0 auf 10 gesteigert  
+  • Leads pro Monat von 0 auf ca. 30 gesteigert  
   • 0 € Werbebudget für Google Ads, Meta Ads & Co.  
   • Nachhaltiges, organisches Wachstum ohne zusätzliche Ausgaben  
   • Tägliche Impressionen von 30 auf über 500 erhöht  

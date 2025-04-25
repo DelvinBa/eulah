@@ -164,7 +164,7 @@ const MyH3 = defineComponent({
 const customHeadings = { h1: MyH1, h2: MyH2, h3: MyH3 }
 
 const config = useRuntimeConfig()
-z
+
 
 // Scroll to lead funnel section function
 const isClicked = ref(false)
