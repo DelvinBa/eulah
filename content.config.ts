@@ -16,19 +16,20 @@ export default defineContentConfig({
         }),
       })
     ),
-    projekte: defineCollection({
-      // you can also wrap in asSitemapCollection() if you want them in your sitemap
-      type: "page",
-      source: "projekte/**/*.md",
-      schema: z.object({
-        title: z.string(),
-        subtitle: z.string(), // Kurz‐Beschreibung
-        story: z.string(), // ausführliche Story
-        image: z.string().optional(),
-        images: z.array(z.string()).optional(),
-        video: z.string().optional(),
-        numbers: z.string(), // Removed the trailing comma here
-      }),
-    }),
+    projekte: defineCollection(
+      asSitemapCollection({
+        type: "page",
+        source: "projekte/**/*.md",
+        schema: z.object({
+          title: z.string(),
+          subtitle: z.string(), // Kurz‐Beschreibung
+          story: z.string(), // ausführliche Story
+          image: z.string().optional(),
+          images: z.array(z.string()).optional(),
+          video: z.string().optional(),
+          numbers: z.string(), // Removed the trailing comma here
+        }),
+      })
+    ),
   },
 });
