@@ -88,7 +88,7 @@
 
 <script setup>
 const step = ref(1);
-const progress = ref(33);
+const progress = ref(0);
 const successMessage = ref('');
 const errors = ref({ name: false, email: false, phone: false });
 
@@ -107,13 +107,13 @@ const startupOptions = ['MVP Entwicklung', 'Technischer Co-Founder', 'App- & Pla
 const selectType = (type) => {
   form.value.userType = type;
   step.value = 2;
-  progress.value = 66;
+  progress.value = 33;
 };
 
 const selectDetail = (key, value) => {
   form.value[key] = value;
   step.value = 3;
-  progress.value = 100;
+  progress.value = 66;
 };
 
 const goBack = () => {
@@ -135,6 +135,7 @@ const submitForm = () => {
   successMessage.value = 'Vielen Dank! Wir melden uns in Kürze bei dir.';
   form.value = { userType: '', businessNeed: '', startupNeed: '', name: '', phone: '', email: '' };
   step.value = 4;
+  progress.value = 100;
 };
 </script>
 
