@@ -3,7 +3,7 @@
     <div
       class="w-full max-w-lg md:max-w-3xl bg-[#000000] rounded-2xl border-2 border-[#00d4ff]/20 shadow-2xl overflow-hidden">
       <div class="text-center py-6 md:py-10 px-4 md:px-6 bg-[#111111] border-b border-[#00d4ff]/10">
-        <h1 class="text-2xl md:text-4xl font-bold mb-3 md:mb-4 text-white">Lass uns gemeinsam starten</h1>
+        <h2 class="text-2xl md:text-4xl font-bold mb-3 md:mb-4 text-white">Lass uns gemeinsam starten</h2>
         <p class="text-gray-400 text-lg md:text-xl">
           Beantworte ein paar kurze Fragen, damit wir deine Anforderungen besser verstehen.
         </p>

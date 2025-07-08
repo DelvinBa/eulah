@@ -7,9 +7,9 @@
             <div class="absolute inset-0 bg-accent/10 rounded-2xl blur-3xl animate-pulse"></div>
 
             <div class="relative z-10">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 md:mb-8 text-white">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 md:mb-8 text-white">
                     Wer wir sind
-                </h1>
+                </h2>
 
                 <p class="text-gray-300 text-lg sm:text-xl md:text-2xl lg:text-3xl leading-relaxed">
                     Wir sind ein Team aus <span
@@ -19,7 +19,8 @@
                 </p>
 
                 <div class="mt-8 md:mt-10">
-                    <a href="/kontakt" class="inline-block px-6 md:px-8 py-3 md:py-4 text-lg md:text-2xl font-semibold choice">
+                    <a href="/kontakt"
+                        class="inline-block px-6 md:px-8 py-3 md:py-4 text-lg md:text-2xl font-semibold choice">
                         Kontaktieren Sie uns
                     </a>
                 </div>

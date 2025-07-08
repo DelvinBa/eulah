@@ -52,7 +52,7 @@ export default defineNuxtConfig({
   ogImage: { enabled: false },
   site: {
     url: "https://www.eulah.de",
-    name: "Eulah Webseite",
+    name: "Eulah Software",
   },
 
   primevue: {
