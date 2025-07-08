@@ -50,9 +50,9 @@ useSeoMeta({
   description: 'Von der ersten Code-Zeile bis zur Skalierung – wir entwickeln Software, digitale Produkte & Marketingstrategien für nachhaltigen Erfolg.',
   ogTitle: 'Eulah – Digitale Lösungen für Unternehmen & Startups',
   ogDescription: 'Von Code zu Cashflow – wir entwickeln digitale Produkte mit echtem Marktwert. Skalierbar, innovativ & wirtschaftlich erfolgreich.',
-  ogImage: 'https://eulah.de/images/og-image.jpg', // Ersetze mit einem echten Bild
+  ogImage: 'https://www.eulah.de/images/og-image.jpg', // Ersetze mit einem echten Bild
   // twitterCard: 'summary_large_image',
-  canonical: 'https://eulah.de'
+  canonical: 'https://www.eulah.de'
 })
 
 

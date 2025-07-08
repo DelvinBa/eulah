@@ -51,7 +51,7 @@ export default defineNuxtConfig({
   },
   ogImage: { enabled: false },
   site: {
-    url: "https://eulah.de",
+    url: "https://www.eulah.de",
     name: "Eulah Webseite",
   },
 

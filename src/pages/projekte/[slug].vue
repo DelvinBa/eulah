@@ -238,7 +238,7 @@ onBeforeUnmount(() => {
 
 
 
-const baseUrl = 'https://eulah.de'  // statisch
+const baseUrl = 'https://www.eulah.de'  // statisch
 
 const canonicalUrl = `${baseUrl}${route.path}`
 // SEO: Set meta tags using useHead once the post is loaded

@@ -70,9 +70,7 @@ useSeoMeta({
   description: 'Kontaktiere uns für digitale Lösungen in Softwareentwicklung, Marketing & Automatisierung. Sitz in Deutschland, Projekte weltweit.',
   ogTitle: 'Kontakt – Eulah',
   ogDescription: 'Lass uns zusammenarbeiten! Wir entwickeln digitale Lösungen für Unternehmen & Startups weltweit.',
-  // ogImage: 'https://eulah.de/images/contact-og.jpg', // Replace with a real image
-  // twitterCard: 'summary_large_image',
-  canonical: 'https://eulah.de/kontakt'
+  canonical: 'https://www.eulah.de/kontakt'
 })
 
 const mail = useMail();

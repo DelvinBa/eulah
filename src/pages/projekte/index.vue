@@ -50,9 +50,9 @@ useSeoMeta({
   description: 'Entdecke unsere erfolgreich umgesetzten digitalen Projekte in Softwareentwicklung, Marketing & Automatisierung.',
   ogTitle: 'Unsere Projekte – Eulah',
   ogDescription: 'Von innovativen Web-Plattformen bis zu automatisierten Marketingstrategien – ein Überblick über unsere digitalen Erfolge.',
-  ogImage: 'https://eulah.de/images/projects-og.jpg', // Replace with a real image
+  ogImage: 'https://www.eulah.de/images/projects-og.jpg', // Replace with a real image
   twitterCard: 'summary_large_image',
-  canonical: 'https://eulah.de/projekte'
+  canonical: 'https://www.eulah.de/projekte'
 })
 
 
