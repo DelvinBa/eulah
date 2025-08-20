@@ -516,22 +516,23 @@ body {
 .button {
     position: relative;
     padding: 1.5rem;
-    background: transparent;
-    border: 1px solid #ffffff;
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary);
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
     overflow: hidden;
-    color: #ffffff;
+    color: var(--color-background);
     font-size: 1.2rem;
 }
 
 .button:hover {
     transform: scale(1.03);
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.7),
-        0 0 25px rgba(0, 176, 232, 0.5),
-        inset 0 0 15px rgba(0, 212, 255, 0.3);
-    border-color: #00d4ff;
+    box-shadow: 0 0 15px rgba(77, 166, 255, 0.7),
+        0 0 25px rgba(77, 166, 255, 0.5),
+        inset 0 0 15px rgba(77, 166, 255, 0.3);
+    border-color: var(--color-secondary);
+    background: var(--color-secondary);
 }
 
 /* Mobile Anpassungen */

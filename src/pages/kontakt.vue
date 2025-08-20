@@ -46,7 +46,7 @@
           </div>
 
           <button type="submit"
-            class="w-full py-3 px-6 rounded-full border-2 border-secondary text-background text-xl font-semibold transition-all shadow-lg hover:border-accent hover:bg-primary hover:text-background">
+            class="w-full py-3 px-6 rounded-full bg-primary border-2 border-primary text-background text-xl font-semibold transition-all shadow-lg hover:bg-accent hover:border-accent">
             Nachricht senden
           </button>
 

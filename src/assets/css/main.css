@@ -7,17 +7,6 @@
 @layer base {
   :root {
     --color-primary: #1E73BE;
-    --color-primary-rgb: 30 115 190;
-    --color-primary-50: #E9F2F9;
-    --color-primary-100: #D3E5F3;
-    --color-primary-200: #A7CBEB;
-    --color-primary-300: #7BB1E3;
-    --color-primary-400: #4F97DA;
-    --color-primary-500: #1E73BE;
-    --color-primary-600: #195F9E;
-    --color-primary-700: #144B7F;
-    --color-primary-800: #0F385F;
-    --color-primary-900: #0A243F;
     --color-secondary: #4DA6FF;
     --color-accent: #FF9900;
     --color-background: #FFFFFF;
