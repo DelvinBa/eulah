@@ -8,8 +8,8 @@
 
       <!-- Links -->
       <div class="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-6">
-        <a href="/impressum" class="text-sm md:text-base hover:text-accent transition">Impressum</a>
-        <a href="/datenschutz" class="text-sm md:text-base hover:text-accent transition">Datenschutz</a>
+        <a href="/impressum" class="text-sm md:text-base text-accent hover:text-accent-dark transition">Impressum</a>
+        <a href="/datenschutz" class="text-sm md:text-base text-accent hover:text-accent-dark transition">Datenschutz</a>
       </div>
 
       <!-- Footer Note -->

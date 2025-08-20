@@ -1,5 +1,7 @@
 // tailwind.config.js
 /** @type {import('tailwindcss').Config} */
+import colors from 'tailwindcss/colors'
+
 export default {
   content: [
     "./src/components/**/*.{vue,js,ts}", 
@@ -12,30 +14,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: 'rgb(var(--color-primary-rgb) / <alpha-value>)',
-          50: 'var(--color-primary-50)',
-          100: 'var(--color-primary-100)',
-          200: 'var(--color-primary-200)',
-          300: 'var(--color-primary-300)',
-          400: 'var(--color-primary-400)',
-          500: 'var(--color-primary-500)',
-          600: 'var(--color-primary-600)',
-          700: 'var(--color-primary-700)',
-          800: 'var(--color-primary-800)',
-          900: 'var(--color-primary-900)',
-          rgb: 'var(--color-primary-rgb)',
-        },
-        secondary: 'var(--color-secondary)',
-        accent: 'var(--color-accent)',
+        primary: colors.blue,
+        secondary: '#4DA6FF',
+        accent: '#FF9900',
         'accent-dark': '#CC7A00',
         'accent-hover': '#E68A00',
         'accent-light': '#FFB84D',
-        background: 'var(--color-background)',
-        surface: 'var(--color-surface)',
-        dark: 'var(--color-dark)',
-        'gradient-start': 'var(--color-surface)',
-        'gradient-end': 'var(--color-background)',
+        background: '#FFFFFF',
+        surface: '#F0F1F2',
+        dark: '#333333',
+        'gradient-start': '#F0F1F2',
+        'gradient-end': '#FFFFFF',
       },
       fontFamily: {
         nunito: ['Nunito', 'sans-serif'],
