@@ -374,12 +374,12 @@ function scrollToFunnel() {
 <style>
 .prose-invert {
     --tw-prose-body: theme('colors.dark');
-    --tw-prose-headings: theme('colors.primary');
+    --tw-prose-headings: theme('colors.primary.500');
     --tw-prose-links: theme('colors.accent');
-    --tw-prose-bold: theme('colors.primary');
+    --tw-prose-bold: theme('colors.primary.500');
     --tw-prose-captions: theme('colors.dark');
-    --tw-prose-code: theme('colors.primary');
-    --tw-prose-pre-code: theme('colors.primary');
+    --tw-prose-code: theme('colors.primary.500');
+    --tw-prose-pre-code: theme('colors.primary.500');
     --tw-prose-pre-bg: theme('colors.surface');
     --tw-prose-hr: theme('colors.accent');
 }
