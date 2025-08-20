@@ -188,12 +188,12 @@ function scrollToFunnel() {
 /* Override the default inverted prose styles for the dark theme */
 .prose-invert {
     --tw-prose-body: theme('colors.secondary');
-    --tw-prose-headings: theme('colors.primary');
+    --tw-prose-headings: theme('colors.primary.500');
     --tw-prose-links: theme('colors.accent');
-    --tw-prose-bold: theme('colors.primary');
+    --tw-prose-bold: theme('colors.primary.500');
     --tw-prose-captions: theme('colors.secondary');
-    --tw-prose-code: theme('colors.primary');
-    --tw-prose-pre-code: theme('colors.primary');
+    --tw-prose-code: theme('colors.primary.500');
+    --tw-prose-pre-code: theme('colors.primary.500');
     --tw-prose-pre-bg: theme('colors.gradient-start');
     --tw-prose-hr: theme('colors.accent-dark');
 }
