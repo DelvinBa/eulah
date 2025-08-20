@@ -14,7 +14,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: colors.blue,
+        primary: { DEFAULT: colors.blue[500], ...colors.blue },
         secondary: '#4DA6FF',
         accent: '#FF9900',
         'accent-dark': '#CC7A00',
