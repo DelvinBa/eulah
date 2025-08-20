@@ -12,15 +12,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#FFFFFF', // Reines Weiß für Text
-        secondary: '#A3A3A3', // Sanftes Grau für unterstützenden Text
-        background: '#000000', // Reines Schwarz für Hintergrund
-        accent: '#00D4FF', // Neonblau für Hover- und Highlight-Effekte
-        'accent-dark': '#009ECF', // Dunkleres Neonblau für bessere Kontraste
-        'gradient-start': '#1E1E1E',
-        'gradient-end': '#000000',
-        'accent-light': '#33CFFF', // Helleres Neonblau für zusätzliche Akzente
-        'accent-hover': '#00B0E8', // Noch dunkleres Neonblau für Hover-Effekte
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        accent: 'var(--color-accent)',
+        'accent-dark': '#CC7A00',
+        'accent-hover': '#E68A00',
+        'accent-light': '#FFB84D',
+        background: 'var(--color-background)',
+        surface: 'var(--color-surface)',
+        dark: 'var(--color-dark)',
+        'gradient-start': 'var(--color-surface)',
+        'gradient-end': 'var(--color-background)',
       },
       fontFamily: {
         nunito: ['Nunito', 'sans-serif'],

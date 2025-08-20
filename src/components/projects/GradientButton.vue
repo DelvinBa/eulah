@@ -13,7 +13,7 @@
     >
       <!-- Schwarzer Kreis dahinter (selbe Größe wie Button), 
            damit der Button optisch weiterhin schwarz bleibt -->
-      <div class="w-full h-full bg-black rounded-full"></div>
+      <div class="w-full h-full bg-primary rounded-full"></div>
     </div>
 
     <!-- Eigentlicher Button -->
@@ -24,8 +24,8 @@
         inline-block 
         px-4 py-2
         text-sm font-medium
-        text-white 
-        bg-black 
+        text-background
+        bg-primary
         rounded-full
         transition-colors duration-300
 
@@ -58,7 +58,7 @@ const props = defineProps({
    */
   gradient: {
     type: String,
-    default: "linear-gradient(to right, #38bdf8, #8b5cf6)",
+    default: "linear-gradient(to right, var(--color-primary), var(--color-secondary))",
   },
   /**
    * Die Dicke des Rahmens in px

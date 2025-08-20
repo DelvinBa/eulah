@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-black py-24 md:py-32 overflow-hidden">
+    <section class="bg-surface py-24 md:py-32 overflow-hidden">
         <div class="container mx-auto px-4 md:px-6 text-center">
             <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary mb-8">
                 Bereits von führenden Unternehmen vertraut

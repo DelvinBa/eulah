@@ -5,14 +5,23 @@
 
 
 @layer base {
+  :root {
+    --color-primary: #1E73BE;
+    --color-secondary: #4DA6FF;
+    --color-accent: #FF9900;
+    --color-background: #FFFFFF;
+    --color-surface: #F0F1F2;
+    --color-dark: #333333;
+  }
+
   body {
-    @apply bg-background text-primary;
+    @apply bg-background text-dark;
   }
 }
 
 /* Globale Stile für Links */
 a {
-    @apply text-primary hover:text-accent;
+    @apply text-primary hover:text-secondary;
 }
 
 /* Beispiel für Überschriften */

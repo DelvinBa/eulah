@@ -1,8 +1,8 @@
 <template>
-  <section class="bg-black text-white min-h-screen flex flex-col items-center">
+  <section class="bg-background text-dark min-h-screen flex flex-col items-center">
     <div class="container mx-auto px-4 py-8 md:px-6 md:py-12">
       <h1 class="text-3xl md:text-5xl font-bold mb-4 md:mb-6 text-center">Kontakt</h1>
-      <p class="text-2xl md:  text-gray-400 text-center mb-8 md:mb-12">
+      <p class="text-2xl text-dark text-center mb-8 md:mb-12">
         Sitz in Deutschland, Projekte auf der ganzen Welt.
       </p>
 
@@ -16,48 +16,48 @@
 
         <form @submit.prevent="submitForm" class="w-full max-w-lg lg:w-2/3 space-y-4 md:space-y-6">
           <div>
-            <label for="name" class="block  text-xl text-gray-400 mb-2">Ihr Name</label>
+            <label for="name" class="block text-xl text-dark mb-2">Ihr Name</label>
             <input v-model="form.name" id="name" type="text" placeholder="Max Mustermann"
-              class="w-full p-3 md:p-4 bg-black text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent " />
+              class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent" />
             <p v-if="errors.name"
-              class="flex items-center gap-2  text-xl  text-red-500 mt-2 bg-gray-800 p-2 rounded-lg border border-red-500">
+              class="flex items-center gap-2 text-xl text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
               <span class="material-icons">error</span> Bitte geben Sie Ihren Namen ein.
             </p>
           </div>
 
           <div>
-            <label for="email" class="block  text-xl text-gray-400 mb-2">Ihre E-Mail-Adresse</label>
+            <label for="email" class="block text-xl text-dark mb-2">Ihre E-Mail-Adresse</label>
             <input v-model="form.email" id="email" type="email" placeholder="example@domain.com"
-              class="w-full p-3 md:p-4 bg-black text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent " />
+              class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent" />
             <p v-if="errors.email"
-              class="flex items-center gap-2  text-xl text-red-500 mt-2 bg-gray-800 p-2 rounded-lg border border-red-500">
+              class="flex items-center gap-2 text-xl text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
               <span class="material-icons">error</span> Bitte geben Sie eine gültige E-Mail-Adresse ein.
             </p>
           </div>
 
           <div>
-            <label for="message" class="block  text-xl text-gray-400 mb-2">Ihre Nachricht</label>
+            <label for="message" class="block text-xl text-dark mb-2">Ihre Nachricht</label>
             <textarea v-model="form.message" id="message" rows="4" placeholder="Ihre Nachricht..."
-              class="w-full p-3 md:p-4 bg-black text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent"></textarea>
+              class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent"></textarea>
             <p v-if="errors.message"
-              class="flex items-center gap-2  text-xl text-red-500 mt-2 bg-gray-800 p-2 rounded-lg border border-red-500">
+              class="flex items-center gap-2 text-xl text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
               <span class="material-icons">error</span> Bitte geben Sie eine Nachricht ein.
             </p>
           </div>
 
           <button type="submit"
-            class="w-full py-3 px-6 rounded-full border-2 border-gray-500 text-white text-xl   font-semibold transition-all shadow-lg hover:border-accent hover:bg-black hover:text-accent">
+            class="w-full py-3 px-6 rounded-full border-2 border-secondary text-background text-xl font-semibold transition-all shadow-lg hover:border-accent hover:bg-primary hover:text-background">
             Nachricht senden
           </button>
 
-          <div v-if="successMessage" class="text-center text-green-400 mt-4 text-xl  font-medium">
+          <div v-if="successMessage" class="text-center text-secondary mt-4 text-xl font-medium">
             {{ successMessage }}
           </div>
         </form>
       </div>
 
       <div class="mt-8 md:mt-12 text-center">
-        <p class="   text-xl text-gray-400">Wir melden uns in der Regel innerhalb von 72 Stunden.</p>
+        <p class="text-xl text-dark">Wir melden uns in der Regel innerhalb von 72 Stunden.</p>
       </div>
     </div>
   </section>
@@ -130,30 +130,30 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px black inset !important;
-  -webkit-text-fill-color: white !important;
-  box-shadow: 0 0 0 30px black inset !important;
-  caret-color: white !important;
+  -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
+  -webkit-text-fill-color: var(--color-dark) !important;
+  box-shadow: 0 0 0 30px var(--color-surface) inset !important;
+  caret-color: var(--color-dark) !important;
 }
 
 /* Für Firefox und andere Browser */
 input[data-autocompleted],
 input[data-autocompleted]:focus {
   background-color: transparent !important;
-  color: white !important;
+  color: var(--color-dark) !important;
 }
 
 /* Zusätzliche Sicherheit für moderne Browser */
 input:-webkit-autofill::first-line {
-  color: white !important;
+  color: var(--color-dark) !important;
 }
 
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
 textarea:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px black inset !important;
-  -webkit-text-fill-color: white !important;
-  box-shadow: 0 0 0 30px black inset !important;
+  -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
+  -webkit-text-fill-color: var(--color-dark) !important;
+  box-shadow: 0 0 0 30px var(--color-surface) inset !important;
 }
 </style>

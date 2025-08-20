@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-black text-white py-8 md:py-12">
+  <footer class="bg-primary text-background py-8 md:py-12">
     <div class="container mx-auto px-4 md:px-6 text-center space-y-6 md:space-y-8">
       <!-- Lead Funnel -->
       <div id="lead-funnel">
@@ -13,7 +13,7 @@
       </div>
 
       <!-- Footer Note -->
-      <p class="text-gray-400 text-xs md:text-sm">
+      <p class="text-surface text-xs md:text-sm">
         All rights reserved © Eulah {{ currentYear }}
       </p>
     </div>
