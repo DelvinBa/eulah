@@ -28,7 +28,7 @@
 
                         <div class="flex flex-wrap gap-2">
                             <span v-for="tag in post.tags" :key="tag"
-                                class="px-2 sm:px-3 py-1 text-xs sm:text-sm font-body bg-accent-dark rounded-full text-white transition-colors">
+                                class="px-2 sm:px-3 py-1 text-xs sm:text-sm font-body bg-accent-dark rounded-full text-background transition-colors">
                                 {{ tag }}
                             </span>
                         </div>
@@ -99,9 +99,9 @@ article {
 }
 
 article:hover {
-    background-color: #003F5C;
-    border-color: #00D4FF;
-    color: #FFFFFF;
+    background-color: var(--color-primary);
+    border-color: var(--color-secondary);
+    color: var(--color-background);
 }
 
 /* Ensure better mobile spacing */

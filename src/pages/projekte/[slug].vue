@@ -2,7 +2,7 @@
     <div class="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-gray-100">
         <!-- Back Link -->
         <NuxtLink to="/projekte"
-            class="inline-flex items-center text-amber-400 hover:text-amber-300 font-medium ml-6 mt-6 transition-colors duration-300">
+            class="inline-flex items-center text-accent hover:text-accent-light font-medium ml-6 mt-6 transition-colors duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -14,9 +14,9 @@
             <!-- Title & Subtitle -->
             <header class="text-center">
                 <h1
-                    class="text-5xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-amber-500">
+                    class="text-5xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-accent-light to-accent">
                     {{ post.title }}</h1>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">{{ post.subtitle }}</p>
+                <p class="text-xl text-dark max-w-2xl mx-auto leading-relaxed">{{ post.subtitle }}</p>
             </header>
 
             <!-- Video -->
@@ -27,10 +27,10 @@
 
                     <!-- Video Controls Overlay - Appears on Hover -->
                     <div
-                        class="absolute inset-0 flex items-end justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/70 to-transparent p-4">
+                        class="absolute inset-0 flex items-end justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-dark/70 to-transparent p-4">
                         <!-- Play/Pause Button -->
-                        <button @click.prevent="togglePlay"
-                            class="text-white hover:text-amber-400 transition-colors p-2">
+                            <button @click.prevent="togglePlay"
+                                class="text-background hover:text-accent transition-colors p-2">
                             <svg v-if="isPlaying" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -50,12 +50,12 @@
                             <!-- Volume Slider -->
                             <div class="w-32 flex items-center space-x-2">
                                 <input type="range" min="0" max="1" step="0.1" v-model="volume" @input="adjustVolume"
-                                    class="w-full h-1 bg-gray-400 rounded-lg appearance-none cursor-pointer accent-amber-400" />
+                                    class="w-full h-1 bg-surface rounded-lg appearance-none cursor-pointer accent-accent" />
                             </div>
 
                             <!-- Mute Button -->
                             <button @click.prevent="toggleMute"
-                                class="text-white hover:text-amber-400 transition-colors p-2">
+                                class="text-background hover:text-accent transition-colors p-2">
                                 <svg v-if="isMuted" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -75,9 +75,9 @@
 
                     <!-- Play Button Overlay - Centered, Shows When Paused -->
                     <div v-if="!isPlaying" @click="togglePlay"
-                        class="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer">
-                        <div class="rounded-full bg-amber-500/80 p-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white" fill="currentColor"
+                        class="absolute inset-0 flex items-center justify-center bg-dark/30 cursor-pointer">
+                        <div class="rounded-full bg-accent/80 p-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-background" fill="currentColor"
                                 viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z" />
                             </svg>
@@ -91,8 +91,8 @@
                 <div
                     class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent">
                 </div>
-                <h2 class="text-3xl font-semibold text-center mb-10 text-amber-200">The Journey</h2>
-                <div class="prose prose-invert prose-lg text-gray-300 leading-relaxed" v-html="formattedStory">
+                <h2 class="text-3xl font-semibold text-center mb-10 text-accent-light">The Journey</h2>
+                <div class="prose prose-invert prose-lg text-dark leading-relaxed" v-html="formattedStory">
 
                 </div>
             </section>
@@ -102,10 +102,10 @@
                 <div
                     class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent">
                 </div>
-                <h2 class="text-3xl font-semibold text-center mb-10 text-amber-200">Gallery</h2>
+                <h2 class="text-3xl font-semibold text-center mb-10 text-accent-light">Gallery</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
                     <div v-for="(img, i) in post.images" :key="i"
-                        class="cursor-pointer overflow-hidden rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-amber-500/30"
+                        class="cursor-pointer overflow-hidden rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-accent/30"
                         @click="openLightbox(i)">
                         <NuxtImg :src="img"
                             class="w-full h-auto object-cover transition-transform duration-500 hover:scale-110"
@@ -159,14 +159,14 @@
 
         <!-- Lightbox Overlay -->
         <transition name="fade">
-            <div v-if="lightboxOpen" class="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center"
+            <div v-if="lightboxOpen" class="fixed inset-0 bg-dark bg-opacity-95 z-50 flex items-center justify-center"
                 @click.self="closeLightbox">
                 <button @click="closeLightbox"
-                    class="absolute top-8 right-8 text-white hover:text-amber-400 text-4xl transition-colors duration-300">
+                    class="absolute top-8 right-8 text-background hover:text-accent text-4xl transition-colors duration-300">
                     ×
                 </button>
                 <button @click.prevent="prevImage"
-                    class="absolute left-8 text-white hover:text-amber-400 text-5xl transition-colors duration-300">
+                    class="absolute left-8 text-background hover:text-accent text-5xl transition-colors duration-300">
                     ‹
                 </button>
                 <div class="transition-transform duration-500 ease-in-out">
@@ -174,13 +174,13 @@
                         class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl" alt="Lightbox Bild" />
                 </div>
                 <button @click.prevent="nextImage"
-                    class="absolute right-8 text-white hover:text-amber-400 text-5xl transition-colors duration-300">
+                    class="absolute right-8 text-background hover:text-accent text-5xl transition-colors duration-300">
                     ›
                 </button>
 
                 <!-- Image counter -->
                 <div
-                    class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white bg-black/50 px-4 py-2 rounded-full">
+                    class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-background bg-dark/50 px-4 py-2 rounded-full">
                     {{ currentImageIndex + 1 }} / {{ post.images.length }}
                 </div>
             </div>
@@ -373,15 +373,15 @@ function scrollToFunnel() {
 
 <style>
 .prose-invert {
-    --tw-prose-body: theme('colors.gray.300');
-    --tw-prose-headings: theme('colors.gray.100');
-    --tw-prose-links: theme('colors.amber.400');
-    --tw-prose-bold: theme('colors.gray.100');
-    --tw-prose-captions: theme('colors.gray.400');
-    --tw-prose-code: theme('colors.gray.100');
-    --tw-prose-pre-code: theme('colors.gray.100');
-    --tw-prose-pre-bg: theme('colors.gray.800');
-    --tw-prose-hr: theme('colors.amber.600');
+    --tw-prose-body: theme('colors.dark');
+    --tw-prose-headings: theme('colors.primary');
+    --tw-prose-links: theme('colors.accent');
+    --tw-prose-bold: theme('colors.primary');
+    --tw-prose-captions: theme('colors.dark');
+    --tw-prose-code: theme('colors.primary');
+    --tw-prose-pre-code: theme('colors.primary');
+    --tw-prose-pre-bg: theme('colors.surface');
+    --tw-prose-hr: theme('colors.accent');
 }
 
 /* Lightbox fade transition */
@@ -401,16 +401,16 @@ function scrollToFunnel() {
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(31, 41, 55, 0.5);
+    background: rgba(51, 51, 51, 0.5);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(217, 119, 6, 0.5);
+    background: rgba(255, 153, 0, 0.5);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(245, 158, 11, 0.7);
+    background: rgba(255, 153, 0, 0.7);
 }
 
 /* Range input styling */
@@ -420,7 +420,7 @@ input[type="range"]::-webkit-slider-thumb {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #f59e0b;
+    background: var(--color-accent);
     cursor: pointer;
 }
 
@@ -428,7 +428,7 @@ input[type="range"]::-moz-range-thumb {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #f59e0b;
+    background: var(--color-accent);
     cursor: pointer;
     border: none;
 }

@@ -1,10 +1,10 @@
 <template>
-  <section class="bg-black text-white min-h-screen py-12">
+  <section class="bg-background text-dark min-h-screen py-12">
     <div class="container mx-auto px-6">
       <!-- Titel -->
       <header class="text-center mb-12">
         <h1 class="text-4xl font-bold mb-4">Unsere Projekte</h1>
-        <p class="text-gray-400 text-lg">
+        <p class="text-dark text-lg">
           Ein Blick auf unsere innovativen und erfolgreichen Umsetzungen.
         </p>
       </header>
@@ -12,7 +12,7 @@
       <!-- Projekt-Cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div v-for="(project, index) in projects" :key="project.id" :ref="el => projectElements[index] = el" :class="[
-          'relative bg-black-glossy rounded-lg overflow-hidden shadow-lg group transition-all duration-500 transform hover:scale-110 hover:shadow-glow',
+          'relative bg-surface-glossy rounded-lg overflow-hidden shadow-lg group transition-all duration-500 transform hover:scale-110 hover:shadow-glow text-dark',
           { 'is-active-mobile': isMobile && activeProjectId === project.id }
         ]">
           <!-- Hintergrund-Leuchteffekt -->
@@ -28,10 +28,10 @@
           <!-- Inhalt -->
           <div class="p-6 relative z-20">
             <div class="flex items-center justify-between mb-3">
-              <h3 class="text-xl font-semibold text-white">{{ project.title }}</h3>
+              <h3 class="text-xl font-semibold text-primary">{{ project.title }}</h3>
               <span class="text-accent text-2xl">{{ project.icon }}</span>
             </div>
-            <p class="text-gray-400 text-sm mb-4">{{ project.description }}</p>
+            <p class="text-dark text-sm mb-4">{{ project.description }}</p>
             <!-- Link zur Detailseite -->
             <NuxtLink :to="`/projekte/${project.slug}`" class="gradient-border-button">
               Mehr erfahren
@@ -155,15 +155,15 @@ function observerCallback(entries) {
 </script>
 
 <style scoped>
-/* Glänzender schwarzer Hintergrund */
-.bg-black-glossy {
-  background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05);
+/* Glänzender Hintergrund */
+.bg-surface-glossy {
+  background: linear-gradient(145deg, var(--color-surface), var(--color-background));
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 /* Hover-Shadows (Desktop und Tablets) */
 .hover\:shadow-glow:hover {
-  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(77, 166, 255, 0.5);
 }
 
 /* Button mit Gradient-Umrandung */
@@ -172,8 +172,8 @@ function observerCallback(entries) {
   padding: 10px 20px;
   font-size: 14px;
   font-weight: bold;
-  color: white;
-  background: black;
+  color: var(--color-background);
+  background: var(--color-primary);
   border: 2px solid transparent;
   border-radius: 30px;
   transition: all 0.3s ease;
@@ -189,7 +189,7 @@ function observerCallback(entries) {
   right: -2px;
   bottom: -2px;
   border-radius: 30px;
-  background: linear-gradient(to right, #38bdf8, #8b5cf6);
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -202,7 +202,7 @@ function observerCallback(entries) {
 /* "aktive" Karte auf Mobil (ohne Hover) */
 .is-active-mobile {
   transform: scale(1.1);
-  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(77, 166, 255, 0.5);
   /* Glow wie bei Hover */
 }
 

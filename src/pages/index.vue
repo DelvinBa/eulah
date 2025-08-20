@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-background text-primary min-h-screen relative font-body overflow-hidden">
+  <section class="bg-background text-dark min-h-screen relative font-body overflow-hidden">
     <HomeParticles class="absolute inset-0 z-0 pointer-events-none" />
 
     <!-- Hero Section -->
@@ -18,7 +18,7 @@
     <HomeZielgruppeSection />
 
     <!-- Unsere Leistungen -->
-    <section id="services" class="py-32 bg-black mt-40">
+    <section id="services" class="py-32 bg-surface mt-40">
       <div class="container mx-auto px-6 text-center">
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-12">Unsere Leistungen</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">

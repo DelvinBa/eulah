@@ -12,7 +12,7 @@
                     <NuxtImg v-if="post.image" :src="post.image" :alt="post.title"
                         class="w-full h-56 md:h-96 object-cover" />
                     <!-- Overlay for improved contrast -->
-                    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+                    <div class="absolute inset-0 bg-dark bg-opacity-60"></div>
                     <!-- Title, Meta & Tags -->
                     <div class="absolute bottom-0 p-4 md:p-6">
                         <h1 class="text-2xl md:text-4xl font-heading font-bold text-primary">
@@ -29,7 +29,7 @@
                         </div>
                         <div class="mt-4 flex flex-wrap gap-2">
                             <span v-for="tag in post.tags" :key="tag"
-                                class="px-2 py-1 text-xs md:text-sm font-medium bg-accent-dark rounded-full text-primary">
+                                class="px-2 py-1 text-xs md:text-sm font-medium bg-accent-dark rounded-full text-background">
                                 {{ tag }}
                             </span>
                         </div>
@@ -44,7 +44,7 @@
 
                 <!-- Call-to-Action Section -->
                 <section
-                    class="bg-gradient-to-br from-gradient-start to-gradient-end p-4 md:p-6 border-t border-gray-800">
+                    class="bg-gradient-to-br from-gradient-start to-gradient-end p-4 md:p-6 border-t border-surface">
                     <h2 class="text-2xl md:text-3xl font-heading font-bold text-primary mb-4">
                         Was als nächstes?
                     </h2>
@@ -58,7 +58,7 @@
                                 Erstgespräch.
                             </p>
                             <button @click="scrollToFunnel"
-                                class="bg-accent-dark hover:bg-accent-hover text-primary font-body py-2 px-4 rounded transition-colors">
+                                class="bg-accent-dark hover:bg-accent-hover text-background font-body py-2 px-4 rounded transition-colors">
                                 Jetzt unverbindlich beraten lassen
                             </button>
                         </div>
@@ -71,7 +71,7 @@
                                 arbeiten!
                             </p>
                             <button @click="scrollToFunnel"
-                                class="bg-accent-dark hover:bg-accent-hover text-primary font-body py-2 px-4 rounded transition-colors">
+                                class="bg-accent-dark hover:bg-accent-hover text-background font-body py-2 px-4 rounded transition-colors">
                                 Technischen Co-Founder finden – Hier anfragen!
                             </button>
                         </div>
@@ -79,7 +79,7 @@
                 </section>
 
                 <!-- Footer -->
-                <footer class="p-4 md:p-6 border-t border-gray-800">
+                <footer class="p-4 md:p-6 border-t border-surface">
                     <NuxtLink to="/blog"
                         class="inline-flex items-center text-accent hover:text-accent-hover font-body transition-colors">
                         ← Zurück zum Blog
