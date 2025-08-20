@@ -39,6 +39,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     overflow: hidden;
+    color: var(--color-background);
 }
 
 .choice:hover {
