@@ -13,23 +13,23 @@
 
     <div class="relative z-10 container mx-auto px-6 md:px-12">
       <h1 class="text-4xl md:text-6xl font-heading font-bold text-white mb-6">
-        Digitale Lösungen, die begeistern
+        Ihr Partner für ganzheitliche IT-Lösungen
       </h1>
       <p class="text-lg md:text-2xl text-white/90 max-w-2xl mb-8">
-        Wir entwickeln moderne Web- und Softwarelösungen für Unternehmen und Startups.
+        Von IT-Support bis Cloud-Infrastruktur – alles aus einer Hand.
       </p>
       <div class="flex flex-col sm:flex-row gap-4">
         <NuxtLink
-          to="#services"
+          to="/kontakt"
           class="bg-primary hover:bg-primary-600 text-white px-6 py-3 rounded-md text-center"
         >
-          Unsere Leistungen
+          Jetzt Kontakt aufnehmen
         </NuxtLink>
         <NuxtLink
           to="/kontakt"
           class="bg-transparent border border-white hover:bg-white hover:text-dark px-6 py-3 rounded-md text-center"
         >
-          Kostenfreies Erstgespräch
+          Kostenlos beraten lassen
         </NuxtLink>
       </div>
 

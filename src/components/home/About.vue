@@ -12,11 +12,16 @@
                 </h2>
 
                 <p class="text-dark text-lg sm:text-xl md:text-2xl lg:text-3xl leading-relaxed">
-                    Wir sind ein Team aus <span
-                        class="text-accent font-semibold text-xl sm:text-2xl md:text-3xl">Softwareentwicklern,
-                        Innovatoren und Unternehmern</span>,
-                    das Unternehmen und Einzelpersonen dabei hilft, ihre digitalen Ideen Wirklichkeit werden zu lassen.
+                    Seit 15 Jahren begleiten wir Unternehmen in allen IT-Fragen. Unser
+                    <span class="text-accent font-semibold text-xl sm:text-2xl md:text-3xl">zertifiziertes Team</span>
+                    arbeitet mit starken Partnern wie Microsoft und Cisco zusammen und betreut
+                    zahlreiche zufriedene Kunden.
                 </p>
+
+                <div class="flex justify-center gap-8 mt-6 md:mt-8 text-4xl text-accent">
+                    <i class="fab fa-microsoft" aria-hidden="true"></i>
+                    <i class="fab fa-cisco" aria-hidden="true"></i>
+                </div>
 
                 <div class="mt-8 md:mt-10">
                     <a href="/kontakt"
