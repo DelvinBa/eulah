@@ -1,14 +1,14 @@
 <template>
-  <section class="bg-background text-dark min-h-screen relative font-body overflow-hidden">
-    <HomeParticles class="absolute inset-0 z-0 pointer-events-none" />
+  <section class="bg-background text-dark font-body overflow-hidden">
 
     <!-- Hero Section -->
     <ClientOnly>
+      <HomeHeroSection />
       <template #fallback>
-        <!-- This empty container will display until HomeEulahAnimation is loaded -->
+        <!-- This empty container will display until HomeHeroSection is loaded -->
         <div style="height: 100vh;"></div>
       </template>
-      
+
     </ClientOnly>
 
     <!-- Wer wir sind -->
@@ -39,6 +39,8 @@
 
     <!-- Social Proof -->
     <HomeSocialProof />
+    <!-- Google-Bewertungen via Trustindex (aktuell deaktiviert) -->
+    <!-- <HomeTrustIndex /> -->
 
   </section>
 </template>
@@ -60,12 +62,6 @@ useSeoMeta({
 
 
 <style scoped>
-.particles-container,
-.particles-container canvas {
-  pointer-events: none;
-}
-
-
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
