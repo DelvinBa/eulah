@@ -8,17 +8,17 @@
         <!-- This empty container will display until HomeEulahAnimation is loaded -->
         <div style="height: 100vh;"></div>
       </template>
-      <HomeEulahAnimation />
+      
     </ClientOnly>
 
     <!-- Wer wir sind -->
-    <HomeAbout />
+    <!-- <HomeAbout /> -->
 
     <!-- Unsere Zielgruppe -->
-    <HomeZielgruppeSection />
+    <!-- <HomeZielgruppeSection /> -->
 
     <!-- Unsere Leistungen -->
-    <section id="services" class="py-32 bg-surface mt-40">
+    <!-- <section id="services" class="py-32 bg-surface mt-40">
       <div class="container mx-auto px-6 text-center">
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-12">Unsere Leistungen</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -32,10 +32,10 @@
             icon="fas fa-bullhorn" class="hover:shadow-3xl" />
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Unsere Vision -->
-    <HomeVisionSection />
+    <!-- <HomeVisionSection /> -->
 
     <!-- Social Proof -->
     <HomeSocialProof />

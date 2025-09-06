@@ -6,7 +6,7 @@
         Angaben gemäß § 5 TMG:
       </p>
       <p class="text-dark mb-4">
-        Eulah Software UG<br />
+        Eulah Software GbR<br />
         <!-- 48599 Gronau, Albrechtstraße 25<br /> -->
         48599 Gronau, <br />
         Deutschland

@@ -67,7 +67,7 @@ const initGlobe = async (Globe) => {
   globeInstance.value = Globe()(globeEl.value)
     .width(containerWidth)
     .height(containerHeight)
-    .backgroundColor("#000000")
+    .backgroundColor("#ffffff")
     .globeImageUrl("/images/earth-blue-marble.jpg")
     .atmosphereColor("#3D5AF1")
     .atmosphereAltitude(0.15)
@@ -232,5 +232,6 @@ defineExpose({
   width: 100%;
   height: 100%;
   position: relative;
+  overflow: hidden;
 }
 </style>
