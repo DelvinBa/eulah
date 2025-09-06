@@ -12,35 +12,22 @@
     </ClientOnly>
 
     <!-- Wer wir sind -->
-    <!-- <HomeAbout /> -->
+    <HomeAbout />
 
-    <!-- Unsere Zielgruppe -->
-    <!-- <HomeZielgruppeSection /> -->
+    <!-- Leistungen -->
+    <HomeServicesSection />
 
-    <!-- Unsere Leistungen -->
-    <!-- <section id="services" class="py-32 bg-surface mt-40">
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-12">Unsere Leistungen</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <HomeLeistungCard title="Webseiten & Online-Shops"
-            description="Maßgeschneiderte digitale Erlebnisse, die begeistern." icon="fas fa-globe"
-            class="hover:shadow-3xl" />
-          <HomeLeistungCard title="Softwareentwicklung"
-            description="Von der Idee bis zur Umsetzung – leistungsstarke Softwarelösungen." icon="fas fa-code"
-            class="hover:shadow-3xl" />
-          <HomeLeistungCard title="Digitales Marketing" description="Datengetriebene Kampagnen für nachhaltigen Erfolg."
-            icon="fas fa-bullhorn" class="hover:shadow-3xl" />
-        </div>
-      </div>
-    </section> -->
+    <!-- Warum wir -->
+    <HomeWhyUsSection />
 
-    <!-- Unsere Vision -->
-    <!-- <HomeVisionSection /> -->
-
-    <!-- Social Proof -->
+    <!-- Social Proof (Logos) -->
     <HomeSocialProof />
-    <!-- Google-Bewertungen via Trustindex (aktuell deaktiviert) -->
-    <!-- <HomeTrustIndex /> -->
+
+    <!-- Kundenstimmen -->
+    <HomeTestimonials />
+
+    <!-- FAQ -->
+    <HomeFaqSection />
 
   </section>
 </template>
@@ -48,10 +35,10 @@
 <script setup>
 
 useSeoMeta({
-  title: 'Digitale Lösungen für Unternehmen & Startups',
-  description: 'Von der ersten Code-Zeile bis zur Skalierung – wir entwickeln Software, digitale Produkte & Marketingstrategien für nachhaltigen Erfolg.',
-  ogTitle: 'Digitale Lösungen für Unternehmen & Startups',
-  ogDescription: 'Von Code zu Cashflow – wir entwickeln digitale Produkte mit echtem Marktwert. Skalierbar, innovativ & wirtschaftlich erfolgreich.',
+  title: 'Ihr Partner für ganzheitliche IT-Lösungen',
+  description: 'Von IT-Support bis Cloud-Infrastruktur – alles aus einer Hand.',
+  ogTitle: 'Ihr Partner für ganzheitliche IT-Lösungen',
+  ogDescription: 'Von IT-Support bis Cloud-Infrastruktur – alles aus einer Hand.',
   ogImage: 'https://www.eulah.de/images/og-image.jpg', // Ersetze mit einem echten Bild
   // twitterCard: 'summary_large_image',
   canonical: 'https://www.eulah.de'
