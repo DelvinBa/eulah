@@ -18,6 +18,40 @@
           class="relative px-6 py-3 text-lg font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
           Projekte
         </a>
+        <div class="relative group">
+          <a href="#"
+            class="relative px-6 py-3 text-lg font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
+            Leistungen
+          </a>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 mt-4 w-max hidden group-hover:block z-50">
+            <table
+              class="text-sm text-background bg-secondary/95 border border-secondary/50 rounded-lg shadow-lg overflow-hidden">
+              <tbody>
+                <tr class="border-b border-secondary/50">
+                  <td class="px-4 py-3 font-semibold whitespace-nowrap">Software- &amp; App-Entwicklung</td>
+                  <td class="px-4 py-3">Individuelle Softwarelösungen (Desktop, Web &amp; App)<br>ERP- &amp; CRM-Systeme, Warenwirtschaft &amp; Prozessoptimierung (BPM, RPA)</td>
+                </tr>
+                <tr class="border-b border-secondary/50">
+                  <td class="px-4 py-3 font-semibold whitespace-nowrap">Web &amp; Online-Präsenz</td>
+                  <td class="px-4 py-3">Websites, Landingpages &amp; Webshops<br>SEO &amp; Online-Marketing (Social Media, Kampagnen, Ads)</td>
+                </tr>
+                <tr class="border-b border-secondary/50">
+                  <td class="px-4 py-3 font-semibold whitespace-nowrap">Daten &amp; Künstliche Intelligenz</td>
+                  <td class="px-4 py-3">KI-Modelle, Machine Learning &amp; Big Data<br>Chatbots, Sprachassistenten &amp; Web Scraping</td>
+                </tr>
+                <tr class="border-b border-secondary/50">
+                  <td class="px-4 py-3 font-semibold whitespace-nowrap">IT-Services &amp; Digital Workplace</td>
+                  <td class="px-4 py-3">IT-Installation, Wartung &amp; Support<br>Microsoft 365 &amp; Collaboration Tools<br>VoIP &amp; Cloud-Telefonie<br>Dokumentenmanagement &amp; Cloud-Lösungen</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-semibold whitespace-nowrap">Beratung &amp; Förderung</td>
+                  <td class="px-4 py-3">Digitalisierungs Beratung<br>Zuschuss- &amp; Fördermittelberatung</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <a href="/blog"
           class="relative px-6 py-3 text-lg font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
           Blog
@@ -66,6 +100,7 @@
         role="dialog" aria-modal="true">
         <a href="/" @click="toggleMenu" class="hover:text-accent transition">Home</a>
         <a href="/projekte" @click="toggleMenu" class="hover:text-accent transition">Projekte</a>
+        <a href="#" @click="toggleMenu" class="hover:text-accent transition">Leistungen</a>
         <a href="/blog" @click="toggleMenu" class="hover:text-accent transition">Blog</a>
         <a href="/kontakt" @click="toggleMenu" class="hover:text-accent transition">Kontakt</a>
         <button @click="scrollToFunnel"
