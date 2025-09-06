@@ -1,17 +1,18 @@
 <template>
-  <section class="bg-background text-dark font-body overflow-hidden">
+  <section class="bg-background text-dark font-body overflow-hidden relative">
 
     <!-- Hero Section -->
     <ClientOnly>
       <HomeHeroSection />
       <template #fallback>
-        <!-- This empty container will display until HomeHeroSection is loaded -->
         <div style="height: 100vh;"></div>
       </template>
 
+
     </ClientOnly>
 
-    <!-- Wer wir sind -->
+    <HomeParticles class="absolute inset-0 z-0 pointer-events-none" />
+
     <HomeAbout />
 
     <!-- Leistungen -->
@@ -22,9 +23,6 @@
 
     <!-- Social Proof (Logos) -->
     <HomeSocialProof />
-
-    <!-- Kundenstimmen -->
-    <HomeTestimonials />
 
     <!-- FAQ -->
     <HomeFaqSection />
@@ -49,6 +47,11 @@ useSeoMeta({
 
 
 <style scoped>
+.particles-container,
+.particles-container canvas {
+  pointer-events: none;
+}
+
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
