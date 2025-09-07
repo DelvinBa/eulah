@@ -10,87 +10,142 @@
     <!-- Desktop Navigation -->
     <nav class="hidden md:flex absolute inset-x-0 justify-center">
       <div class="flex items-center space-x-6">
-        <a href="/"
-          class="relative px-6 py-3 text-lg font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
-          Home
-        </a>
-        <a href="/projekte"
-          class="relative px-6 py-3 text-lg font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
-          Projekte
-        </a>
+        
         <div class="relative group">
           <a href="#"
-            class="relative px-6 py-3 text-lg font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
-            Leistungen
+            class="relative px-6 py-3 text-base font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95 flex items-center gap-2">
+            Unternehmen
+            <!-- Dropdown indicator -->
+            <svg xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
           </a>
-          <div class="absolute left-1/2 -translate-x-1/2 mt-4 w-max hidden group-hover:block z-50">
+          <div
+            class="absolute left-1/2 -translate-x-1/2 mt-4 w-max opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+            <div class="bg-background border border-gray-200 rounded-xl shadow-2xl p-4 space-y-2">
+              <a href="/ueber-uns" class="block text-sm text-dark hover:text-primary transition-colors cursor-pointer">
+                Über Uns
+              </a>
+              <a href="/projekte" class="block text-sm text-dark hover:text-primary transition-colors cursor-pointer">
+                Referenzen
+              </a>
+              <a href="/standorte" class="block text-sm text-dark hover:text-primary transition-colors cursor-pointer">
+                Standorte
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="relative group">
+          <a href="#"
+            class="relative px-6 py-3 text-base font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95 flex items-center gap-2">
+            Leistungen
+            <!-- Dropdown indicator -->
+            <svg xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 mt-4 w-max opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
             <div
-              class="text-sm text-background bg-secondary/95 border border-secondary/50 rounded-lg shadow-lg p-6 grid grid-cols-2 md:grid-cols-3 gap-8">
-              <div>
-                <h3 class="font-semibold mb-2 whitespace-nowrap">Software &amp; App-Entwicklung</h3>
-                <ul class="space-y-1">
-                  <li>Individuelle Softwarelösungen (Desktop, Web &amp; App)</li>
-                  <li>ERP- &amp; CRM-Systeme, Warenwirtschaft &amp; Prozessoptimierung (BPM, RPA)</li>
+              class="bg-background border border-gray-200 rounded-xl shadow-2xl p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
+              <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-primary border-b border-secondary/30 pb-2">
+                  Software & App-Entwicklung
+                </h3>
+                <ul class="space-y-2 text-sm text-dark">
+                  <li class="hover:text-primary transition-colors cursor-pointer">
+                    Individuelle Softwarelösungen (Desktop, Web & App)
+                  </li>
+                  <li class="hover:text-primary transition-colors cursor-pointer">
+                    ERP- & CRM-Systeme, Warenwirtschaft & Prozessoptimierung (BPM, RPA)
+                  </li>
                 </ul>
               </div>
-              <div>
-                <h3 class="font-semibold mb-2 whitespace-nowrap">Web &amp; Online-Präsenz</h3>
-                <ul class="space-y-1">
-                  <li>Websites, Landingpages &amp; Webshops</li>
-                  <li>SEO &amp; Online-Marketing (Social Media, Kampagnen, Ads)</li>
+              <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-primary border-b border-secondary/30 pb-2">
+                  Web & Online-Präsenz
+                </h3>
+                <ul class="space-y-2 text-sm text-dark">
+                  <li class="hover:text-primary transition-colors cursor-pointer">
+                    Websites, Landingpages & Webshops
+                  </li>
+                  <li class="hover:text-primary transition-colors cursor-pointer">
+                    SEO & Online-Marketing (Social Media, Kampagnen, Ads)
+                  </li>
                 </ul>
               </div>
-              <div>
-                <h3 class="font-semibold mb-2 whitespace-nowrap">Daten &amp; Künstliche Intelligenz</h3>
-                <ul class="space-y-1">
-                  <li>KI-Modelle, Machine Learning &amp; Big Data</li>
-                  <li>Chatbots, Sprachassistenten &amp; Web Scraping</li>
+              <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-primary border-b border-secondary/30 pb-2">
+                  Daten & Künstliche Intelligenz
+                </h3>
+                <ul class="space-y-2 text-sm text-dark">
+                  <li class="hover:text-primary transition-colors cursor-pointer">
+                    KI-Modelle, Machine Learning & Big Data
+                  </li>
+                  <li class="hover:text-primary transition-colors cursor-pointer">
+                    Chatbots, Sprachassistenten & Web Scraping
+                  </li>
                 </ul>
               </div>
-              <div>
-                <h3 class="font-semibold mb-2 whitespace-nowrap">IT-Services &amp; Digital Workplace</h3>
-                <ul class="space-y-1">
-                  <li>IT-Installation, Wartung &amp; Support</li>
-                  <li>Microsoft 365 &amp; Collaboration Tools</li>
-                  <li>VoIP &amp; Cloud-Telefonie</li>
-                  <li>Dokumentenmanagement &amp; Cloud-Lösungen</li>
+              <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-primary border-b border-secondary/30 pb-2">
+                  IT-Services & Digital Workplace
+                </h3>
+                <ul class="space-y-2 text-sm text-dark">
+                  <li class="hover:text-primary transition-colors cursor-pointer">
+                    IT-Installation, Wartung & Support
+                  </li>
+                  <li class="hover:text-primary transition-colors cursor-pointer">
+                    Microsoft 365 & Collaboration Tools
+                  </li>
+                  <li class="hover:text-primary transition-colors cursor-pointer">
+                    VoIP & Cloud-Telefonie
+                  </li>
+                  <li class="hover:text-primary transition-colors cursor-pointer">
+                    Dokumentenmanagement & Cloud-Lösungen
+                  </li>
                 </ul>
               </div>
-              <div>
-                <h3 class="font-semibold mb-2 whitespace-nowrap">Beratung &amp; Förderung</h3>
-                <ul class="space-y-1">
-                  <li>Digitalisierungs Beratung</li>
-                  <li>Zuschuss- &amp; Fördermittelberatung</li>
+              <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-primary border-b border-secondary/30 pb-2">
+                  Beratung & Förderung
+                </h3>
+                <ul class="space-y-2 text-sm text-dark">
+                  <li class="hover:text-primary transition-colors cursor-pointer">
+                    Digitalisierungs Beratung
+                  </li>
+                  <li class="hover:text-primary transition-colors cursor-pointer">
+                    Zuschuss- & Fördermittelberatung
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
         <a href="/blog"
-          class="relative px-6 py-3 text-lg font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
+          class="relative px-6 py-3 text-base font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
           Ratgeber
-        </a>
-        <a href="/kontakt"
-          class="relative px-6 py-3 text-lg font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
-          Kontakt
         </a>
       </div>
     </nav>
 
     <!-- Call-to-Action Button -->
     <div class="hidden md:flex">
-      <button @click="scrollToFunnel"
-        class="relative px-6 py-3 text-lg font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform">
+      <a href="/kontakt"
+        class="relative px-6 py-3 text-base font-medium text-background bg-gradient-to-r from-accent to-orange-600 rounded-full transition-all duration-300 ease-in-out hover:shadow-[0_0_25px_rgba(255,153,0,0.6)] transform hover:scale-105">
         <span class="relative flex items-center gap-2">
-          Zusammenarbeit anfragen
-          <span class="text-accent">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
-              <path
-                d="M8.707 3.293a1 1 0 0 1 1.414 1.414L5.414 9H11a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1V4a1 1 0 1 1 2 0v5.586l4.293-4.293z" />
-            </svg>
-          </span>
+          Jetzt Kontaktieren
+          <svg xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
         </span>
-      </button>
+      </a>
     </div>
 
     <!-- Mobile Menu Button -->
@@ -109,16 +164,25 @@
     <!-- Mobile Menu (Slide-in Effect) -->
     <transition name="slide">
       <div v-if="isMenuOpen"
-        class="fixed inset-0 bg-dark/90 flex flex-col items-center justify-center space-y-6 text-background text-lg z-50"
+        class="fixed inset-0 bg-dark/95 backdrop-blur-sm flex flex-col items-center justify-center space-y-8 text-background text-lg z-50"
         role="dialog" aria-modal="true">
-        <a href="/" @click="toggleMenu" class="hover:text-accent transition">Home</a>
-        <a href="/projekte" @click="toggleMenu" class="hover:text-accent transition">Projekte</a>
-        <a href="#" @click="toggleMenu" class="hover:text-accent transition">Leistungen</a>
-        <a href="/blog" @click="toggleMenu" class="hover:text-accent transition">Blog</a>
-        <a href="/kontakt" @click="toggleMenu" class="hover:text-accent transition">Kontakt</a>
+        <a href="/" @click="toggleMenu" class="text-xl hover:text-accent transition duration-200">Home</a>
+        <a href="/projekte" @click="toggleMenu" class="text-xl hover:text-accent transition duration-200">Projekte</a>
+        <div class="text-center">
+          <span class="text-xl text-accent">Leistungen</span>
+          <div class="mt-4 space-y-2 text-base text-gray-300">
+            <div>Software & App-Entwicklung</div>
+            <div>Web & Online-Präsenz</div>
+            <div>Daten & KI</div>
+            <div>IT-Services</div>
+            <div>Beratung & Förderung</div>
+          </div>
+        </div>
+        <a href="/blog" @click="toggleMenu" class="text-xl hover:text-accent transition duration-200">Ratgeber</a>
+        <a href="/kontakt" @click="toggleMenu" class="text-xl hover:text-accent transition duration-200">Kontakt</a>
         <button @click="scrollToFunnel"
-          class="px-6 py-3 text-lg font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform">
-          Zusammenarbeit anfragen
+          class="px-8 py-4 text-lg font-medium text-background bg-gradient-to-r from-accent to-orange-600 rounded-full transition-all duration-300 ease-in-out hover:shadow-[0_0_25px_rgba(255,153,0,0.6)] transform hover:scale-105">
+          Jetzt Kontaktieren
         </button>
       </div>
     </transition>
@@ -126,7 +190,6 @@
 </template>
 
 <script setup>
-
 // Props
 const props = defineProps({
   logo: {
@@ -177,7 +240,7 @@ onUnmounted(() => {
 });
 </script>
 
-<style>
+<style scoped>
 /* Smooth Pulsing Animation */
 @keyframes pulse-scale {
 
@@ -198,14 +261,33 @@ onUnmounted(() => {
 /* Slide-in animation for menu */
 .slide-enter-active,
 .slide-leave-active {
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-.slide-enter {
+.slide-enter-from {
   transform: translateY(-100%);
+  opacity: 0;
 }
 
 .slide-leave-to {
   transform: translateY(-100%);
+  opacity: 0;
+}
+
+/* Custom dropdown animation */
+.group:hover .group-hover\:opacity-100 {
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px) translateX(-50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(-50%);
+  }
 }
 </style>

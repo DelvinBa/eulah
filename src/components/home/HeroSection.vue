@@ -13,11 +13,11 @@
                 Von IT-Support bis Cloud-Infrastruktur – alles aus einer Hand.
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
-                <NuxtLink to="/kontakt"
+                <button @click="scrollToFunnel"
                     class="bg-primary hover:bg-primary-600 text-white px-6 py-3 rounded-md text-center">
                     Kostenfreies Erstgespräch
-                </NuxtLink>
-                <NuxtLink to="/kontakt"
+                </button>
+                <NuxtLink to="/leistungen"
                     class="bg-transparent border border-white hover:bg-white hover:text-dark px-6 py-3 rounded-md text-center">
                     Unsere Leistungen
                 </NuxtLink>
@@ -30,7 +30,12 @@
 </template>
 
 <script setup>
-// no logic needed
+const scrollToFunnel = () => {
+    const funnelSection = document.getElementById('lead-funnel');
+    if (funnelSection) {
+        funnelSection.scrollIntoView({ behavior: 'smooth' });
+    }
+};
 </script>
 
 <style scoped>
