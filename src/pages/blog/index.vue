@@ -4,7 +4,7 @@
             <!-- Header Section -->
             <div class="text-center mb-12">
                 <h1 class="text-4xl sm:text-5xl font-bold text-primary mb-4">
-                    Ratgeber & Blog
+                    Ratgeber 
                 </h1>
                 <p class="text-xl text-secondary max-w-3xl mx-auto">
                     Entdecke wertvolle Tipps, Tricks und Insights rund um Digitalisierung,

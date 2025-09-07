@@ -2,7 +2,7 @@
   <section class="py-20 bg-gradient-to-br from-background via-surface to-background">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between mb-8">
-        <h2 class="text-3xl sm:text-4xl font-bold text-primary">Ratgeber &amp; Blog</h2>
+        <h2 class="text-3xl sm:text-4xl font-bold text-primary">Ratgeber</h2>
         <NuxtLink to="/blog" class="text-primary hover:text-accent font-medium">Alle Artikel</NuxtLink>
       </div>
       <Carousel

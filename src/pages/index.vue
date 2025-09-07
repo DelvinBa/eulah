@@ -17,7 +17,7 @@
     <HomeServicesSection />
 
     <!-- Warum wir -->
-    <HomeWhyUsSection />
+    <HomeProjectsSection />
 
     <!-- Social Proof (Logos) -->
     <HomeSocialProof />
