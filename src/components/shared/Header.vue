@@ -68,7 +68,7 @@
         </div>
         <a href="/blog"
           class="relative px-6 py-3 text-lg font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
-          Blog
+          Ratgeber
         </a>
         <a href="/kontakt"
           class="relative px-6 py-3 text-lg font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95">
