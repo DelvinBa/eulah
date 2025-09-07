@@ -22,6 +22,9 @@
     <!-- Social Proof (Logos) -->
     <HomeSocialProof />
 
+    <!-- Blog Section -->
+    <HomeBlogCarousel />
+
     <!-- FAQ -->
     <HomeFaqSection />
 
