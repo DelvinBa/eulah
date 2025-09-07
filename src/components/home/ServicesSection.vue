@@ -1,8 +1,20 @@
 <template>
-  <section id="services" class="py-24 bg-surface">
+  <section
+    id="services"
+    class="py-24 bg-surface"
+    aria-labelledby="services-heading"
+  >
     <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-12">Unsere Leistungen</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <h2
+        id="services-heading"
+        class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4"
+      >
+        Unsere Leistungen
+      </h2>
+      <p class="text-lg text-dark mb-12">
+        Was wir für dich tun können – unsere Services im Überblick.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <HomeServiceCard
           v-for="service in services"
           :key="service.title"
