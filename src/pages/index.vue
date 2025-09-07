@@ -13,14 +13,14 @@
 
     <HomeAbout />
 
-    <!-- Leistungen -->
-    <HomeServicesSection />
-
     <!-- Warum wir -->
     <HomeProjectsSection />
 
     <!-- Social Proof (Logos) -->
     <HomeSocialProof />
+
+    <!-- Leistungen -->
+    <HomeServicesSection />
 
     <!-- Blog Section -->
     <HomeBlogCarousel />
