@@ -1,9 +1,6 @@
 <template>
-    <section class="bg-surface py-24 md:py-32 overflow-hidden">
+    <section class="bg-surface py-12 md:py-16 overflow-hidden">
         <div class="container mx-auto px-4 md:px-6 text-center">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary mb-8">
-                Bereits von führenden Unternehmen vertraut
-            </h2>
             <div class="carousel">
                 <div class="carousel-track">
                     <!-- Duplicate the logos to ensure a smooth infinite loop -->
@@ -49,15 +46,15 @@ const logos = [
 
 /* Logo styling */
 .logo {
-    height: 100px;
-    max-height: 100px;
+    height: 80px;
+    max-height: 80px;
     object-fit: contain;
-    filter: brightness(1) contrast(1);
+    filter: grayscale(100%);
 }
 
 .large-logo {
-    height: 180px;
-    max-height: 180px;
+    height: 140px;
+    max-height: 140px;
 }
 
 /* Keyframe animation for smooth scrolling */
@@ -78,13 +75,13 @@ const logos = [
     }
 
     .logo {
-        height: 80px;
-        max-height: 80px;
+        height: 64px;
+        max-height: 64px;
     }
 
     .large-logo {
-        height: 120px;
-        max-height: 120px;
+        height: 100px;
+        max-height: 100px;
     }
 }
 
@@ -94,13 +91,13 @@ const logos = [
     }
 
     .logo {
-        height: 64px;
-        max-height: 64px;
+        height: 48px;
+        max-height: 48px;
     }
 
     .large-logo {
-        height: 100px;
-        max-height: 100px;
+        height: 80px;
+        max-height: 80px;
     }
 }
 </style>
