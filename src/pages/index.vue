@@ -11,8 +11,6 @@
 
     </ClientOnly>
 
-    <HomeParticles class="absolute inset-0 z-0 pointer-events-none" />
-
     <HomeAbout />
 
     <!-- Leistungen -->
@@ -47,10 +45,7 @@ useSeoMeta({
 
 
 <style scoped>
-.particles-container,
-.particles-container canvas {
-  pointer-events: none;
-}
+
 
 .card:hover {
   transform: scale(1.05);
