@@ -3,7 +3,7 @@
     <!-- Logo -->
     <div class="text-3xl font-bold z-10">
       <a href="/" class="text-background hover:text-accent transition text-4xl font-extrabold">
-        Eulah
+        Eulah IT
       </a>
     </div>
 
