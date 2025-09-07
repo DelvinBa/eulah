@@ -13,14 +13,14 @@
         </p>
       </div>
 
-      <!-- Services Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
-        <ServiceCard v-for="service in services" :key="service.id" :service="service" @click="selectService(service)" />
-      </div>
-
-      <!-- Detailed View Modal/Expanded Card -->
-      <div v-if="selectedService" class="mt-16">
-        <ServiceDetail :service="selectedService" @close="selectedService = null" />
+      <!-- Services with inline detail view -->
+      <div class="flex flex-col lg:flex-row gap-8 mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 flex-1">
+          <ServiceCard v-for="service in services" :key="service.id" :service="service" @click="selectService(service)" />
+        </div>
+        <div v-if="selectedService" class="flex-1">
+          <ServiceDetail :service="selectedService" @close="selectedService = null" />
+        </div>
       </div>
 
       <!-- Call to Action -->
