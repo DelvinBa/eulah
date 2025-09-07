@@ -12,15 +12,15 @@
     </ClientOnly>
 
     <HomeAbout />
-
-    <!-- Warum wir -->
-    <HomeProjectsSection />
+    
+    <!-- Leistungen -->
+    <HomeServicesSection />
 
     <!-- Social Proof (Logos) -->
     <HomeSocialProof />
 
-    <!-- Leistungen -->
-    <HomeServicesSection />
+    <!-- Warum wir -->
+    <HomeProjectsSection />
 
     <!-- Blog Section -->
     <HomeBlogCarousel />
