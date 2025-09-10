@@ -1,10 +1,10 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center p-4">
+  <div class="flex justify-center p-4">
     <div
-      class="w-full max-w-lg md:max-w-3xl bg-[#000000] rounded-2xl border-2 border-[#00d4ff]/20 shadow-2xl overflow-hidden">
-      <div class="text-center py-6 md:py-10 px-4 md:px-6 bg-[#111111] border-b border-[#00d4ff]/10">
-        <h2 class="text-2xl md:text-4xl font-bold mb-3 md:mb-4 text-white">Kontaktiere uns</h2>
-        <p class="text-gray-400 text-lg md:text-xl">
+      class="w-full max-w-lg md:max-w-3xl bg-primary text-background rounded-t-3xl border-2 border-primary-200 shadow-2xl overflow-hidden">
+      <div class="text-center py-6 md:py-10 px-4 md:px-6 bg-primary-700">
+        <h2 class="text-2xl md:text-4xl font-bold mb-3 md:mb-4">Kontaktiere uns</h2>
+        <p class="text-primary-100 text-lg md:text-xl">
           Fülle das Formular aus, und wir melden uns bei dir.
         </p>
       </div>
@@ -111,9 +111,9 @@ const redirectToBooking = () => {
 .input-field {
   width: 100%;
   padding: 10px;
-  background: #111111;
-  color: white;
-  border: 1px solid #2a2a2a;
+  background: #ffffff;
+  color: #333333;
+  border: 1px solid #d1d5db;
   border-radius: 6px;
   outline: none;
   transition: 0.3s;
@@ -126,7 +126,7 @@ const redirectToBooking = () => {
 
 .error-message {
   color: red;
-  background: #1a1a1a;
+  background: #ffe6e6;
   padding: 4px;
   border-radius: 4px;
   margin-top: 2px;
@@ -149,8 +149,8 @@ const redirectToBooking = () => {
 .booking-button {
   padding: 10px;
   border-radius: 6px;
-  background: #2a2a2a;
-  color: white;
+  background: #ffffff;
+  color: black;
   font-weight: bold;
   transition: 0.3s;
   border: 1px solid #00d4ff;
