@@ -2,7 +2,7 @@
   <footer class="bg-primary text-background py-8 md:py-12">
     <div class="container mx-auto px-4 md:px-6 text-center space-y-6 md:space-y-8">
       <!-- Lead Funnel -->
-      <div id="lead-funnel">
+      <div id="lead-funnel" class="mx-auto -mt-20">
         <LeadFunnel />
       </div>
 
@@ -51,3 +51,4 @@ import { ref } from 'vue';
 
 const currentYear = ref(new Date().getFullYear());
 </script>
+
