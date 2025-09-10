@@ -1,52 +1,57 @@
 <template>
-  <div class="flex justify-center p-4">
+  <div class="flex justify-center px-4 relative z-20">
     <div
-      class="w-full max-w-lg md:max-w-3xl bg-primary text-background rounded-3xl border border-primary-200 shadow-2xl overflow-hidden">
-      <div class="text-center py-6 md:py-10 px-4 md:px-6 bg-primary-700">
-        <h2 id="lead-funnel-heading" class="text-2xl md:text-4xl font-bold mb-3 md:mb-4">Kontaktiere uns</h2>
-        <p class="text-primary-100 text-lg md:text-xl">
-          Fülle das Formular aus, und wir melden uns bei dir.
+      class="w-full max-w-md md:max-w-2xl backdrop-blur-sm bg-white/95 text-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-white/20 transition-all duration-300">
+      <!-- Header with Glass Effect -->
+      <div
+        class="text-center py-5 md:py-8 px-4 md:px-6 bg-gradient-to-br from-primary/10 via-primary-300/20 to-primary-500/30 backdrop-blur-md border-b border-white/20">
+        <h2 id="lead-funnel-heading" class="text-xl md:text-3xl font-bold mb-2 md:mb-3 text-gray-900">
+          Jetzt Kontakt aufnehmen
+        </h2>
+        <p class="text-gray-700 text-base md:text-lg font-medium">
+          Sichere dir dein <span class="font-semibold text-primary-600">kostenloses Erstgespräch</span>
         </p>
       </div>
 
-      <div class="p-6 md:p-8 space-y-4">
+      <!-- Form Content -->
+      <div class="p-5 md:p-6 space-y-4 bg-gradient-to-br from-white via-gray-50 to-white">
         <form class="space-y-4" @submit.prevent="submitForm" aria-labelledby="lead-funnel-heading">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label for="name" class="block text-sm md:text-base font-medium mb-1">Dein Name *</label>
-              <input id="name" v-model="form.name" type="text" required aria-required="true"
-                :aria-invalid="errors.name" :aria-describedby="errors.name ? 'name-error' : null"
-                class="input-field text-sm md:text-base" />
+              <label for="name" class="block text-sm font-semibold mb-2 text-gray-800">Dein Name *</label>
+              <input id="name" v-model="form.name" type="text" required aria-required="true" :aria-invalid="errors.name"
+                :aria-describedby="errors.name ? 'name-error' : null" class="input-field text-sm" />
               <p v-if="errors.name" id="name-error" class="error-message" role="alert">Bitte gib deinen Namen ein.</p>
             </div>
             <div>
-              <label for="company" class="block text-sm md:text-base font-medium mb-1">Unternehmen (Optional)</label>
-              <input id="company" v-model="form.company" type="text" class="input-field text-sm md:text-base" />
+              <label for="company" class="block text-sm font-semibold mb-2 text-gray-800">Unternehmen (Optional)</label>
+              <input id="company" v-model="form.company" type="text" class="input-field text-sm" />
             </div>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label for="email" class="block text-sm md:text-base font-medium mb-1">E-Mail *</label>
+              <label for="email" class="block text-sm font-semibold mb-2 text-gray-800">E-Mail *</label>
               <input id="email" v-model="form.email" type="email" required aria-required="true"
                 :aria-invalid="errors.email" :aria-describedby="errors.email ? 'email-error' : null"
-                class="input-field text-sm md:text-base" />
-              <p v-if="errors.email" id="email-error" class="error-message" role="alert">Bitte gib eine gültige E-Mail-Adresse ein.</p>
+                class="input-field text-sm" />
+              <p v-if="errors.email" id="email-error" class="error-message" role="alert">Bitte gib eine gültige
+                E-Mail-Adresse ein.</p>
             </div>
             <div>
-              <label for="phone" class="block text-sm md:text-base font-medium mb-1">Telefonnummer *</label>
+              <label for="phone" class="block text-sm font-semibold mb-2 text-gray-800">Telefonnummer *</label>
               <input id="phone" v-model="form.phone" type="tel" required aria-required="true"
                 :aria-invalid="errors.phone" :aria-describedby="errors.phone ? 'phone-error' : null"
-                class="input-field text-sm md:text-base" />
-              <p v-if="errors.phone" id="phone-error" class="error-message" role="alert">Bitte gib eine gültige Telefonnummer ein.</p>
+                class="input-field text-sm" />
+              <p v-if="errors.phone" id="phone-error" class="error-message" role="alert">Bitte gib eine gültige
+                Telefonnummer ein.</p>
             </div>
           </div>
 
           <div>
-            <label for="category" class="block text-sm md:text-base font-medium mb-1">Kategorie *</label>
-            <select id="category" v-model="form.category" required aria-required="true"
-              :aria-invalid="errors.category" :aria-describedby="errors.category ? 'category-error' : null"
-              class="input-field text-sm md:text-base">
+            <label for="category" class="block text-sm font-semibold mb-2 text-gray-800">Kategorie *</label>
+            <select id="category" v-model="form.category" required aria-required="true" :aria-invalid="errors.category"
+              :aria-describedby="errors.category ? 'category-error' : null" class="input-field text-sm">
               <option value="" disabled>Wähle eine Kategorie *</option>
               <option value="Software & Apps">Software & Apps</option>
               <option value="Webseiten">Webseiten</option>
@@ -55,30 +60,40 @@
               <option value="KI">KI</option>
               <option value="Sonstiges">Sonstiges</option>
             </select>
-            <p v-if="errors.category" id="category-error" class="error-message" role="alert">Bitte wähle eine Kategorie aus.</p>
+            <p v-if="errors.category" id="category-error" class="error-message" role="alert">Bitte wähle eine Kategorie
+              aus.</p>
           </div>
 
           <div>
-            <label for="message" class="block text-sm md:text-base font-medium mb-1">Deine Nachricht *</label>
-            <textarea id="message" v-model="form.message" required aria-required="true"
-              :aria-invalid="errors.message" :aria-describedby="errors.message ? 'message-error' : null"
-              class="input-field text-sm md:text-base h-24"></textarea>
-            <p v-if="errors.message" id="message-error" class="error-message" role="alert">Bitte gib eine Nachricht ein.</p>
+            <label for="message" class="block text-sm font-semibold mb-2 text-gray-800">Deine Nachricht *</label>
+            <textarea id="message" v-model="form.message" required aria-required="true" :aria-invalid="errors.message"
+              :aria-describedby="errors.message ? 'message-error' : null"
+              class="input-field text-sm h-24 resize-none"></textarea>
+            <p v-if="errors.message" id="message-error" class="error-message" role="alert">Bitte gib eine Nachricht ein.
+            </p>
           </div>
 
-          <div class="flex flex-col sm:flex-row justify-between gap-4">
-            <button type="submit" class="submit-button w-full" aria-label="Formular absenden">Absenden</button>
-            <button type="button" @click="redirectToBooking" class="booking-button w-full" aria-label="Termin vereinbaren">Terminbuchung</button>
+          <div class="flex flex-col sm:flex-row justify-between gap-3 pt-3">
+            <button type="submit" class="submit-button w-full group" aria-label="Formular absenden">
+              <span class="relative z-10">Absenden</span>
+            </button>
+            <button type="button" @click="redirectToBooking" class="booking-button w-full group"
+              aria-label="Termin vereinbaren">
+              <span class="relative z-10">Terminbuchung</span>
+            </button>
           </div>
         </form>
 
-        <div v-if="successMessage" class="text-center text-green-400 mt-3 text-sm md:text-base font-medium" role="status">
+        <div v-if="successMessage"
+          class="text-center text-green-600 mt-4 text-sm font-semibold bg-green-50 rounded-lg p-3 border border-green-200"
+          role="status">
           {{ successMessage }}
         </div>
       </div>
     </div>
   </div>
 </template>
+
 
 <script setup>
 const form = ref({
@@ -118,61 +133,95 @@ const submitForm = () => {
 };
 
 const redirectToBooking = () => {
-  window.location.href = '/terminbuchung'; // Replace with the actual booking URL
+  window.location.href = '/terminbuchung';
 };
 </script>
 
 <style scoped>
 .input-field {
   width: 100%;
-  padding: 10px;
-  background: #ffffff;
-  color: #333333;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+  padding: 14px 16px;
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  color: #1f2937;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
   outline: none;
-  transition: 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .input-field:focus {
   border-color: #00d4ff;
-  box-shadow: 0 0 4px #00d4ff;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+.input-field:hover:not(:focus) {
+  border-color: #9ca3af;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .error-message {
-  color: red;
-  background: #ffe6e6;
-  padding: 4px;
-  border-radius: 4px;
-  margin-top: 2px;
+  color: #dc2626;
+  background: linear-gradient(145deg, #fee2e2, #fef2f2);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-top: 6px;
   font-size: 0.875rem;
+  font-weight: 500;
+  border-left: 3px solid #dc2626;
 }
 
 .submit-button {
-  padding: 10px;
-  border-radius: 6px;
-  background: #00d4ff;
-  color: black;
-  font-weight: bold;
-  transition: 0.3s;
+  padding: 14px 24px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #00d4ff, #0ea5e9);
+  color: #1f2937;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
 }
 
 .submit-button:hover {
-  background: #008fb3;
+  background: linear-gradient(145deg, #0ea5e9, #0284c7);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
 }
 
 .booking-button {
-  padding: 10px;
-  border-radius: 6px;
-  background: #ffffff;
-  color: black;
-  font-weight: bold;
-  transition: 0.3s;
-  border: 1px solid #00d4ff;
+  padding: 14px 24px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  color: #1f2937;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid #00d4ff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .booking-button:hover {
-  background: #00d4ff;
-  color: black;
+  background: linear-gradient(145deg, #00d4ff, #0ea5e9);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+}
+
+.booking-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
 }
 </style>
