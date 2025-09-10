@@ -11,14 +11,29 @@
         </p>
       </div>
 
+      <!-- Service Tabs -->
+      <div class="mb-10">
+        <div class="flex flex-wrap justify-center gap-4">
+          <button v-for="service in services" :key="service.id" @click="activeService = service.id"
+            class="px-4 py-2 rounded-full text-sm sm:text-base font-medium transition-colors"
+            :class="[
+              activeService === service.id
+                ? 'bg-primary text-white'
+                : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-100'
+            ]">
+            {{ service.title }}
+          </button>
+        </div>
+      </div>
+
       <!-- FAQ Items -->
       <div class="max-w-4xl mx-auto space-y-4">
-        <div v-for="(faq, index) in faqs" :key="faq.q"
+        <div v-for="(faq, index) in faqsByService[activeService]" :key="faq.q"
           class="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300">
-          <button @click="toggleFaq(index)"
+          <button @click="toggleFaq(activeService, index)"
             class="w-full text-left p-6 sm:p-8 focus:outline-none focus:ring-4 focus:ring-primary/20 transition-all duration-300"
             :class="[
-              openFaqs[index] ? 'bg-gradient-to-r from-primary/5 to-secondary/5' : 'hover:bg-gray-50'
+              openFaqs[activeService]?.[index] ? 'bg-gradient-to-r from-primary/5 to-secondary/5' : 'hover:bg-gray-50'
             ]">
             <div class="flex items-center justify-between">
               <h3 class="text-lg sm:text-xl font-bold text-gray-900 pr-4 group-hover:text-primary transition-colors">
@@ -28,7 +43,7 @@
               <!-- Toggle Icon -->
               <div class="flex-shrink-0 ml-4">
                 <div class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300" :class="[
-                  openFaqs[index]
+                  openFaqs[activeService]?.[index]
                     ? 'bg-primary text-white transform rotate-45'
                     : 'bg-gray-100 text-gray-600 group-hover:bg-primary group-hover:text-white'
                 ]">
@@ -43,7 +58,7 @@
 
           <!-- Answer Content -->
           <transition name="slide-down" @enter="onEnter" @leave="onLeave">
-            <div v-show="openFaqs[index]" class="overflow-hidden">
+            <div v-show="openFaqs[activeService]?.[index]" class="overflow-hidden">
               <div class="px-6 sm:px-8 pb-6 sm:pb-8">
                 <div class="border-t border-gray-200 pt-6">
                   <p class="text-gray-700 leading-relaxed text-base sm:text-lg">
@@ -97,53 +112,107 @@
 <script setup>
 import { ref } from 'vue'
 
-const faqs = [
-  {
-    q: 'Bietet ihr auch 24/7 Support?',
-    a: 'Ja, unser Team steht Ihnen rund um die Uhr zur Verfügung. Wir bieten verschiedene Support-Level an - von der Standard-Betreuung während der Geschäftszeiten bis hin zum Premium 24/7-Service für kritische Systeme. Dabei nutzen wir moderne Ticket-Systeme und Remote-Support-Tools für schnelle Hilfe.',
-    action: { text: 'Support-Pakete ansehen', url: '#' }
-  },
-  {
-    q: 'Welche Regionen betreut ihr?',
-    a: 'Wir arbeiten deutschlandweit und betreuen Kunden sowohl vor Ort als auch remote. Unser Hauptsitz befindet sich in Baden-Württemberg, aber durch unsere mobile Arbeitsweise und digitale Infrastruktur können wir Projekte in ganz Deutschland realisieren. Remote-Services sind sogar international möglich.'
-  },
-  {
-    q: 'Welche Zertifizierungen besitzt euer Team?',
-    a: 'Unsere Spezialisten sind umfassend zertifiziert, darunter Microsoft (Azure, Office 365), Cisco (Netzwerk-Technologien), AWS (Cloud Services) und weitere branchenspezifische Qualifikationen. Wir legen großen Wert auf kontinuierliche Weiterbildung und halten unsere Zertifizierungen stets aktuell.',
-    action: { text: 'Mehr über unser Team', url: '#' }
-  },
-  {
-    q: 'Wie lange dauert die Umsetzung eines Projekts?',
-    a: 'Die Projektdauer hängt vom Umfang und der Komplexität ab. Einfache Websites sind oft in 2-4 Wochen fertig, während komplexe Software-Entwicklungen oder ERP-Implementierungen 3-6 Monate dauern können. Wir erstellen für jedes Projekt einen detaillierten Zeitplan mit Meilensteinen.'
-  },
-  {
-    q: 'Welche Kosten kommen auf mich zu?',
-    a: 'Unsere Preise sind transparent und projektabhängig. Wir bieten sowohl Festpreise für definierte Projekte als auch flexible Stunden- oder Tagessätze für laufende Betreuung. Nach einem kostenlosen Beratungsgespräch erhalten Sie ein detailliertes Angebot ohne versteckte Kosten.'
-  },
-  {
-    q: 'Bietet ihr auch Schulungen für unser Team an?',
-    a: 'Selbstverständlich! Wir glauben daran, dass erfolgreiche Digitalisierung nur mit gut geschulten Teams funktioniert. Wir bieten maßgeschneiderte Schulungen, Workshops und Online-Trainings für alle von uns implementierten Systeme und modernen Technologien an.'
-  }
+const services = [
+  { id: 'software', title: 'Software & App-Entwicklung' },
+  { id: 'web', title: 'Web & Online-Präsenz' },
+  { id: 'ai', title: 'KI & Datenanalyse' },
+  { id: 'it-services', title: 'IT-Services & Digital Workplace' },
+  { id: 'consulting', title: 'Beratung & Förderung' }
 ]
 
-// Reactive state for tracking open FAQs
-const openFaqs = ref({})
-
-// Toggle FAQ function
-const toggleFaq = (index) => {
-  openFaqs.value[index] = !openFaqs.value[index]
+const faqsByService = {
+  software: [
+    {
+      q: 'Wie läuft die Entwicklung einer individuellen Software ab?',
+      a: 'Wir starten mit einer Analyse Ihrer Anforderungen, erstellen ein Konzept und entwickeln in agilen Sprints den Prototyp bis zum fertigen Produkt.'
+    },
+    {
+      q: 'Welche Technologien setzt ihr ein?',
+      a: 'Je nach Projekt nutzen wir moderne Frameworks wie Vue.js, Node.js, .NET oder Flutter für performante Anwendungen.'
+    },
+    {
+      q: 'Bietet ihr auch Wartung und Weiterentwicklung an?',
+      a: 'Ja, nach dem Go-Live begleiten wir Ihre Software langfristig und übernehmen Updates sowie neue Funktionen.'
+    }
+  ],
+  web: [
+    {
+      q: 'Optimiert ihr Websites für Suchmaschinen?',
+      a: 'Natürlich, SEO-Optimierung ist fester Bestandteil unserer Webprojekte, damit Sie besser gefunden werden.'
+    },
+    {
+      q: 'Könnt ihr auch Online-Shops umsetzen?',
+      a: 'Wir realisieren E-Commerce-Lösungen mit Systemen wie Shopify oder individuellen Shop-Frameworks.'
+    },
+    {
+      q: 'Übernehmt ihr die laufende Betreuung?',
+      a: 'Auf Wunsch kümmern wir uns um Updates, Inhalte und Performance Ihrer Website.'
+    }
+  ],
+  ai: [
+    {
+      q: 'Wie kann KI meinem Unternehmen helfen?',
+      a: 'Durch intelligente Automatisierung, Vorhersagen und personalisierte Kundenerlebnisse steigern wir Effizienz und Umsatz.'
+    },
+    {
+      q: 'Welche Daten werden für Machine Learning benötigt?',
+      a: 'Das hängt vom Use Case ab, typischerweise genügen vorhandene Unternehmensdaten, die wir gemeinsam aufbereiten.'
+    },
+    {
+      q: 'Sind meine Daten sicher?',
+      a: 'Wir achten streng auf Datenschutz und setzen auf sichere Infrastruktur sowie Verschlüsselung.'
+    }
+  ],
+  'it-services': [
+    {
+      q: 'Übernehmt ihr die Wartung unserer IT-Infrastruktur?',
+      a: 'Ja, wir betreuen Ihre Systeme proaktiv und bieten bei Bedarf 24/7-Support.'
+    },
+    {
+      q: 'Unterstützt ihr bei der Einrichtung von Microsoft 365?',
+      a: 'Wir richten Microsoft 365 ein, migrieren Daten und schulen Ihr Team im Umgang.'
+    },
+    {
+      q: 'Gibt es einen Notfallsupport?',
+      a: 'Im Ernstfall steht unser Team kurzfristig bereit, um Ausfälle zu beheben.'
+    }
+  ],
+  consulting: [
+    {
+      q: 'Helft ihr bei Förderanträgen?',
+      a: 'Wir unterstützen bei der Auswahl passender Programme und der Antragstellung für Zuschüsse.'
+    },
+    {
+      q: 'Wie läuft eine Digitalisierungsberatung ab?',
+      a: 'Gemeinsam analysieren wir den Status quo, definieren Ziele und entwickeln eine individuelle Roadmap.'
+    },
+    {
+      q: 'Welche Branchen betreut ihr?',
+      a: 'Wir arbeiten branchenübergreifend und passen unsere Beratung an Ihre spezifischen Anforderungen an.'
+    }
+  ]
 }
 
-// Animation functions for smooth height transitions
+const activeService = ref(services[0].id)
+
+const openFaqs = ref({})
+
+const toggleFaq = (service, index) => {
+  if (!openFaqs.value[service]) {
+    openFaqs.value[service] = {}
+  }
+  openFaqs.value[service][index] = !openFaqs.value[service][index]
+}
+
 const onEnter = (el) => {
   el.style.height = '0'
-  el.offsetHeight // trigger reflow
+  el.offsetHeight
   el.style.height = el.scrollHeight + 'px'
 }
 
 const onLeave = (el) => {
   el.style.height = el.scrollHeight + 'px'
-  el.offsetHeight // trigger reflow
+  el.offsetHeight
   el.style.height = '0'
 }
 </script>
