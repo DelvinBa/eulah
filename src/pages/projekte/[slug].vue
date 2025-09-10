@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-gray-100">
+    <div class="min-h-screen bg-background text-dark">
         <!-- Back Link -->
         <NuxtLink to="/projekte"
             class="inline-flex items-center text-accent hover:text-accent-light font-medium ml-6 mt-6 transition-colors duration-300">
@@ -13,8 +13,7 @@
         <div class="max-w-4xl mx-auto py-16 space-y-24 px-6">
             <!-- Title & Subtitle -->
             <header class="text-center">
-                <h1
-                    class="text-5xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-accent-light to-accent">
+                <h1 class="text-5xl font-bold mb-6 tracking-tight text-primary">
                     {{ post.title }}</h1>
                 <p class="text-xl text-dark max-w-2xl mx-auto leading-relaxed">{{ post.subtitle }}</p>
             </header>
@@ -89,10 +88,10 @@
             <!-- Story -->
             <section class="relative">
                 <div
-                    class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent">
+                    class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-accent to-transparent">
                 </div>
-                <h2 class="text-3xl font-semibold text-center mb-10 text-accent-light">The Journey</h2>
-                <div class="prose prose-invert prose-lg text-dark leading-relaxed" v-html="formattedStory">
+                <h2 class="text-3xl font-semibold text-center mb-10 text-primary">The Journey</h2>
+                <div class="prose prose-lg prose-custom text-dark leading-relaxed" v-html="formattedStory">
 
                 </div>
             </section>
@@ -100,9 +99,9 @@
             <!-- Gallery -->
             <section v-if="post.images?.length" class="relative">
                 <div
-                    class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent">
+                    class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-accent to-transparent">
                 </div>
-                <h2 class="text-3xl font-semibold text-center mb-10 text-accent-light">Gallery</h2>
+                <h2 class="text-3xl font-semibold text-center mb-10 text-primary">Gallery</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
                     <div v-for="(img, i) in post.images" :key="i"
                         class="cursor-pointer overflow-hidden rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-accent/30"
@@ -117,27 +116,27 @@
             <!-- Numbers -->
             <section v-if="post.numbers" class="relative">
                 <div
-                    class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent">
+                    class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-accent to-transparent">
                 </div>
-                <h2 class="text-3xl font-semibold text-center mb-10 text-amber-200">Let's Talk Numbers</h2>
-                <div class="prose prose-invert prose-lg mx-auto max-w-prose bg-gray-800/50 p-8 rounded-xl shadow-inner">
-                    <p class="text-gray-300 text-lg whitespace-pre-line leading-relaxed">{{ formattedNumbers }}</p>
+                <h2 class="text-3xl font-semibold text-center mb-10 text-primary">Let's Talk Numbers</h2>
+                <div class="prose prose-lg prose-custom mx-auto max-w-prose bg-surface p-8 rounded-xl shadow-inner">
+                    <p class="text-dark text-lg whitespace-pre-line leading-relaxed">{{ formattedNumbers }}</p>
                 </div>
             </section>
 
             <!-- CTA -->
             <section class="text-center relative">
                 <div
-                    class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent">
+                    class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-accent to-transparent">
                 </div>
-                <h2 class="text-3xl font-semibold mb-10 text-amber-200">Bereit für Ihr eigenes Projekt?</h2>
+                <h2 class="text-3xl font-semibold mb-10 text-primary">Bereit für Ihr eigenes Projekt?</h2>
                 <div class="flex flex-col sm:flex-row justify-center gap-6">
                     <button @click="scrollToFunnel"
-                        class="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-gray-900 rounded-full font-medium transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-500/30">
+                        class="px-8 py-4 bg-gradient-to-r from-accent to-orange-600 text-background rounded-full font-medium transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-accent/30">
                         Jetzt beraten lassen
                     </button>
                     <button @click="scrollToFunnel"
-                        class="px-8 py-4 border-2 border-amber-400 rounded-full font-medium text-amber-400 transform transition-all duration-300 hover:scale-105 hover:text-amber-300 hover:border-amber-300 hover:shadow-lg hover:shadow-amber-500/20">
+                        class="px-8 py-4 border-2 border-accent rounded-full font-medium text-accent transform transition-all duration-300 hover:scale-105 hover:text-accent-light hover:border-accent-light hover:shadow-lg hover:shadow-accent/20">
                         Co-Founder finden
                     </button>
                 </div>
@@ -146,7 +145,7 @@
             <!-- Footer -->
             <footer class="text-center pt-16">
                 <NuxtLink to="/projekte"
-                    class="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors duration-300">
+                    class="inline-flex items-center text-accent hover:text-accent-dark transition-colors duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -372,7 +371,7 @@ function scrollToFunnel() {
 </script>
 
 <style>
-.prose-invert {
+.prose-custom {
     --tw-prose-body: theme('colors.dark');
     --tw-prose-headings: theme('colors.primary.500');
     --tw-prose-links: theme('colors.accent');
@@ -401,7 +400,7 @@ function scrollToFunnel() {
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(51, 51, 51, 0.5);
+    background: rgba(240, 241, 242, 0.5);
 }
 
 ::-webkit-scrollbar-thumb {
