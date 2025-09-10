@@ -1,19 +1,20 @@
 <template>
-  <footer class="bg-primary text-background py-8 md:py-12">
-    <div class="container mx-auto px-4 md:px-6 text-center space-y-6 md:space-y-8">
-      <!-- Lead Funnel -->
-      <div id="lead-funnel" class="mx-auto -mt-20">
-        <LeadFunnel />
-      </div>
+  <section class="bg-primary text-background">
+    <!-- Lead Funnel -->
+    <div id="lead-funnel" class="container mx-auto px-4 md:px-6 -mt-20 mb-8">
+      <LeadFunnel />
+    </div>
 
-      <!-- Links -->
-      <div class="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-6">
+    <footer class="py-8 md:py-12">
+      <div class="container mx-auto px-4 md:px-6 text-center space-y-6 md:space-y-8">
+        <!-- Links -->
+        <div class="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-6">
         <a href="/impressum" class="text-sm md:text-base text-white hover:text-accent transition">Impressum</a>
         <a href="/datenschutz" class="text-sm md:text-base text-white hover:text-accent transition">Datenschutz</a>
       </div>
 
-      <!-- Social Links -->
-      <div class="flex justify-center space-x-6 text-white">
+        <!-- Social Links -->
+        <div class="flex justify-center space-x-6 text-white">
         <a href="https://www.tiktok.com/@eulah.de" target="_blank" rel="noopener" aria-label="TikTok"
           class="hover:text-orange-500 transition">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="white">
@@ -37,12 +38,13 @@
         </a>
       </div>
 
-      <!-- Footer Note -->
-      <p class="text-surface text-xs md:text-sm">
-        All rights reserved © Eulah {{ currentYear }}
-      </p>
-    </div>
-  </footer>
+        <!-- Footer Note -->
+        <p class="text-surface text-xs md:text-sm">
+          All rights reserved © Eulah {{ currentYear }}
+        </p>
+      </div>
+    </footer>
+  </section>
 </template>
 
 <script setup>
