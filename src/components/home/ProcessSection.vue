@@ -1,155 +1,315 @@
 <template>
-  <section id="prozess" aria-label="Prozess" class="py-16 md:py-20 bg-background">
-    <div class="container mx-auto px-4 md:px-6">
-      <!-- Überschrift: bewusst kleiner, da sie lang ist -->
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-primary text-center leading-tight">
-        Zusammenarbeit mit Eulah IT in Bielefeld – Unser Prozess
-      </h2>
-      <p class="mt-3 text-center text-muted-foreground max-w-3xl mx-auto">
-        Transparent, iterativ und auf den Punkt: So begleiten wir Ihr IT‑Projekt
-        von der ersten Idee bis zum stabilen Betrieb.
-      </p>
+  <section id="prozess" aria-label="Prozess" class="relative py-18 md:py-24">
+    <!-- Dekorativer Hintergrund -->
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
+      <div class="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-accent/10 blur-3xl"></div>
+    </div>
 
-      <!-- Desktop/Tablet: horizontaler Stepper mit Karten -->
-      <div class="hidden lg:flex items-stretch mt-14">
-        <template v-for="(step, i) in steps" :key="step.title">
-          <!-- Step -->
-          <div class="flex-1 flex flex-col items-center px-4">
-            <div class="relative group">
-              <div
-                class="w-14 h-14 rounded-full bg-accent/10 border border-accent/40 flex items-center justify-center text-accent text-2xl shadow-sm transition-transform group-hover:-translate-y-0.5">
-                <i :class="step.icon" aria-hidden="true"></i>
-                <span class="sr-only">Schritt {{ i + 1 }}</span>
-              </div>
-              <span
-                class="absolute -top-2 -right-2 text-xs font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary">#{{
-                i + 1 }}</span>
+    <div class="container mx-auto max-w-7xl px-4 md:px-6 relative">
+      <!-- Überschrift -->
+      <header class="text-center">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-primary leading-tight">
+          Ablauf der Zusammenarbeit mit Eulah IT
+        </h2>
+        <p class="mt-3 text-muted-foreground max-w-3xl mx-auto">
+          Von der ersten Kontaktaufnahme bis zum stabilen Betrieb.
+        </p>
+
+        <!-- Fortschrittsanzeige -->
+        <div class="mx-auto mt-6 max-w-2xl">
+          <div class="h-2 w-full rounded-full bg-muted overflow-hidden">
+            <div class="h-full rounded-full bg-primary transition-all duration-500" :style="{ width: progress + '%' }"
+              role="progressbar" :aria-valuenow="activeIndex + 1" :aria-valuemin="1" :aria-valuemax="steps.length"
+              aria-label="Fortschritt Prozess"></div>
+          </div>
+
+        </div>
+      </header>
+
+      <!-- Layout: links Timeline, rechts Inhalt -->
+      <div class="mt-12 grid gap-8 lg:grid-cols-12">
+        <!-- Linke Spalte: Step-Navigation / Timeline -->
+        <nav class="lg:col-span-4" aria-label="Prozessschritte">
+          <div class="lg:sticky lg:top-24">
+            <div class="relative ps-5">
+              <!-- Vertikale Linie -->
+              <div class="timeline-line absolute left-0 top-0 bottom-0 w-px" aria-hidden="true"></div>
+
+              <ol class="space-y-3">
+                <li v-for="(step, i) in steps" :key="step.title" class="relative">
+                  <!-- Knoten auf der Linie -->
+                  <span
+                    class="absolute -left-2 top-5 inline-flex h-4 w-4 items-center justify-center rounded-full border border-border bg-background shadow-sm"
+                    :class="{ 'ring-2 ring-primary/40': activeIndex === i }"></span>
+
+                  <!-- Step-Karte -->
+                  <button type="button" @click="setActive(i)" :aria-current="activeIndex === i ? 'step' : false"
+                    class="group w-full flex items-center gap-3 rounded-2xl border px-3.5 py-3 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                    :class="[
+                      activeIndex === i
+                        ? 'border-primary/40 bg-primary/5 shadow-md ring-1 ring-primary/20'
+                        : 'border-border/70 hover:border-foreground/20 hover:shadow-sm',
+                      isComplete(i) && activeIndex !== i ? 'bg-success/5 border-success/30' : ''
+                    ]">
+                    <span
+                      class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-semibold transition-all"
+                      :class="[
+                        isComplete(i)
+                          ? 'bg-success text-success-foreground'
+                          : activeIndex === i
+                            ? 'bg-primary text-primary-foreground scale-105'
+                            : 'bg-muted text-foreground/85'
+                      ]">
+                      <i v-if="isComplete(i)" class="fas fa-check" aria-hidden="true"></i>
+                      <span v-else>{{ i + 1 }}</span>
+                    </span>
+
+                    <i :class="step.icon" class="shrink-0 text-accent/90" aria-hidden="true"></i>
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-semibold leading-tight line-clamp-1">{{ step.title }}</p>
+                      <p class="text-xs text-muted-foreground line-clamp-1">{{ step.teaser }}</p>
+                    </div>
+
+                    <i class="fas fa-chevron-right opacity-0 transition group-hover:opacity-60 text-muted-foreground"
+                      aria-hidden="true"></i>
+                  </button>
+                </li>
+              </ol>
             </div>
 
-            <article
-              class="mt-5 w-full bg-white/5 rounded-2xl border border-border/50 p-6 backdrop-blur-sm hover:shadow-lg transition">
-              <h3 class="text-lg font-semibold text-foreground text-center">
-                {{ step.title }}
-              </h3>
-              <p class="mt-2 text-sm text-muted-foreground text-center leading-relaxed">
-                {{ step.description }}
+            <!-- Mobile Step-Chips -->
+            <div class="mt-4 flex gap-2 overflow-x-auto lg:hidden no-scrollbar" aria-hidden="true">
+              <button v-for="(step, i) in steps" :key="'chip-' + step.title" @click="setActive(i)"
+                class="whitespace-nowrap rounded-full border px-3 py-1.5 text-xs transition"
+                :class="activeIndex === i ? 'border-primary bg-primary/10' : 'border-border hover:border-foreground/30'">
+                {{ i + 1 }}. {{ step.title }}
+              </button>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Rechte Spalte: Details zum aktiven Schritt -->
+        <article
+          class="lg:col-span-8 rounded-2xl border border-border/60 bg-white/60 p-6 md:p-7 shadow-sm dark:bg-white/[.04] backdrop-blur"
+          aria-live="polite">
+          <header class="flex items-start justify-between gap-4">
+            <div class="min-w-0 flex items-center gap-3">
+              <span
+                class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground shadow">
+                <i :class="current.icon" aria-hidden="true"></i>
+              </span>
+              <div>
+                <p class="text-xs uppercase tracking-wide text-muted-foreground">Schritt {{ activeIndex + 1 }} von {{
+                  steps.length }}</p>
+                <h3 class="mt-1 text-xl md:text-2xl font-semibold leading-snug">{{ current.title }}</h3>
+              </div>
+            </div>
+            <div class="hidden md:flex items-center gap-2">
+              <button @click="prevStep"
+                class="rounded-xl border border-border/70 px-3 py-2 text-sm hover:shadow transition"
+                aria-label="Vorheriger Schritt" title="Alt + ←">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i>
+              </button>
+              <button @click="nextStep"
+                class="rounded-xl border border-primary/40 px-3 py-2 text-sm hover:shadow transition"
+                aria-label="Nächster Schritt" title="Alt + →">
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+              </button>
+            </div>
+          </header>
+
+          <Transition name="fade-slide" mode="out-in">
+            <div :key="activeIndex">
+              <p class="mt-4 text-base leading-relaxed text-foreground/90">
+                {{ current.description }}
               </p>
-              <ul class="mt-4 space-y-2 text-sm text-foreground/90 text-left max-w-sm mx-auto">
-                <li v-for="point in step.points" :key="point" class="flex items-start gap-2">
-                  <i class="fas fa-check mt-0.5" aria-hidden="true"></i>
-                  <span>{{ point }}</span>
+
+              <ul class="mt-5 list-disc ps-5 text-sm md:text-base space-y-2 marker:text-foreground/60">
+                <li v-for="(p, idx) in current.points" :key="idx" class="leading-relaxed">
+                  {{ p }}
                 </li>
               </ul>
-            </article>
+
+              <!-- CTA-Button nur wenn vorhanden -->
+              <div v-if="current.cta" class="mt-6">
+                <a :href="current.cta.url"
+                  class="inline-block px-5 py-3 bg-blue-600 text-white text-sm font-medium rounded-lg shadow hover:bg-blue-700 transition">
+                  {{ current.cta.label }}
+                </a>
+              </div>
+            </div>
+          </Transition>
+
+          <!-- Mobile Navigation unten -->
+          <div class="mt-6 flex items-center justify-between md:hidden">
+            <button @click="prevStep"
+              class="rounded-xl border border-border/70 px-4 py-2 text-sm hover:shadow transition"
+              aria-label="Vorheriger Schritt">
+              <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> Zurück
+            </button>
+            <button @click="nextStep"
+              class="rounded-xl border border-primary/40 px-4 py-2 text-sm hover:shadow transition"
+              aria-label="Nächster Schritt">
+              Weiter <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+            </button>
           </div>
 
-          <!-- Connector -->
-          <div v-if="i < steps.length - 1" class="flex items-center">
-            <div class="h-[2px] w-20 xl:w-28 bg-gradient-to-r from-accent/60 to-transparent rounded-full mt-7"></div>
-          </div>
-        </template>
-      </div>
 
-      <!-- Mobile: vertikale Timeline -->
-      <ol class="lg:hidden relative mt-10 border-s border-border">
-        <li v-for="(step, i) in steps" :key="step.title" class="ms-6 pb-10 last:pb-0">
-          <span
-            class="absolute -start-3.5 mt-1 flex h-7 w-7 items-center justify-center rounded-full bg-accent/10 border border-accent/40 text-accent">
-            <i :class="step.icon" aria-hidden="true"></i>
-          </span>
-          <h3 class="text-base font-semibold">{{ i + 1 }}. {{ step.title }}</h3>
-          <p class="mt-1 text-sm text-muted-foreground leading-relaxed">
-            {{ step.description }}
-          </p>
-          <ul class="mt-3 space-y-1.5 text-sm">
-            <li v-for="point in step.points" :key="point" class="flex items-start gap-2">
-              <i class="fas fa-check mt-0.5" aria-hidden="true"></i>
-              <span>{{ point }}</span>
-            </li>
-          </ul>
-        </li>
-      </ol>
-
-      <!-- CTA -->
-      <div class="mt-12 text-center">
-        <a href="#kontakt"
-          class="inline-flex items-center gap-2 rounded-2xl border border-primary/30 px-5 py-3 text-sm font-medium hover:shadow-lg transition">
-          <i class="fas fa-paper-plane" aria-hidden="true"></i>
-          Jetzt unverbindlich anfragen
-        </a>
+        </article>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
+import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
+
+// Klarer, allgemein gehaltener IT‑Service‑Prozess (ohne separaten Test/QA‑Schritt)
 const steps = [
   {
-    title: "Kontaktaufnahme",
-    icon: "fas fa-phone",
+    title: 'Kontaktaufnahme',
+    icon: 'fas fa-handshake',
+    teaser: 'Erstberatung, Ist‑Aufnahme, Ziele',
     description:
       "Sie erreichen uns telefonisch, per Mail oder Formular. In einem kurzen Erstgespräch klären wir Ziele, Rahmenbedingungen und mögliche Risiken – kostenfrei und unverbindlich.",
     points: [
-      "Kostenfreie Erstberatung (15–30 Min)",
-      "Vertrauliche Bedarfsanalyse & Zieldefinition",
-      "Erste grobe Aufwandsschätzung"
+      'Kostenfreie Erstberatung & Bedarfsklärung',
+      'Vertrauliche Bedarfsanalyse & Zieldefinition',
+      'Erste grobe Aufwandsschätzung'
     ]
   },
   {
-    title: "Projektplanung & Beratung",
-    icon: "fas fa-lightbulb",
+    title: 'Projektplanung',
+    icon: 'fas fa-diagram-project',
+    teaser: 'Roadmap, Architektur, Sicherheit',
     description:
       "Wir strukturieren Anforderungen, priorisieren gemeinsam und empfehlen passende Technologien. Daraus entsteht eine Roadmap mit klaren Meilensteinen und Verantwortlichkeiten.",
     points: [
-      "Workshops & Backlog-Erstellung",
-      "Technologie- & Architektur-Empfehlungen",
-      "Transparenter Projektplan mit Meilensteinen"
+      'Anforderungsanalyse und Backlog-Erstellung',
+      'Technologie- & Architektur-Empfehlungen',
+      'Transparenter Projektplan mit Meilensteinen'
     ]
   },
   {
-    title: "Entwicklung & Umsetzung",
-    icon: "fas fa-code",
+    title: 'Implementierung & Einführung',
+    icon: 'fas fa-screwdriver-wrench',
+    teaser: 'Rollout, Konfiguration, Übergabe',
     description:
-      "Iterative Entwicklung in kurzen Sprints sorgt für schnelle Ergebnisse und frühes Feedback. Wir setzen auf saubere Architektur, Code-Reviews und CI/CD für zuverlässige Deployments.",
+      "Wir realisieren die geplanten IT-Lösungen, passen Systeme an Ihre Umgebung an und begleiten die Einführung. Qualitätssicherung, Dokumentation und eine saubere Übergabe sorgen für einen reibungslosen Start.",
     points: [
-      "Agile Sprints mit regelmäßigen Demos",
-      "Code-Reviews, CI/CD-Pipeline, Versionskontrolle",
-      "Nachvollziehbare Dokumentation"
+      "Umsetzung & Konfiguration der vereinbarten Lösungen",
+      "Integration in bestehende Systeme & Prozesse",
+      "Abnahme mit Dokumentation & Übergabe"
     ]
   },
   {
-    title: "Test & Qualitätssicherung",
-    icon: "fas fa-vial",
+    title: 'Betrieb & Support',
+    icon: 'fas fa-headset',
+    teaser: 'SLA, Monitoring, kontinuierliche Verbesserung',
     description:
-      "Automatisierte und manuelle Tests sichern Stabilität, Performance und Sicherheit. Sie erhalten klare Testberichte und eine saubere Abnahme.",
+      "Nach der Einführung bleiben wir Ihr Partner für den laufenden Betrieb. Ob Supportanfragen, Wartung oder schrittweise Weiterentwicklung – wir stellen sicher, dass Ihre Lösung langfristig zuverlässig funktioniert.",
     points: [
-      "Unit-, Integrations- & E2E-Tests",
-      "Performance- und Sicherheitschecks",
-      "Abnahmeprotokolle & Bugtracking"
+      "Support & Hilfestellung im laufenden Betrieb",
+      "Regelmäßige Wartung & Pflege",
+      "Bedarfsgerechte Weiterentwicklung"
     ]
   },
   {
-    title: "Go-Live & Support",
-    icon: "fas fa-rocket",
+    title: "Kunde werden",
+    icon: "fas fa-star",
+    teaser: "Ihr nächster Schritt",
     description:
-      "Der Rollout erfolgt kontrolliert – mit Monitoring, Backup-Strategie und Notfallplan. Danach begleiten wir Sie langfristig mit Wartung, Updates und Support-SLAs.",
-    points: [
-      "Stufenweiser Rollout & Monitoring",
-      "Übergabe, Schulungen & Know-how-Transfer",
-      "Wartung, Updates & Support-SLA"
-    ]
+      "Starten Sie jetzt die Zusammenarbeit mit uns – unkompliziert und unverbindlich. Gemeinsam finden wir den passenden Einstieg für Ihr Projekt oder Ihre IT-Anforderungen.",
+    cta: {
+      label: "Jetzt Kontakt aufnehmen",
+      url: "/kontakt",
+    },
+    isCta: true // Markierung, dass dieser Schritt sich von den Prozess-Schritten unterscheidet
   }
-];
+]
+
+const activeIndex = ref(0)
+const current = computed(() => steps[activeIndex.value])
+const progress = computed(() => Math.round(((activeIndex.value + 1) / steps.length) * 100))
+
+function setActive(i) { activeIndex.value = i }
+function nextStep() { activeIndex.value = (activeIndex.value + 1) % steps.length }
+function prevStep() { activeIndex.value = (activeIndex.value - 1 + steps.length) % steps.length }
+function isComplete(i) { return i < activeIndex.value }
+
+// Tastatur-Navigation (Alt + Pfeiltasten)
+function onKey(e) {
+  if (e.altKey && e.key === 'ArrowRight') { e.preventDefault(); nextStep() }
+  if (e.altKey && e.key === 'ArrowLeft') { e.preventDefault(); prevStep() }
+}
+
+onMounted(() => window.addEventListener('keydown', onKey))
+onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
 </script>
 
 <style scoped>
-/* Optional: sanfte Karte-Optik auch bei dunklen Themes angenehm */
-:root {
-  /* Nur als Fallback, falls Design-Tokens fehlen */
-  --border: rgba(0, 0, 0, 0.08);
+/* Sanfte Radialverläufe werden über Utility-Klassen ergänzt */
+
+/* Timeline-Linie mit Farbverlauf */
+.timeline-line {
+  background: linear-gradient(to bottom, hsl(var(--primary) / .4), transparent 40%, hsl(var(--accent) / .25));
 }
 
-.border-border {
-  border-color: var(--border);
+/* Transition für Contentwechsel */
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: all 280ms ease;
+}
+
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+/* KBD Badge */
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid hsl(var(--border));
+  border-bottom-width: 2px;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 0.3rem;
+  border-radius: 0.375rem;
+  font-size: 0.7rem;
+}
+
+/* Versteckte Scrollbars bei Chips */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Utility-Farben (optional, falls nicht in Design‑Tokens vorhanden) */
+:root {
+  /* nur Fallbacks */
+}
+
+:where(.dark) .bg-success {
+  --tw-bg-opacity: 1;
+}
+
+.bg-success {
+  background-color: rgba(16, 185, 129, var(--tw-bg-opacity, 1));
+}
+
+.text-success-foreground {
+  color: white;
 }
 </style>

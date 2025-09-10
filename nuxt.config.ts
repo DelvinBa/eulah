@@ -68,6 +68,7 @@ export default defineNuxtConfig({
 
   css: [
     "@/assets/css/main.css", // Haupt-CSS-Datei; der Pfad beginnt mit src
+    "@fortawesome/fontawesome-free/css/all.min.css",
   ],
 
   postcss: {
