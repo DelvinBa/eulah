@@ -2,12 +2,12 @@
   <section class="py-24 bg-gradient-to-br from-background via-surface to-background">
     <div class="container mx-auto px-6">
       <!-- Header -->
-      <div class="text-center mb-16">
-        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary mb-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-4">
           Häufig gestellte Fragen
         </h2>
-        <p class="text-xl text-secondary max-w-3xl mx-auto">
-          Hier findest du Antworten auf die wichtigsten Fragen rund um unsere Dienstleistungen und Services
+        <p class="text-lg sm:text-xl text-secondary max-w-2xl mx-auto">
+          Hier findest du Antworten auf die wichtigsten Fragen rund um unsere Dienstleistungen
         </p>
       </div>
 
@@ -15,8 +15,7 @@
       <div class="mb-10">
         <div class="flex flex-wrap justify-center gap-4">
           <button v-for="service in services" :key="service.id" @click="activeService = service.id"
-            class="px-4 py-2 rounded-full text-sm sm:text-base font-medium transition-colors"
-            :class="[
+            class="px-4 py-2 rounded-full text-sm sm:text-base font-medium transition-colors" :class="[
               activeService === service.id
                 ? 'bg-primary text-white'
                 : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-100'
@@ -27,27 +26,28 @@
       </div>
 
       <!-- FAQ Items -->
-      <div class="max-w-4xl mx-auto space-y-4">
+      <div class="max-w-4xl mx-auto space-y-3">
         <div v-for="(faq, index) in faqsByService[activeService]" :key="faq.q"
-          class="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300">
+          class="group bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300">
           <button @click="toggleFaq(activeService, index)"
-            class="w-full text-left p-6 sm:p-8 focus:outline-none focus:ring-4 focus:ring-primary/20 transition-all duration-300"
+            class="w-full text-left p-4 sm:p-5 focus:outline-none focus:ring-4 focus:ring-primary/20 transition-all duration-300"
             :class="[
               openFaqs[activeService]?.[index] ? 'bg-gradient-to-r from-primary/5 to-secondary/5' : 'hover:bg-gray-50'
             ]">
             <div class="flex items-center justify-between">
-              <h3 class="text-lg sm:text-xl font-bold text-gray-900 pr-4 group-hover:text-primary transition-colors">
+              <h3
+                class="text-base sm:text-lg font-semibold text-gray-900 pr-3 group-hover:text-primary transition-colors">
                 {{ faq.q }}
               </h3>
 
               <!-- Toggle Icon -->
-              <div class="flex-shrink-0 ml-4">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300" :class="[
+              <div class="flex-shrink-0 ml-3">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300" :class="[
                   openFaqs[activeService]?.[index]
                     ? 'bg-primary text-white transform rotate-45'
                     : 'bg-gray-100 text-gray-600 group-hover:bg-primary group-hover:text-white'
                 ]">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                   </svg>
@@ -59,18 +59,18 @@
           <!-- Answer Content -->
           <transition name="slide-down" @enter="onEnter" @leave="onLeave">
             <div v-show="openFaqs[activeService]?.[index]" class="overflow-hidden">
-              <div class="px-6 sm:px-8 pb-6 sm:pb-8">
-                <div class="border-t border-gray-200 pt-6">
-                  <p class="text-gray-700 leading-relaxed text-base sm:text-lg">
+              <div class="px-4 sm:px-5 pb-4 sm:pb-5">
+                <div class="border-t border-gray-200 pt-4">
+                  <p class="text-gray-700 leading-relaxed text-sm sm:text-base">
                     {{ faq.a }}
                   </p>
 
                   <!-- Optional: Action Button -->
-                  <div v-if="faq.action" class="mt-6">
+                  <div v-if="faq.action" class="mt-4">
                     <button
-                      class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                      class="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-md transform hover:scale-105 transition-all duration-200">
                       {{ faq.action.text }}
-                      <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24"
+                      <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -84,25 +84,20 @@
         </div>
       </div>
 
+
       <!-- Bottom CTA -->
-      <div class="text-center mt-16">
-        <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 sm:p-12 text-white max-w-3xl mx-auto">
-          <h3 class="text-2xl sm:text-3xl font-bold mb-4">
+      <div class="text-center mt-12">
+        <div class="bg-gradient-to-r from-primary to-secondary rounded-xl p-6 sm:p-8 text-white max-w-2xl mx-auto">
+          <h3 class="text-xl sm:text-2xl font-bold mb-3">
             Weitere Fragen?
           </h3>
-          <p class="text-lg sm:text-xl mb-8 text-white/90">
+          <p class="text-base sm:text-lg mb-6 text-white/90">
             Unser Team hilft dir gerne weiter. Kontaktiere uns für eine kostenlose Beratung.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              class="px-8 py-4 bg-white text-primary rounded-full font-bold hover:shadow-xl transform hover:scale-105 transition-all duration-200">
-              Jetzt Kontakt aufnehmen
-            </button>
-            <button
-              class="px-8 py-4 border-2 border-white text-white rounded-full font-bold hover:bg-white hover:text-primary transition-all duration-200">
-              Kostenlose Beratung
-            </button>
-          </div>
+          <button
+            class="px-6 py-3 bg-white text-primary rounded-full font-bold hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+            Jetzt Kontakt aufnehmen
+          </button>
         </div>
       </div>
     </div>
@@ -115,8 +110,8 @@ import { ref } from 'vue'
 const services = [
   { id: 'software', title: 'Software & App-Entwicklung' },
   { id: 'web', title: 'Web & Online-Präsenz' },
-  { id: 'ai', title: 'KI & Datenanalyse' },
-  { id: 'it-services', title: 'IT-Services & Digital Workplace' },
+  { id: 'ai', title: 'KI & Agenten' },
+  { id: 'it-services', title: 'IT-Services & Büro Infrastruktur' },
   { id: 'consulting', title: 'Beratung & Förderung' }
 ]
 
