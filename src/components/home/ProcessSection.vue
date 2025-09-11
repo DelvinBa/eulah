@@ -170,7 +170,6 @@ const steps = [
   {
     title: 'Kontaktaufnahme',
     icon: 'fas fa-handshake',
-    teaser: 'Erstberatung, Ist‑Aufnahme, Ziele',
     description:
       "Sie erreichen uns telefonisch, per Mail oder Formular. In einem kurzen Erstgespräch klären wir Ziele, Rahmenbedingungen und mögliche Risiken – kostenfrei und unverbindlich.",
     points: [
@@ -182,7 +181,6 @@ const steps = [
   {
     title: 'Projektplanung',
     icon: 'fas fa-diagram-project',
-    teaser: 'Roadmap, Architektur, Sicherheit',
     description:
       "Wir strukturieren Anforderungen, priorisieren gemeinsam und empfehlen passende Technologien. Daraus entsteht eine Roadmap mit klaren Meilensteinen und Verantwortlichkeiten.",
     points: [
@@ -194,7 +192,6 @@ const steps = [
   {
     title: 'Implementierung & Einführung',
     icon: 'fas fa-screwdriver-wrench',
-    teaser: 'Rollout, Konfiguration, Übergabe',
     description:
       "Wir realisieren die geplanten IT-Lösungen, passen Systeme an Ihre Umgebung an und begleiten die Einführung. Qualitätssicherung, Dokumentation und eine saubere Übergabe sorgen für einen reibungslosen Start.",
     points: [
@@ -206,7 +203,6 @@ const steps = [
   {
     title: 'Betrieb & Support',
     icon: 'fas fa-headset',
-    teaser: 'SLA, Monitoring, kontinuierliche Verbesserung',
     description:
       "Nach der Einführung bleiben wir Ihr Partner für den laufenden Betrieb. Ob Supportanfragen, Wartung oder schrittweise Weiterentwicklung – wir stellen sicher, dass Ihre Lösung langfristig zuverlässig funktioniert.",
     points: [

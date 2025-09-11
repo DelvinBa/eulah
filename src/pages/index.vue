@@ -8,8 +8,6 @@
       </template>
     </ClientOnly>
 
-    <HomeAbout />
-
     <!-- Leistungen -->
     <HomeServicesSection />
 

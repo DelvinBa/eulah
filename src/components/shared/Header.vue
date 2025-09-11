@@ -10,7 +10,7 @@
     <!-- Desktop Navigation -->
     <nav class="hidden md:flex absolute inset-x-0 justify-center">
       <div class="flex items-center space-x-6">
-        
+
         <div class="relative group">
           <a href="#"
             class="relative px-6 py-3 text-base font-medium text-background bg-secondary/20 rounded-full border-2 border-secondary/50 transition-all duration-300 ease-in-out hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(255,165,0,0.5)] transform hover:scale-95 flex items-center gap-2">
