@@ -17,6 +17,9 @@
     <!-- Projektablauf -->
     <HomeProcessSection />
 
+    <!-- Geschäftsbereiche -->
+    <HomeBusinessAreasSection />
+
     <!-- Warum wir -->
     <HomeProjectsSection />
 
