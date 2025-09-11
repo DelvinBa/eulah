@@ -20,6 +20,9 @@
     <!-- Warum wir -->
     <HomeProjectsSection />
 
+    <!-- Technologiepartner -->
+    <HomePartnersSection />
+
     <!-- Blog Section -->
     <HomeBlogCarousel />
 
