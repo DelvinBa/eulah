@@ -88,20 +88,20 @@
       <!-- Bottom CTA -->
       <div class="text-center mt-12">
         <div class="bg-gradient-to-r from-primary to-secondary rounded-xl p-6 sm:p-8 text-white max-w-2xl mx-auto">
-          <h3 class="text-xl sm:text-2xl font-bold mb-3">
+          <h3 class="text-xl text-white sm:text-2xl font-bold mb-3">
             Weitere Fragen?
           </h3>
           <p class="text-base sm:text-lg mb-4 text-white/90">
-            Unser Team hilft dir gerne weiter. Kontaktiere uns für eine kostenlose Beratung.
+            Unser Team hilft dir gerne weiter. <br />Kontaktiere uns für eine kostenlose Beratung.
           </p>
           <div class="mb-6 space-y-1">
             <p class="text-base sm:text-lg text-white/90">
               E-Mail:
-              <a href="mailto:info@eulah.de" class="underline hover:text-accent">info@eulah.de</a>
+              <a href="mailto:info@eulah.de" class="underline  hover:text-accent">info@eulah.de</a>
             </p>
             <p class="text-base sm:text-lg text-white/90">
               Telefon:
-              <a href="tel:+495211234567" class="underline hover:text-accent">+49 521 1234567</a>
+              <a href="tel:+49 17640434598" class="underline  hover:text-accent">+49 521 1234567</a>
             </p>
           </div>
           <NuxtLink to="/kontakt"

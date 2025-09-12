@@ -30,7 +30,7 @@
                         Kostenfreies Erstgespräch
                     </button>
                     <NuxtLink to="/leistungen"
-                        class="bg-white/10 border border-white/30 hover:bg-white hover:text-dark font-medium rounded-xl text-lg px-8 py-4 shadow-lg shadow-black/30 transition-all duration-300">
+                        class="bg-white/10  border border-white/30 hover:bg-white hover:text-dark font-medium rounded-xl text-lg px-8 py-4 shadow-lg shadow-black/30 transition-all duration-300">
                         Unsere Leistungen
                     </NuxtLink>
                 </div>
