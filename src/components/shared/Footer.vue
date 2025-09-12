@@ -14,6 +14,13 @@
           <a href="/datenschutz" class="text-sm md:text-base text-white hover:text-accent transition">Datenschutz</a>
         </div>
 
+        <!-- Contact Info -->
+        <div class="text-white space-y-1">
+          <p>E-Mail: <a href="mailto:info@eulah.de" class="underline hover:text-accent">info@eulah.de</a></p>
+          <p>Telefon: <a href="tel:+495211234567" class="underline hover:text-accent">+49 521 1234567</a></p>
+          <p>Standort: Bielefeld, Deutschland</p>
+        </div>
+
         <!-- Social Links -->
         <div class="flex justify-center space-x-6 text-white">
           <a href="https://www.tiktok.com/@eulah.de" target="_blank" rel="noopener" aria-label="TikTok"

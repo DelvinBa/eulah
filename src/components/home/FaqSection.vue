@@ -91,13 +91,23 @@
           <h3 class="text-xl sm:text-2xl font-bold mb-3">
             Weitere Fragen?
           </h3>
-          <p class="text-base sm:text-lg mb-6 text-white/90">
+          <p class="text-base sm:text-lg mb-4 text-white/90">
             Unser Team hilft dir gerne weiter. Kontaktiere uns für eine kostenlose Beratung.
           </p>
-          <button
-            class="px-6 py-3 bg-white text-primary rounded-full font-bold hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+          <div class="mb-6 space-y-1">
+            <p class="text-base sm:text-lg text-white/90">
+              E-Mail:
+              <a href="mailto:info@eulah.de" class="underline hover:text-accent">info@eulah.de</a>
+            </p>
+            <p class="text-base sm:text-lg text-white/90">
+              Telefon:
+              <a href="tel:+495211234567" class="underline hover:text-accent">+49 521 1234567</a>
+            </p>
+          </div>
+          <NuxtLink to="/kontakt"
+            class="inline-block px-6 py-3 bg-white text-primary rounded-full font-bold hover:shadow-lg transform hover:scale-105 transition-all duration-200">
             Jetzt Kontakt aufnehmen
-          </button>
+          </NuxtLink>
         </div>
       </div>
     </div>

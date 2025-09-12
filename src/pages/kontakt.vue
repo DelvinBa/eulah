@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4 py-8 md:px-6 md:py-12">
       <h1 class="text-3xl md:text-5xl font-bold mb-4 md:mb-6 text-center">Kontakt</h1>
       <p class="text-2xl text-dark text-center mb-8 md:mb-12">
-        Sitz in Deutschland, Projekte auf der ganzen Welt.
+        Sitz in Bielefeld, Deutschland – Projekte auf der ganzen Welt.
       </p>
 
       <div class="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-12">
@@ -56,8 +56,11 @@
         </form>
       </div>
 
-      <div class="mt-8 md:mt-12 text-center">
+      <div class="mt-8 md:mt-12 text-center space-y-2">
         <p class="text-xl text-dark">Wir melden uns in der Regel innerhalb von 72 Stunden.</p>
+        <p class="text-xl text-dark">E-Mail: <a href="mailto:info@eulah.de" class="text-accent hover:underline">info@eulah.de</a></p>
+        <p class="text-xl text-dark">Telefon: <a href="tel:+495211234567" class="text-accent hover:underline">+49 521 1234567</a></p>
+        <p class="text-xl text-dark">Standort: Bielefeld, Deutschland</p>
       </div>
     </div>
   </section>
