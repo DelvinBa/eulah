@@ -5,11 +5,11 @@
       <!-- Header with Glass Effect -->
       <div
         class="text-center py-5 md:py-8 px-4 md:px-6 bg-gradient-to-br from-primary/10 via-primary-300/20 to-primary-500/30 backdrop-blur-md border-b border-white/20">
-        <h2 id="lead-funnel-heading" class="text-xl md:text-3xl font-bold mb-2 md:mb-3 text-gray-900">
+        <h2 text-black id="lead-funnel-heading" class="text-xl md:text-3xl font-bold mb-2 md:mb-3 text-gray-900">
           Jetzt Kontakt aufnehmen
         </h2>
         <p class="text-gray-700 text-base md:text-lg font-medium">
-          Sichere dir dein <span class="font-semibold text-primary-600">kostenloses Erstgespräch</span>
+          Sichern Sie sich ein<span class="font-semibold text-primary-600">kostenloses Erstgespräch</span>
         </p>
       </div>
 
