@@ -74,13 +74,13 @@
           </div>
 
           <div class="flex flex-col sm:flex-row justify-between gap-3 pt-3">
-            <button type="submit" class="submit-button w-full group" aria-label="Formular absenden">
+            <BaseButton type="submit" class="w-full group" variant="primary" aria-label="Formular absenden">
               <span class="relative z-10">Absenden</span>
-            </button>
-            <button type="button" @click="redirectToBooking" class="booking-button w-full group"
+            </BaseButton>
+            <BaseButton type="button" @click="redirectToBooking" class="w-full group" variant="cta"
               aria-label="Termin vereinbaren">
               <span class="relative z-10">Terminbuchung</span>
-            </button>
+            </BaseButton>
           </div>
         </form>
 
@@ -96,6 +96,7 @@
 
 
 <script setup>
+import BaseButton from './BaseButton.vue';
 const form = ref({
   name: '',
   company: '',
@@ -173,55 +174,5 @@ const redirectToBooking = () => {
   font-size: 0.875rem;
   font-weight: 500;
   border-left: 3px solid #dc2626;
-}
-
-.submit-button {
-  padding: 14px 24px;
-  border-radius: 12px;
-  background: linear-gradient(145deg, #00d4ff, #0ea5e9);
-  color: #1f2937;
-  font-weight: 700;
-  font-size: 16px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
-}
-
-.submit-button:hover {
-  background: linear-gradient(145deg, #0ea5e9, #0284c7);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
-}
-
-.submit-button:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
-}
-
-.booking-button {
-  padding: 14px 24px;
-  border-radius: 12px;
-  background: linear-gradient(145deg, #ffffff, #f8fafc);
-  color: #1f2937;
-  font-weight: 700;
-  font-size: 16px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid #00d4ff;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.booking-button:hover {
-  background: linear-gradient(145deg, #00d4ff, #0ea5e9);
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
-}
-
-.booking-button:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
 }
 </style>

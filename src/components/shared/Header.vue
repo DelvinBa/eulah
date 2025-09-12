@@ -135,17 +135,20 @@
 
     <!-- Call-to-Action Button -->
     <div class="hidden md:flex">
-      <a href="/kontakt"
-        class="relative px-6 py-3 text-base font-medium text-background bg-gradient-to-r from-accent to-orange-600 rounded-full transition-all duration-300 ease-in-out hover:shadow-[0_0_25px_rgba(255,153,0,0.6)] transform hover:scale-105">
-        <span class="relative flex items-center gap-2">
+      <BaseButton to="/kontakt" variant="cta" class="group">
+        <span class="flex items-center gap-2">
           Jetzt Kontaktieren
-          <svg xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
         </span>
-      </a>
+      </BaseButton>
     </div>
 
     <!-- Mobile Menu Button -->
@@ -190,6 +193,7 @@
 </template>
 
 <script setup>
+import BaseButton from './BaseButton.vue';
 // Props
 const props = defineProps({
   logo: {
