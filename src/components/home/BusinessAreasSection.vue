@@ -167,7 +167,7 @@ const baseAreas = [
   {
     title: 'Beratung & Strategie',
     icon: 'fas fa-lightbulb',
-    desc: 'xWir schaffen Klarheit und leiten Ihre digitale Transformation mit klaren Schritten.',
+    desc: 'Wir schaffen Klarheit und leiten Ihre digitale Transformation mit klaren Schritten.',
     bullets: ['Digitale Roadmaps', 'Innovationsberatung', 'Transformation & Change']
   }
 ]
