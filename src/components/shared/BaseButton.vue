@@ -1,0 +1,37 @@
+<template>
+  <component
+    :is="to ? 'NuxtLink' : 'button'"
+    v-bind="{ ...$attrs, class: [baseClasses, variantClasses, $attrs.class] }"
+    :type="to ? undefined : type"
+    :to="to"
+  >
+    <slot />
+  </component>
+</template>
+
+<script setup lang="ts">
+defineOptions({ inheritAttrs: false })
+
+interface Props {
+  to?: string | object
+  type?: 'button' | 'submit' | 'reset'
+  variant?: 'primary' | 'cta'
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  type: 'button',
+  variant: 'primary',
+})
+
+const baseClasses =
+  'inline-flex items-center justify-center rounded-full px-6 py-3 font-medium transition-all duration-300'
+
+const variantClasses = computed(() =>
+  props.variant === 'cta'
+    ? 'bg-gradient-to-r from-accent to-accent-dark text-background hover:shadow-lg hover:scale-105'
+    : 'bg-primary text-background hover:bg-secondary'
+)
+
+const { to, type } = props
+</script>
+
