@@ -90,9 +90,26 @@ h6 {
 }
 
 .btn-secondary {
-  @apply bg-secondary hover:bg-primary text-background px-6 py-3 rounded-full font-medium transition-all duration-300;
+  @apply bg-secondary hover:bg-primary text-dark px-6 py-3 rounded-full font-medium transition-all duration-300;
 }
 
 .btn-accent {
   @apply bg-accent hover:bg-orange-600 text-background px-6 py-3 rounded-full font-medium transition-all duration-300;
+}
+
+@layer components {
+  .bg-primary,
+  .bg-primary :is(h1,h2,h3,h4,h5,h6,p,a,span,li) {
+    @apply text-background;
+  }
+
+  .bg-secondary,
+  .bg-secondary :is(h1,h2,h3,h4,h5,h6,p,a,span,li) {
+    @apply text-dark;
+  }
+
+  .bg-primary a:hover,
+  .bg-secondary a:hover {
+    @apply text-accent;
+  }
 }
