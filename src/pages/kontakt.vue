@@ -15,23 +15,59 @@
         </div>
 
         <form @submit.prevent="submitForm" class="w-full max-w-lg lg:w-2/3 space-y-4 md:space-y-6">
-          <div>
-            <label for="name" class="block text-xl text-dark mb-2">Ihr Name</label>
-            <input v-model="form.name" id="name" type="text" placeholder="Max Mustermann"
-              class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent" />
-            <p v-if="errors.name"
-              class="flex items-center gap-2 text-xl text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
-              <span class="material-icons">error</span> Bitte geben Sie Ihren Namen ein.
-            </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="name" class="block text-xl text-dark mb-2">Ihr Name</label>
+              <input v-model="form.name" id="name" type="text" placeholder="Max Mustermann"
+                class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent" />
+              <p v-if="errors.name"
+                class="flex items-center gap-2 text-xl text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
+                <span class="material-icons">error</span> Bitte geben Sie Ihren Namen ein.
+              </p>
+            </div>
+            <div>
+              <label for="company" class="block text-xl text-dark mb-2">Unternehmen (optional)</label>
+              <input v-model="form.company" id="company" type="text" placeholder="Firmenname"
+                class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="email" class="block text-xl text-dark mb-2">Ihre E-Mail-Adresse</label>
+              <input v-model="form.email" id="email" type="email" placeholder="example@domain.com"
+                class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent" />
+              <p v-if="errors.email"
+                class="flex items-center gap-2 text-xl text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
+                <span class="material-icons">error</span> Bitte geben Sie eine gültige E-Mail-Adresse ein.
+              </p>
+            </div>
+            <div>
+              <label for="phone" class="block text-xl text-dark mb-2">Ihre Telefonnummer</label>
+              <input v-model="form.phone" id="phone" type="tel" placeholder="0123456789"
+                class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent" />
+              <p v-if="errors.phone"
+                class="flex items-center gap-2 text-xl text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
+                <span class="material-icons">error</span> Bitte geben Sie eine gültige Telefonnummer ein.
+              </p>
+            </div>
           </div>
 
           <div>
-            <label for="email" class="block text-xl text-dark mb-2">Ihre E-Mail-Adresse</label>
-            <input v-model="form.email" id="email" type="email" placeholder="example@domain.com"
-              class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent" />
-            <p v-if="errors.email"
+            <label for="category" class="block text-xl text-dark mb-2">Kategorie</label>
+            <select v-model="form.category" id="category"
+              class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent">
+              <option value="" disabled>Wähle eine Kategorie *</option>
+              <option value="Software & Apps">Software & Apps</option>
+              <option value="Webseiten">Webseiten</option>
+              <option value="IT-Services">IT-Services</option>
+              <option value="Digitales Marketing & Leads">Digitales Marketing & Leads</option>
+              <option value="KI">KI</option>
+              <option value="Sonstiges">Sonstiges</option>
+            </select>
+            <p v-if="errors.category"
               class="flex items-center gap-2 text-xl text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
-              <span class="material-icons">error</span> Bitte geben Sie eine gültige E-Mail-Adresse ein.
+              <span class="material-icons">error</span> Bitte wählen Sie eine Kategorie aus.
             </p>
           </div>
 
@@ -81,7 +117,10 @@ const mail = useMail();
 // Form data and state
 const form = ref({
   name: '',
+  company: '',
   email: '',
+  phone: '',
+  category: '',
   message: '',
 });
 
@@ -89,6 +128,8 @@ const successMessage = ref('');
 const errors = ref({
   name: false,
   email: false,
+  phone: false,
+  category: false,
   message: false,
 });
 
@@ -96,23 +137,23 @@ const submitForm = () => {
   errors.value = {
     name: !form.value.name,
     email: !form.value.email || !/\S+@\S+\.\S+/.test(form.value.email), // Regex for email validation
+    phone: !form.value.phone || isNaN(form.value.phone),
+    category: !form.value.category,
     message: !form.value.message,
   };
 
-  if (errors.value.name || errors.value.email || errors.value.message) {
+  if (Object.values(errors.value).some((error) => error)) {
     return;
   }
 
   mail.send({
     from: form.value.name,
     subject: `Eulah Kontaktformular ausgefüllt von ${form.value.name}`,
-    text: `Name: ${form.value.name}\nEmail: ${form.value.email}\nMessage: ${form.value.message}`,
+    text: `Name: ${form.value.name}\nCompany: ${form.value.company}\nEmail: ${form.value.email}\nPhone: ${form.value.phone}\nCategory: ${form.value.category}\nMessage: ${form.value.message}`,
   });
 
   successMessage.value = 'Vielen Dank! Ihre Nachricht wurde erfolgreich übermittelt.';
-  form.value.name = '';
-  form.value.email = '';
-  form.value.message = '';
+  form.value = { name: '', company: '', email: '', phone: '', category: '', message: '' };
 };
 </script>
 <style scoped>
