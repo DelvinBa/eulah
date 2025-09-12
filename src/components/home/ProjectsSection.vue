@@ -51,6 +51,14 @@
           </div>
         </template>
       </Carousel>
+      <div class="mt-12 text-center">
+        <button
+          @click="scrollToFunnel"
+          class="px-6 py-3 bg-primary text-white rounded-md hover:bg-accent transition-colors"
+        >
+          Eigenes Projekt anfragen
+        </button>
+      </div>
     </div>
   </section>
 </template>
@@ -79,6 +87,11 @@ const getFacts = (numbers) => {
     .map((line) => line.replace(/^\s*•\s*/, '').trim())
     .filter(Boolean)
     .slice(0, 3);
+};
+
+const scrollToFunnel = () => {
+  const el = document.getElementById('lead-funnel');
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
 };
 </script>
 
