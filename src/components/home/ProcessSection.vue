@@ -190,7 +190,7 @@ const steps = [
     ]
   },
   {
-    title: 'Implementierung & Einführung',
+    title: 'Implementierung',
     icon: 'fas fa-screwdriver-wrench',
     description:
       "Wir realisieren die geplanten IT-Lösungen, passen Systeme an Ihre Umgebung an und begleiten die Einführung. Qualitätssicherung, Dokumentation und eine saubere Übergabe sorgen für einen reibungslosen Start.",

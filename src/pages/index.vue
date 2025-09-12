@@ -8,17 +8,15 @@
       </template>
     </ClientOnly>
 
-    <!-- Leistungen -->
-    <HomeServicesSection />
-
+    
     <!-- Social Proof (Logos) -->
     <HomeSocialProof />
-
+    
+    <!-- Geschäftsbereiche -->
+    <HomeBusinessAreasSection />
     <!-- Projektablauf -->
     <HomeProcessSection />
 
-    <!-- Geschäftsbereiche -->
-    <HomeBusinessAreasSection />
 
     <!-- Warum wir -->
     <HomeProjectsSection />
