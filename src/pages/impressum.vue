@@ -6,12 +6,12 @@
         Angaben gemäß § 5 TMG:
       </p>
       <p class="text-dark mb-4">
-        Eulah Software GbR<br />
+        Eulah IT GbR<br />
         <!-- 48599 Gronau, Albrechtstraße 25<br /> -->
-        48599 Gronau, <br />
+        33611 Bielefeld, Sudbrackstraße 12 <br />
         Deutschland
       </p>
-      <p class="text-gray-400 mb-4">
+      <p class=" mb-4">
         <strong>Vertreten durch:</strong><br />
         <a href="https://www.linkedin.com/in/delvin-bacho-ba7740221/" target="_blank"
           class="text-primary hover:underline">Delvin Bacho</a> und
@@ -21,6 +21,7 @@
       <p class="text-dark mb-4">
         <strong>Kontakt:</strong><br />
         E-Mail: <a href="mailto:info@eulah.de" class="text-accent hover:underline">info@eulah.de</a>
+        Telefon: <a href="tel:+49 17640434598" class="text-accent hover:underline">+49 17640434598</a>
       </p>
     </div>
   </section>

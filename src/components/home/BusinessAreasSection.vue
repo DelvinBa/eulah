@@ -109,7 +109,7 @@
       <div class="mt-20 space-y-6">
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <NuxtLink to="/leistungen"
-            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1">
+            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl  hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1">
             <i class="fas fa-th-large" aria-hidden="true"></i>
             Alle Leistungen entdecken
           </NuxtLink>

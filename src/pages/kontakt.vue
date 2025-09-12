@@ -94,9 +94,11 @@
 
       <div class="mt-8 md:mt-12 text-center space-y-2">
         <p class="text-xl text-dark">Wir melden uns in der Regel innerhalb von 72 Stunden.</p>
-        <p class="text-xl text-dark">E-Mail: <a href="mailto:info@eulah.de" class="text-accent hover:underline">info@eulah.de</a></p>
-        <p class="text-xl text-dark">Telefon: <a href="tel:+495211234567" class="text-accent hover:underline">+49 521 1234567</a></p>
-        <p class="text-xl text-dark">Standort: Bielefeld, Deutschland</p>
+        <p class="text-xl text-dark">E-Mail: <a href="mailto:info@eulah.de"
+            class="text-accent hover:underline">info@eulah.de</a></p>
+        <p class="text-xl text-dark">Telefon: <a href="tel:+49 17640434598" class="text-accent hover:underline">+49
+            17640434598</a></p>
+        <p class="text-xl text-dark">Standort: Sudbrackstraße 12, 33611 Bielefeld</p>
       </div>
     </div>
   </section>
