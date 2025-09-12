@@ -7,7 +7,7 @@
           Häufig gestellte Fragen
         </h2>
         <p class="text-lg sm:text-xl text-secondary max-w-2xl mx-auto">
-          Hier findest du Antworten auf die wichtigsten Fragen rund um unsere Dienstleistungen
+          Hier finden Sie Antworten auf die wichtigsten Fragen rund um unsere Dienstleistungen
         </p>
       </div>
 

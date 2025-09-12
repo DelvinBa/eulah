@@ -5,7 +5,7 @@
             <h1 class="text-6xl font-bold text-red-500">404</h1>
             <p class="text-xl font-semibold text-gray-700 dark:text-gray-300 mt-2">Seite nicht gefunden</p>
             <p class="text-gray-500 dark:text-gray-400 mt-2">
-                Die Seite, die du suchst, existiert nicht oder wurde verschoben.
+                Die Seite, die Sie suchen, existiert nicht oder wurde verschoben.
             </p>
             <Button @click="$router.push('/')" label="Zurück zur Startseite" raised severity="help">
             </Button>

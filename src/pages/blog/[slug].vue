@@ -67,7 +67,7 @@
                                 <strong>Für Startup-Gründer & Innovatoren:</strong>
                             </p>
                             <p class="text-dark mb-4">
-                                ✅ Hast du eine Idee für ein digitales Produkt? Lass uns gemeinsam daran
+                                ✅ Haben Sie eine Idee für ein digitales Produkt? Lass uns gemeinsam daran
                                 arbeiten!
                             </p>
                             <button @click="scrollToFunnel"

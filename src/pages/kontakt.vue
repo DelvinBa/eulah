@@ -21,8 +21,8 @@
               <input v-model="form.name" id="name" type="text" placeholder="Max Mustermann"
                 class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent" />
               <p v-if="errors.name"
-                class="flex items-center gap-2 text-xl text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
-                <span class="material-icons">error</span> Bitte geben Sie Ihren Namen ein.
+                class="flex items-center gap-2 text-sm text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
+                <span class="material-icons"></span> Bitte geben Sie Ihren Namen ein.
               </p>
             </div>
             <div>
@@ -38,8 +38,8 @@
               <input v-model="form.email" id="email" type="email" placeholder="example@domain.com"
                 class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent" />
               <p v-if="errors.email"
-                class="flex items-center gap-2 text-xl text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
-                <span class="material-icons">error</span> Bitte geben Sie eine gültige E-Mail-Adresse ein.
+                class="flex items-center gap-2 text-sm text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
+                <span class="material-icons"></span> Bitte geben Sie eine gültige E-Mail-Adresse ein.
               </p>
             </div>
             <div>
@@ -47,8 +47,8 @@
               <input v-model="form.phone" id="phone" type="tel" placeholder="0123456789"
                 class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent" />
               <p v-if="errors.phone"
-                class="flex items-center gap-2 text-xl text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
-                <span class="material-icons">error</span> Bitte geben Sie eine gültige Telefonnummer ein.
+                class="flex items-center gap-2 text-sm text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
+                <span class="material-icons"></span> Bitte geben Sie eine gültige Telefonnummer ein.
               </p>
             </div>
           </div>
@@ -66,8 +66,8 @@
               <option value="Sonstiges">Sonstiges</option>
             </select>
             <p v-if="errors.category"
-              class="flex items-center gap-2 text-xl text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
-              <span class="material-icons">error</span> Bitte wählen Sie eine Kategorie aus.
+              class="flex items-center gap-2 text-sm text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
+              <span class="material-icons"></span> Bitte wählen Sie eine Kategorie aus.
             </p>
           </div>
 
@@ -76,8 +76,8 @@
             <textarea v-model="form.message" id="message" rows="4" placeholder="Ihre Nachricht..."
               class="w-full p-3 md:p-4 bg-surface text-dark rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-accent"></textarea>
             <p v-if="errors.message"
-              class="flex items-center gap-2 text-xl text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
-              <span class="material-icons">error</span> Bitte geben Sie eine Nachricht ein.
+              class="flex items-center gap-2 text-sm text-red-500 mt-2 bg-surface p-2 rounded-lg border border-red-500">
+              <span class="material-icons"></span> Bitte geben Sie eine Nachricht ein.
             </p>
           </div>
 

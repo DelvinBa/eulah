@@ -21,7 +21,7 @@
               <label for="name" class="block text-sm font-semibold mb-2 text-gray-800">Dein Name *</label>
               <input id="name" v-model="form.name" type="text" required aria-required="true" :aria-invalid="errors.name"
                 :aria-describedby="errors.name ? 'name-error' : null" class="input-field text-sm" />
-              <p v-if="errors.name" id="name-error" class="error-message" role="alert">Bitte gib deinen Namen ein.</p>
+              <p v-if="errors.name" id="name-error" class="error-message" role="alert">Bitte geben Sie Ihren Namen ein.</p>
             </div>
             <div>
               <label for="company" class="block text-sm font-semibold mb-2 text-gray-800">Unternehmen (Optional)</label>
@@ -35,15 +35,15 @@
               <input id="email" v-model="form.email" type="email" required aria-required="true"
                 :aria-invalid="errors.email" :aria-describedby="errors.email ? 'email-error' : null"
                 class="input-field text-sm" />
-              <p v-if="errors.email" id="email-error" class="error-message" role="alert">Bitte gib eine gültige
-                E-Mail-Adresse ein.</p>
+              <p v-if="errors.email" id="email-error" class="error-message" role="alert">Bitte geben Sie eine gültige
+                E-Mail-Adresse an.</p>
             </div>
             <div>
               <label for="phone" class="block text-sm font-semibold mb-2 text-gray-800">Telefonnummer *</label>
               <input id="phone" v-model="form.phone" type="tel" required aria-required="true"
                 :aria-invalid="errors.phone" :aria-describedby="errors.phone ? 'phone-error' : null"
                 class="input-field text-sm" />
-              <p v-if="errors.phone" id="phone-error" class="error-message" role="alert">Bitte gib eine gültige
+              <p v-if="errors.phone" id="phone-error" class="error-message" role="alert">Bitte geben Sie eine gültige
                 Telefonnummer ein.</p>
             </div>
           </div>
@@ -52,7 +52,7 @@
             <label for="category" class="block text-sm font-semibold mb-2 text-gray-800">Kategorie *</label>
             <select id="category" v-model="form.category" required aria-required="true" :aria-invalid="errors.category"
               :aria-describedby="errors.category ? 'category-error' : null" class="input-field text-sm">
-              <option value="" disabled>Wähle eine Kategorie *</option>
+              <option value="" disabled>Kategorie auswählen *</option>
               <option value="Software & Apps">Software & Apps</option>
               <option value="Webseiten">Webseiten</option>
               <option value="IT-Services">IT-Services</option>
@@ -60,7 +60,7 @@
               <option value="KI">KI</option>
               <option value="Sonstiges">Sonstiges</option>
             </select>
-            <p v-if="errors.category" id="category-error" class="error-message" role="alert">Bitte wähle eine Kategorie
+            <p v-if="errors.category" id="category-error" class="error-message" role="alert">Bitte wählen Sie eine Kategorie
               aus.</p>
           </div>
 
@@ -69,7 +69,7 @@
             <textarea id="message" v-model="form.message" required aria-required="true" :aria-invalid="errors.message"
               :aria-describedby="errors.message ? 'message-error' : null"
               class="input-field text-sm h-24 resize-none"></textarea>
-            <p v-if="errors.message" id="message-error" class="error-message" role="alert">Bitte gib eine Nachricht ein.
+            <p v-if="errors.message" id="message-error" class="error-message" role="alert">Bitte geben Sie eine Nachricht ein.
             </p>
           </div>
 
