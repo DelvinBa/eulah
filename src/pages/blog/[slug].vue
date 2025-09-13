@@ -98,10 +98,18 @@
 <script setup>
 const route = useRoute()
 
-// Fetch the blog post using the full path with prefix "/blog/"
-const { data: post, error } = await useAsyncData(route.path, () =>
-    queryCollection('blog').path(route.path).first(),
+definePageMeta({
+    key: route => route.fullPath
+})
+
+// Fetch the blog post using the current slug and re-fetch when the route changes
+const { data: post, error, refresh } = await useAsyncData(
+    () => queryCollection('blog').path(`/blog/${route.params.slug}`).first(),
+    { watch: [() => route.fullPath] }
 )
+
+// Ensure a fresh fetch when navigating between different slugs
+watch(() => route.params.slug, () => refresh())
 
 
 

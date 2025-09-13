@@ -188,11 +188,20 @@
 </template>
 
 <script setup>
-
 const route = useRoute()
-const { data: post } = await useAsyncData(route.path, () =>
-    queryCollection('projekte').path(route.path).first()
+
+definePageMeta({
+    key: route => route.fullPath
+})
+
+// Fetch the project using the current slug and update when the route changes
+const { data: post, refresh } = await useAsyncData(
+    () => queryCollection('projekte').path(`/projekte/${route.params.slug}`).first(),
+    { watch: [() => route.fullPath] }
 )
+
+// Force a new fetch when navigating to a different project slug
+watch(() => route.params.slug, () => refresh())
 
 const formattedStory = computed(() => {
     if (!post.value?.story) return ''

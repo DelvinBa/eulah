@@ -91,6 +91,10 @@ const intersectionRatios = ref([]);
 const activeProjectId = ref(null);
 const isMobile = ref(false);
 const route = useRoute()
+
+definePageMeta({
+  key: route => route.fullPath
+})
 let observer = null;
 
 
