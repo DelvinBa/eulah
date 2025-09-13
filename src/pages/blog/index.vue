@@ -172,24 +172,24 @@
 <script setup>
 const route = useRoute()
 
+definePageMeta({
+    key: route => route.fullPath
+})
+
 // Reactive state
 const searchQuery = ref('')
 const currentPage = ref(1)
 const columns = ref(1) // responsive column count (xl:4, lg:3, md:2, sm:1)
 
-const { data: allPosts } = await useAsyncData(route.path, async () => {
-    try {
-        const posts = await queryCollection('blog')
-            .select('path', 'title', 'description', 'date', 'author', 'tags', 'image')
-            .all();
-        return posts || [];
-    } catch (err) {
-        console.error("🔥 Fehler beim Laden der Blog-Posts:", err);
-        throw new Error("Konnte Blog-Posts nicht laden");
+const { data: allPosts } = await useAsyncData(
+    () => queryCollection('blog')
+        .select('path', 'title', 'description', 'date', 'author', 'tags', 'image')
+        .all(),
+    {
+        watch: [() => route.fullPath],
+        default: () => []
     }
-}, {
-    default: () => []
-});
+)
 
 // Computed: filter by search
 const filteredPosts = computed(() => {

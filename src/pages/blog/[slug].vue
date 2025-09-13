@@ -102,10 +102,12 @@ definePageMeta({
     key: route => route.fullPath
 })
 
-// Fetch the blog post using the full path with prefix "/blog/"
-const { data: post, error, refresh } = await useAsyncData(route.path, () =>
-    queryCollection('blog').path(route.path).first(),
+// Fetch the blog post using the current slug and re-fetch when the route changes
+const { data: post, error, refresh } = await useAsyncData(
+    () => queryCollection('blog').path(`/blog/${route.params.slug}`).first(),
+    { watch: [() => route.fullPath] }
 )
+
 
 watch(() => route.params.slug, () => refresh())
 

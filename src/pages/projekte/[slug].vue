@@ -194,9 +194,12 @@ definePageMeta({
     key: route => route.fullPath
 })
 
-const { data: post, refresh } = await useAsyncData(route.path, () =>
-    queryCollection('projekte').path(route.path).first()
+// Fetch the project using the current slug and update when the route changes
+const { data: post, refresh } = await useAsyncData(
+    () => queryCollection('projekte').path(`/projekte/${route.params.slug}`).first(),
+    { watch: [() => route.fullPath] }
 )
+
 
 watch(() => route.params.slug, () => refresh())
 
