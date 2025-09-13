@@ -216,26 +216,7 @@ onMounted(() => {
         videoPlayer.value.addEventListener('play', () => (isPlaying.value = true))
         videoPlayer.value.addEventListener('pause', () => (isPlaying.value = false))
     }
-    // Check if we haven't reloaded yet
-    const hasReloaded = sessionStorage.getItem(`reloaded-${route.path}`)
-
-    if (!hasReloaded && import.meta.client) {
-        // Mark this page as reloaded
-        sessionStorage.setItem(`reloaded-${route.path}`, 'true')
-        // Reload the page
-        window.location.reload()
-    }
 })
-
-
-onBeforeUnmount(() => {
-    if (import.meta.client) {
-        // Remove the reload status for this page
-        sessionStorage.removeItem(`reloaded-${route.path}`)
-    }
-})
-
-
 
 const baseUrl = 'https://www.eulah.de'  // statisch
 

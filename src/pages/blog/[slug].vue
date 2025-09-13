@@ -103,26 +103,6 @@ const { data: post, error } = await useAsyncData(route.path, () =>
     queryCollection('blog').path(route.path).first(),
 )
 
-// Clean up when leaving the page
-onBeforeUnmount(() => {
-    if (import.meta.client) {
-        // Remove the reload status for this page
-        sessionStorage.removeItem(`reloaded-${route.path}`)
-    }
-})
-
-// Add onMounted hook to reload page once
-onMounted(() => {
-    // Check if we haven't reloaded yet
-    const hasReloaded = sessionStorage.getItem(`reloaded-${route.path}`)
-
-    if (!hasReloaded && import.meta.client) {
-        // Mark this page as reloaded
-        sessionStorage.setItem(`reloaded-${route.path}`, 'true')
-        // Reload the page
-        window.location.reload()
-    }
-})
 
 
 // Format date to German locale
