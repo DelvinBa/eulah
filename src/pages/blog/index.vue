@@ -270,7 +270,6 @@ watch([filteredPosts, itemsPerPage], () => {
 // Clean up when leaving the page
 onBeforeUnmount(() => {
     if (import.meta.client) {
-        sessionStorage.removeItem(`reloaded-${route.path}`)
         window.removeEventListener('resize', updateColumns)
     }
 })
@@ -280,13 +279,6 @@ onMounted(() => {
     updateColumns()
     if (import.meta.client) {
         window.addEventListener('resize', updateColumns)
-    }
-
-    // Optional: keep your original one-time reload logic (left intact)
-    const hasReloaded = sessionStorage.getItem(`reloaded-${route.path}`)
-    if (!hasReloaded && import.meta.client) {
-        sessionStorage.setItem(`reloaded-${route.path}`, 'true')
-        window.location.reload()
     }
 })
 </script>

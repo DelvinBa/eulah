@@ -105,25 +105,12 @@ onMounted(() => {
   observer = new IntersectionObserver(observerCallback, { rootMargin: "0px", threshold: Array.from({ length: 11 }, (_, i) => i / 10) });
   intersectionRatios.value = projects.value.map(() => 0);
   projectElements.value.forEach((el) => observer.observe(el));
-
-  const hasReloaded = sessionStorage.getItem(`reloaded-${route.path}`)
-
-  if (!hasReloaded && import.meta.client) {
-    // Mark this page as reloaded
-    sessionStorage.setItem(`reloaded-${route.path}`, 'true')
-    // Reload the page
-    window.location.reload()
-  }
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", handleResize);
   if (observer) observer.disconnect();
 
-  if (import.meta.client) {
-    // Remove the reload status for this page
-    sessionStorage.removeItem(`reloaded-${route.path}`)
-  }
 });
 
 function observerCallback(entries) {
