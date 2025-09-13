@@ -200,7 +200,7 @@ const { data: post, refresh } = await useAsyncData(
     { watch: [() => route.fullPath] }
 )
 
-// Force a new fetch when navigating to a different project slug
+
 watch(() => route.params.slug, () => refresh())
 
 const formattedStory = computed(() => {

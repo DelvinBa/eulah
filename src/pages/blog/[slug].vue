@@ -108,7 +108,7 @@ const { data: post, error, refresh } = await useAsyncData(
     { watch: [() => route.fullPath] }
 )
 
-// Ensure a fresh fetch when navigating between different slugs
+
 watch(() => route.params.slug, () => refresh())
 
 
