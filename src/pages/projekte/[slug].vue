@@ -188,11 +188,17 @@
 </template>
 
 <script setup>
-
 const route = useRoute()
-const { data: post } = await useAsyncData(route.path, () =>
+
+definePageMeta({
+    key: route => route.fullPath
+})
+
+const { data: post, refresh } = await useAsyncData(route.path, () =>
     queryCollection('projekte').path(route.path).first()
 )
+
+watch(() => route.params.slug, () => refresh())
 
 const formattedStory = computed(() => {
     if (!post.value?.story) return ''

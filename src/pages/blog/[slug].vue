@@ -98,10 +98,16 @@
 <script setup>
 const route = useRoute()
 
+definePageMeta({
+    key: route => route.fullPath
+})
+
 // Fetch the blog post using the full path with prefix "/blog/"
-const { data: post, error } = await useAsyncData(route.path, () =>
+const { data: post, error, refresh } = await useAsyncData(route.path, () =>
     queryCollection('blog').path(route.path).first(),
 )
+
+watch(() => route.params.slug, () => refresh())
 
 
 
