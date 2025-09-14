@@ -1,5 +1,5 @@
 ---
-title: "Solarpanel Detection System"
+title: "Solaranlagen automatisch erkennen"
 subtitle: "Vom Klemmbrett zur KI – automatische Solaranlagen-Erkennung für Millionen Häuser in ganz Niederlande"
 story: |
   Eine in Niederlande Landesweite Nachhaltigkeits-Initiative möchte ganze Stadtviertel energie­neutral machen. Dafür müssen Wohnhäuser schnell und zuverlässig ein Energie-Label erhalten – bis 2030 sogar verpflichtend. Bisher wurden Solaranlagen auf Dachaufnahmen jedoch mühsam von Hand gezählt.

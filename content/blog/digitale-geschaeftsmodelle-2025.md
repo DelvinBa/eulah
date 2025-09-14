@@ -2,7 +2,7 @@
 title: "Welche Technologien sind in 2025 entscheidend für digitale Geschäftsmodelle?"
 description: "Ein fundierter Überblick über die Schlüsseltechnologien, die digitale Geschäftsmodelle im Jahr 2025 prägen – von künstlicher Intelligenz bis zu Edge-Computing und Blockchain."
 date: 2025-02-09
-author: "Eulah Software"
+author: "Eulah IT"
 tags:
   [
     "Technologie",

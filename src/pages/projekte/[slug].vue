@@ -28,8 +28,8 @@
                     <div
                         class="absolute inset-0 flex items-end justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-dark/70 to-transparent p-4">
                         <!-- Play/Pause Button -->
-                            <button @click.prevent="togglePlay"
-                                class="text-background hover:text-accent transition-colors p-2">
+                        <button @click.prevent="togglePlay"
+                            class="text-background hover:text-accent transition-colors p-2">
                             <svg v-if="isPlaying" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -76,8 +76,8 @@
                     <div v-if="!isPlaying" @click="togglePlay"
                         class="absolute inset-0 flex items-center justify-center bg-dark/30 cursor-pointer">
                         <div class="rounded-full bg-accent/80 p-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-background" fill="currentColor"
-                                viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-background"
+                                fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z" />
                             </svg>
                         </div>
@@ -243,7 +243,7 @@ const canonicalUrl = `${baseUrl}${route.path}`
 // SEO: Set meta tags using useHead once the post is loaded
 useHead(() => ({
     title: post.value
-        ? `${post.value.title} | Eulah Software Projekte`
+        ? `${post.value.title} | Eulah IT Projekte`
         : 'Umgesetzte Projekte ',
     link: [
         {
@@ -259,7 +259,7 @@ useHead(() => ({
             // e.g. `${post.value.description} – Von ${post.value.author}, veröffentlicht am ${formatDate(post.value.date)}`
             content: post.value
                 ? post.value.description
-                : 'Blog post by Eulah Software.'
+                : 'Blog post by Eulah IT.'
         },
         {
             name: 'author',
@@ -270,7 +270,7 @@ useHead(() => ({
         {
             property: 'og:title',
             content: post.value
-                ? `${post.value.title} | Eulah Software Blog`
+                ? `${post.value.title} | Eulah IT Blog`
                 : ''
         },
         {

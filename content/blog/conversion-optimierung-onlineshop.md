@@ -2,7 +2,7 @@
 title: "Conversion-Optimierung: So verdoppelst Sie Ihre Online-Shop-Umsätze"
 description: "Erfahre, wie Sie mit datenbasierten Maßnahmen und kontinuierlichem Testing die Conversion-Rate Ihres Online-Shops steigerst und Ihre Umsätze verdoppelst – mit praktischen Tipps und statistischen Fakten."
 date: 2025-02-09
-author: "Eulah Software"
+author: "Eulah IT"
 tags:
   [
     "Conversion-Optimierung",
