@@ -4,15 +4,15 @@
             <!-- Header Section -->
             <div class="text-center mb-12">
                 <h1 class="text-4xl sm:text-5xl font-bold text-primary mb-4">
-                    Ratgeber 
+                    Ratgeber
                 </h1>
                 <p class="text-xl text-secondary max-w-3xl mx-auto">
-                    Entdecke wertvolle Tipps, Tricks und Insights rund um Digitalisierung,
-                    Software-Entwicklung und moderne Technologien
+                    Entdecke wertvolle Tipps, Tricks und Insights rund um Digitalisierung, Software-Entwicklung und
+                    moderne Technologien
                 </p>
             </div>
 
-            <!-- Search Section (only) -->
+            <!-- Search Section -->
             <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
                 <div class="flex items-center gap-6">
                     <!-- Search Bar -->
@@ -56,14 +56,15 @@
                 </p>
             </div>
 
-            <!-- Blog Posts Grid (paginated: 3 rows per page) -->
+            <!-- Blog Posts Grid -->
             <div v-if="paginatedPosts.length > 0"
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 <article v-for="post in paginatedPosts" :key="post._id"
-                    class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 cursor-pointer">
-                    <NuxtLink :to="post.path" class="block h-full">
+                    class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 cursor-pointer flex flex-col">
+                    <NuxtLink :to="post.path" class="flex flex-col h-full">
                         <!-- Image Section -->
-                        <div class="relative h-48 bg-gradient-to-br from-primary to-secondary overflow-hidden">
+                        <div
+                            class="relative h-48 bg-gradient-to-br from-primary to-secondary overflow-hidden flex-shrink-0">
                             <img v-if="post.image" :src="post.image" :alt="post.title"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                 loading="lazy" />
@@ -81,37 +82,38 @@
                             </div>
                         </div>
 
-                        <!-- Content Section -->
-                        <div class="p-6 h-full flex flex-col">
-                            <div class="flex-1">
+                        <!-- Content Section - FIXED: Added flex-1 and proper flex structure -->
+                        <div class="p-6 flex-1 flex flex-col min-h-0">
+                            <!-- Main content area -->
+                            <div class="flex-1 mb-4">
                                 <h2
                                     class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-primary transition-colors">
                                     {{ post.title }}
                                 </h2>
-
-                                <p class="text-gray-600 text-sm line-clamp-3 mb-4">
+                                <p class="text-gray-600 text-sm line-clamp-3">
                                     {{ post.description }}
                                 </p>
                             </div>
 
-                            <!-- Tags and Author -->
-                            <div class="space-y-3">
+                            <!-- Tags and Author Section - FIXED: Removed flex-shrink-0 and made it sticky to bottom -->
+                            <div class="space-y-3 mt-auto">
+                                <!-- Tags -->
                                 <div v-if="post.tags && post.tags.length" class="flex flex-wrap gap-2">
                                     <button v-for="tag in post.tags" :key="tag" @click.stop.prevent="searchByTag(tag)"
-                                        class="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-md hover:bg-gray-200">
+                                        class="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-md hover:bg-gray-200 transition-colors">
                                         {{ tag }}
                                     </button>
                                 </div>
 
+                                <!-- Author and Read More -->
                                 <div class="flex items-center justify-between pt-3 border-t border-gray-100">
                                     <div class="flex items-center gap-2">
                                         <div class="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
                                             <span class="text-white text-xs font-bold">{{ post.author?.charAt(0) || 'E'
-                                            }}</span>
+                                                }}</span>
                                         </div>
-                                        <span class="text-xs text-gray-500">{{ post.author }}</span>
+                                        <span class="text-xs text-gray-500">{{ post.author || 'Autor' }}</span>
                                     </div>
-
                                     <div
                                         class="flex items-center text-primary group-hover:text-accent transition-colors">
                                         <span class="text-sm font-medium mr-2">Lesen</span>
@@ -175,7 +177,7 @@ const route = useRoute()
 // Reactive state
 const searchQuery = ref('')
 const currentPage = ref(1)
-const columns = ref(1) // responsive column count (xl:4, lg:3, md:2, sm:1)
+const columns = ref(1)
 
 const { data: allPosts } = await useAsyncData(route.path, async () => {
     try {
@@ -209,7 +211,7 @@ const filteredPosts = computed(() => {
     return posts
 })
 
-// Pagination helpers: show exactly 3 rows per page based on current breakpoint
+// Pagination helpers
 const itemsPerPage = computed(() => columns.value * 3)
 const totalPages = computed(() => Math.max(1, Math.ceil(filteredPosts.value.length / itemsPerPage.value)))
 const paginatedPosts = computed(() => {
@@ -247,27 +249,25 @@ const goToPage = (page) => {
     }
 }
 
-// Watch for search changes and reset pagination
+// Watchers
 watch(searchQuery, () => {
     currentPage.value = 1
 })
 
-// Responsive columns detection aligned with Tailwind breakpoints
+// Responsive columns detection
 const updateColumns = () => {
     if (typeof window === 'undefined') return
     const w = window.innerWidth
-    if (w >= 1280) columns.value = 4 // xl
-    else if (w >= 1024) columns.value = 3 // lg
-    else if (w >= 768) columns.value = 2 // md
-    else columns.value = 1 // sm
+    if (w >= 1280) columns.value = 4      // xl
+    else if (w >= 1024) columns.value = 3 // lg  
+    else if (w >= 768) columns.value = 2  // md
+    else columns.value = 1                // sm
 }
 
-// Keep currentPage within bounds if filtered list shrinks
 watch([filteredPosts, itemsPerPage], () => {
     if (currentPage.value > totalPages.value) currentPage.value = totalPages.value
 })
 
-// Clean up when leaving the page
 onBeforeUnmount(() => {
     if (import.meta.client) {
         sessionStorage.removeItem(`reloaded-${route.path}`)
@@ -275,14 +275,12 @@ onBeforeUnmount(() => {
     }
 })
 
-// Mounted
 onMounted(() => {
     updateColumns()
     if (import.meta.client) {
         window.addEventListener('resize', updateColumns)
     }
 
-    // Optional: keep your original one-time reload logic (left intact)
     const hasReloaded = sessionStorage.getItem(`reloaded-${route.path}`)
     if (!hasReloaded && import.meta.client) {
         sessionStorage.setItem(`reloaded-${route.path}`, 'true')
@@ -312,11 +310,6 @@ onMounted(() => {
     .min-h-screen {
         padding-top: 8rem;
         padding-bottom: 8rem;
-    }
-
-    /* Single column on mobile */
-    .grid {
-        grid-template-columns: 1fr;
     }
 }
 

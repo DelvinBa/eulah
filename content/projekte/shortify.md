@@ -1,6 +1,6 @@
 ---
 title: "Shortify"
-subtitle: "Von Rohdaten zu viralen Shorts – tagesaktuelle News-Clips in unter 60 Sekunden. Vollautomatisiert und automatisch geuploadet."
+subtitle: "Von Textdaten zu viralen Kurzvideos – tagesaktuelle News-Clips in unter 60 Sekunden. Vollautomatisiert und automatisch geuploadet."
 story: |
   Wer Social-Media-Kanäle mit frischem Video-Content bespielen will, kennt das Problem:
   Jede News muss gesichtet, zusammengefasst, vertont, geschnitten und gebrandet werden – ein enormer Zeit- und Kostenfresser.

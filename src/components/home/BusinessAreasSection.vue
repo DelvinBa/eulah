@@ -109,12 +109,12 @@
       <div class="mt-20 space-y-6">
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <NuxtLink to="/leistungen"
-            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl  hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1">
+            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl hover:text-white hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1">
             <i class="fas fa-th-large" aria-hidden="true"></i>
             Alle Leistungen entdecken
           </NuxtLink>
           <NuxtLink to="/kontakt"
-            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-900 font-semibold rounded-xl border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all duration-300">
+            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-900 font-semibold rounded-xl border-2 border-gray-300 hover:text-black hover:border-blue-500 hover:bg-blue-50 transition-all duration-300">
             <i class="fas fa-comment-dots" aria-hidden="true"></i>
             Unverbindlich beraten lassen
           </NuxtLink>

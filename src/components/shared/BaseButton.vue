@@ -1,10 +1,6 @@
 <template>
-  <component
-    :is="to ? 'NuxtLink' : 'button'"
-    v-bind="{ ...$attrs, class: [baseClasses, variantClasses, $attrs.class] }"
-    :type="to ? undefined : type"
-    :to="to"
-  >
+  <component :is="to ? 'NuxtLink' : 'button'" :to="to" :type="to ? undefined : type"
+    :class="[baseClasses, variantClasses, $attrs.class]" v-bind="$attrs">
     <slot />
   </component>
 </template>
@@ -31,7 +27,4 @@ const variantClasses = computed(() =>
     ? 'bg-gradient-to-r from-accent to-accent-dark text-background hover:shadow-lg hover:scale-105'
     : 'bg-primary text-background hover:bg-secondary'
 )
-
-const { to, type } = props
 </script>
-
