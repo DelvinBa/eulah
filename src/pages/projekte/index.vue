@@ -9,12 +9,44 @@
         </p>
       </header>
 
+      <!-- Filter -->
+      <div class="mb-8">
+        <div class="flex flex-col sm:flex-row gap-8">
+          <div>
+            <label class="block text-sm font-medium mb-2">Dienstleistungen</label>
+            <div class="flex flex-wrap gap-2">
+              <label v-for="service in serviceOptions" :key="service" class="flex items-center gap-1">
+                <input type="checkbox" :value="service" v-model="selectedServices" class="accent-accent">
+                <span>{{ service }}</span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">Branchen</label>
+            <div class="flex flex-wrap gap-2">
+              <label v-for="industry in industryOptions" :key="industry" class="flex items-center gap-1">
+                <input type="checkbox" :value="industry" v-model="selectedIndustries" class="accent-accent">
+                <span>{{ industry }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div v-if="selectedServices.length || selectedIndustries.length" class="flex flex-wrap gap-2 mt-4">
+          <span v-for="service in selectedServices" :key="service" class="px-3 py-1 bg-surface rounded-full text-sm">
+            {{ service }} <button @click="removeService(service)" class="ml-1">×</button>
+          </span>
+          <span v-for="industry in selectedIndustries" :key="industry" class="px-3 py-1 bg-surface rounded-full text-sm">
+            {{ industry }} <button @click="removeIndustry(industry)" class="ml-1">×</button>
+          </span>
+        </div>
+      </div>
+
       <!-- Projekt-Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div v-for="(project, index) in projects" :key="project.id" :ref="el => projectElements[index] = el" :class="[
-          'relative bg-surface-glossy rounded-lg overflow-hidden shadow-lg group transition-all duration-500 transform hover:scale-110 hover:shadow-glow text-dark',
-          { 'is-active-mobile': isMobile && activeProjectId === project.id }
-        ]">
+      <div v-if="!filteredProjects.length" class="text-center mt-8">
+        <p>Keine Projekte gefunden. <button @click="resetFilters" class="text-accent underline">Filter zurücksetzen</button></p>
+      </div>
+      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div v-for="project in filteredProjects" :key="project.id" class="relative bg-surface-glossy rounded-lg overflow-hidden shadow-lg group transition-all duration-500 transform hover:scale-110 hover:shadow-glow text-dark">
           <!-- Hintergrund-Leuchteffekt -->
           <div class="absolute inset-0 bg-accent opacity-0 group-hover:opacity-20 transition-opacity duration-500">
           </div>
@@ -50,15 +82,21 @@ useSeoMeta({
   description: 'Entdecke unsere erfolgreich umgesetzten digitalen Projekte in Softwareentwicklung, Marketing & Automatisierung.',
   ogTitle: 'Unsere Projekte – Eulah',
   ogDescription: 'Von innovativen Web-Plattformen bis zu automatisierten Marketingstrategien – ein Überblick über unsere digitalen Erfolge.',
-  ogImage: 'https://www.eulah.de/images/projects-og.jpg', // Replace with a real image
+  ogImage: 'https://www.eulah.de/images/projects-og.jpg',
   twitterCard: 'summary_large_image',
   canonical: 'https://www.eulah.de/projekte'
 })
 
+const serviceOptions = ["Managed IT", "Cloud", "Automatisierung", "Marketing"]
+const industryOptions = ["Handwerk", "Energie", "Gesundheit", "Finanzen", "Medien"]
 
-const solarrexImg = "/images/solarrex2.jpg";
-const solardetectionImg = "/images/solarpanel.jpg";
-const shortifyImg = "/images/shortify.png";
+const selectedServices = ref([])
+const selectedIndustries = ref([])
+
+const solarrexImg = "/images/solarrex2.jpg"
+const solardetectionImg = "/images/solarpanel.jpg"
+const shortifyImg = "/images/shortify.png"
+
 const projects = ref([
   {
     id: 0,
@@ -67,90 +105,48 @@ const projects = ref([
     description: "PV-Installation - Leads-Generierung",
     image: solarrexImg,
     icon: "☀️",
+    services: ["Marketing"],
+    industries: ["Energie"],
   },
   {
     id: 1,
     slug: "solardetection",
     title: "Solarpanel Detection System",
     description: "KI-gestützte Solaranlagen-Erkennung & Energie-Effizienz-Klassen",
-    image: solardetectionImg,   // <- dein Bildimport
+    image: solardetectionImg,
     icon: "🛰️",
+    services: ["Cloud", "Automatisierung"],
+    industries: ["Energie"],
   },
   {
     id: 2,
     slug: "shortify",
     title: "Shortify",
     description: "Automatisierte Short-Videos aus Finanznews & Finanzdaten",
-    image: shortifyImg,  //  <-– dein Bildimport
+    image: shortifyImg,
     icon: "🎬",
+    services: ["Automatisierung", "Cloud"],
+    industries: ["Medien"],
   },
-]);
+])
 
-const projectElements = ref([]);
-const intersectionRatios = ref([]);
-const activeProjectId = ref(null);
-const isMobile = ref(false);
-const route = useRoute()
-let observer = null;
+const filteredProjects = computed(() => {
+  return projects.value.filter(project => {
+    const serviceMatch = !selectedServices.value.length || selectedServices.value.some(s => project.services.includes(s))
+    const industryMatch = !selectedIndustries.value.length || selectedIndustries.value.some(i => project.industries.includes(i))
+    return serviceMatch && industryMatch
+  })
+})
 
-
-function handleResize() {
-  isMobile.value = window.innerWidth < 640;
+function removeService(service) {
+  selectedServices.value = selectedServices.value.filter(s => s !== service)
 }
-
-onMounted(() => {
-  handleResize();
-  window.addEventListener("resize", handleResize);
-
-  observer = new IntersectionObserver(observerCallback, { rootMargin: "0px", threshold: Array.from({ length: 11 }, (_, i) => i / 10) });
-  intersectionRatios.value = projects.value.map(() => 0);
-  projectElements.value.forEach((el) => observer.observe(el));
-
-  const hasReloaded = sessionStorage.getItem(`reloaded-${route.path}`)
-
-  if (!hasReloaded && import.meta.client) {
-    // Mark this page as reloaded
-    sessionStorage.setItem(`reloaded-${route.path}`, 'true')
-    // Reload the page
-    window.location.reload()
-  }
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener("resize", handleResize);
-  if (observer) observer.disconnect();
-
-  if (import.meta.client) {
-    // Remove the reload status for this page
-    sessionStorage.removeItem(`reloaded-${route.path}`)
-  }
-});
-
-function observerCallback(entries) {
-  if (!isMobile.value) return;
-
-  entries.forEach((entry) => {
-    const index = projectElements.value.findIndex((el) => el === entry.target);
-    if (index !== -1) {
-      intersectionRatios.value[index] = entry.intersectionRatio;
-    }
-  });
-
-  const oldActiveId = activeProjectId.value;
-  let maxRatio = 0, maxIndex = -1;
-
-  intersectionRatios.value.forEach((ratio, i) => {
-    if (ratio > maxRatio) {
-      maxRatio = ratio;
-      maxIndex = i;
-    }
-  });
-
-  if (maxRatio < 0.1 || maxIndex === -1) {
-    activeProjectId.value = null;
-    return;
-  }
-  activeProjectId.value = projects.value[maxIndex].id;
+function removeIndustry(industry) {
+  selectedIndustries.value = selectedIndustries.value.filter(i => i !== industry)
+}
+function resetFilters() {
+  selectedServices.value = []
+  selectedIndustries.value = []
 }
 </script>
 
@@ -197,22 +193,5 @@ function observerCallback(entries) {
 
 .gradient-border-button:hover::before {
   opacity: 1;
-}
-
-/* "aktive" Karte auf Mobil (ohne Hover) */
-.is-active-mobile {
-  transform: scale(1.1);
-  box-shadow: 0 4px 20px rgba(77, 166, 255, 0.5);
-  /* Glow wie bei Hover */
-}
-
-/* Hintergrund-Leuchteffekt bei aktiver Karte erzwingen */
-.is-active-mobile .bg-accent {
-  opacity: 0.2 !important;
-}
-
-/* Bild skalieren wie beim Hover */
-.is-active-mobile img {
-  transform: scale(1.1);
 }
 </style>
