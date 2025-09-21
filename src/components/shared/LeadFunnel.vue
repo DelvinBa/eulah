@@ -74,13 +74,21 @@
           </div>
 
           <div class="flex flex-col sm:flex-row justify-between gap-3 pt-3">
-            <BaseButton type="submit" class="w-full group" variant="primary" aria-label="Formular absenden">
+            <button
+              type="submit"
+              class="inline-flex items-center justify-center rounded-full px-6 py-3 font-medium transition-all duration-300 bg-primary text-background hover:bg-secondary w-full group"
+              aria-label="Formular absenden"
+            >
               <span class="relative z-10">Absenden</span>
-            </BaseButton>
-            <BaseButton type="button" @click="redirectToBooking" class="w-full group" variant="cta"
-              aria-label="Termin vereinbaren">
+            </button>
+            <button
+              type="button"
+              @click="redirectToBooking"
+              class="inline-flex items-center justify-center rounded-full px-6 py-3 font-medium transition-all duration-300 bg-gradient-to-r from-accent to-accent-dark text-background hover:shadow-lg hover:scale-105 w-full group"
+              aria-label="Termin vereinbaren"
+            >
               <span class="relative z-10">Terminbuchung</span>
-            </BaseButton>
+            </button>
           </div>
         </form>
 
@@ -96,7 +104,6 @@
 
 
 <script setup>
-import BaseButton from './BaseButton.vue';
 const form = ref({
   name: '',
   company: '',

@@ -135,7 +135,10 @@
 
     <!-- Call-to-Action Button -->
     <div class="hidden md:flex">
-      <BaseButton to="/kontakt" variant="cta" class="group">
+      <NuxtLink
+        to="/kontakt"
+        class="inline-flex items-center justify-center rounded-full px-6 py-3 font-medium transition-all duration-300 bg-gradient-to-r from-accent to-accent-dark text-background hover:shadow-lg hover:scale-105 group"
+      >
         <span class="flex items-center gap-2">
           Jetzt Kontaktieren
           <svg
@@ -148,7 +151,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
         </span>
-      </BaseButton>
+      </NuxtLink>
     </div>
 
     <!-- Mobile Menu Button -->
@@ -183,17 +186,19 @@
         </div>
         <a href="/blog" @click="toggleMenu" class="text-xl hover:text-accent transition duration-200">Ratgeber</a>
         <a href="/kontakt" @click="toggleMenu" class="text-xl hover:text-accent transition duration-200">Kontakt</a>
-        <button @click="scrollToFunnel"
-          class="px-8 py-4 text-lg font-medium text-background bg-gradient-to-r from-accent to-orange-600 rounded-full transition-all duration-300 ease-in-out hover:shadow-[0_0_25px_rgba(255,153,0,0.6)] transform hover:scale-105">
+        <NuxtLink
+          to="/kontakt"
+          @click="toggleMenu"
+          class="px-8 py-4 text-lg font-medium text-background bg-gradient-to-r from-accent to-orange-600 rounded-full transition-all duration-300 ease-in-out hover:shadow-[0_0_25px_rgba(255,153,0,0.6)] transform hover:scale-105"
+        >
           Jetzt Kontaktieren
-        </button>
+        </NuxtLink>
       </div>
     </transition>
   </header>
 </template>
 
 <script setup>
-import BaseButton from './BaseButton.vue';
 // Props
 const props = defineProps({
   logo: {
@@ -204,20 +209,8 @@ const props = defineProps({
 
 // States
 const isMenuOpen = ref(false);
-const isClicked = ref(false);
 const menuButton = ref(null);
 
-// Scroll to Leadfunnel
-function scrollToFunnel() {
-  isClicked.value = true;
-  const funnelSection = document.getElementById('lead-funnel');
-  if (funnelSection) {
-    funnelSection.scrollIntoView({ behavior: 'smooth' });
-  }
-  if (isMenuOpen.value) {
-    toggleMenu();
-  }
-}
 
 // Toggle mobile menu
 function toggleMenu() {
