@@ -75,16 +75,25 @@
                 </div>
 
                 <!-- CTA -->
-                <div class="flex flex-wrap gap-4">
+                <!-- CTA -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                  <!-- Primärer Button -->
                   <NuxtLink :to="data.path"
-                    class="px-5 py-3 bg-primary text-white rounded-md font-medium hover:bg-accent hover:text-white transition-colors">
-                    Erfolgsgeschichte ansehen
+                    class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl hover:text-white hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap">
+              
+                    Mehr erfahren
                   </NuxtLink>
+
+                  <!-- Sekundärer Button -->
                   <button @click="scrollToFunnel"
-                    class="px-5 py-3 border border-primary text-primary rounded-md hover:bg-primary hover:text-white transition-colors">
-                    Eigenes Projekt starten
+                    class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-900 font-semibold rounded-xl border-2 border-gray-300 hover:text-black hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap">
+                    <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                    Projekt starten
                   </button>
                 </div>
+
+
+
               </div>
             </div>
           </div>

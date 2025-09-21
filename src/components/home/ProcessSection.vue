@@ -134,10 +134,12 @@
               <!-- CTA-Button nur wenn vorhanden -->
               <div v-if="current.cta" class="mt-6">
                 <a :href="current.cta.url"
-                  class="inline-block px-5 py-3 bg-blue-600 text-white text-sm font-medium rounded-lg shadow hover:bg-blue-700 transition">
+                  class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl hover:text-white hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap">
+                  <i class="fas fa-arrow-right" aria-hidden="true"></i>
                   {{ current.cta.label }}
                 </a>
               </div>
+
             </div>
           </Transition>
 

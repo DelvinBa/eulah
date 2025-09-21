@@ -114,7 +114,7 @@
             Alle Leistungen entdecken
           </NuxtLink>
           <NuxtLink to="/kontakt"
-            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-900 font-semibold rounded-xl border-2 border-gray-300 hover:text-black hover:border-blue-500 hover:bg-blue-50 transition-all duration-300">
+            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-900 font-semibold rounded-xl border-2 border-gray-300 hover:text-black hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 transform hover:-translate-y-1">
             <i class="fas fa-comment-dots" aria-hidden="true"></i>
             Unverbindlich beraten lassen
           </NuxtLink>

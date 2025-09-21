@@ -135,19 +135,13 @@
 
     <!-- Call-to-Action Button -->
     <div class="hidden md:flex">
-      <NuxtLink
-        to="/kontakt"
-        class="inline-flex items-center justify-center rounded-full px-6 py-3 font-medium transition-all duration-300 bg-gradient-to-r from-accent to-accent-dark text-background hover:shadow-lg hover:scale-105 group"
-      >
-        <span class="flex items-center gap-2">
+      <NuxtLink to="/kontakt"
+        class="inline-flex items-center justify-center rounded-full px-6 py-3 font-medium transition-all duration-300 bg-gradient-to-r from-accent to-accent-dark hover:text-white text-background hover:shadow-lg hover:scale-105 group">
+        <span class="flex items-center gap-2 z-10">
           Jetzt Kontaktieren
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
         </span>
@@ -172,27 +166,11 @@
       <div v-if="isMenuOpen"
         class="fixed inset-0 bg-dark/95 backdrop-blur-sm flex flex-col items-center justify-center space-y-8 text-background text-lg z-50"
         role="dialog" aria-modal="true">
-        <a href="/" @click="toggleMenu" class="text-xl hover:text-accent transition duration-200">Home</a>
         <a href="/projekte" @click="toggleMenu" class="text-xl hover:text-accent transition duration-200">Projekte</a>
-        <div class="text-center">
-          <span class="text-xl text-accent">Leistungen</span>
-          <div class="mt-4 space-y-2 text-base text-gray-300">
-            <div>Software & App-Entwicklung</div>
-            <div>Web & Online-Präsenz</div>
-            <div>Daten & KI</div>
-            <div>IT-Services</div>
-            <div>Beratung & Förderung</div>
-          </div>
-        </div>
+        <a href="/leistungen" @click="toggleMenu" class="text-xl hover:text-accent transition duration-200">Leistungen</a>
         <a href="/blog" @click="toggleMenu" class="text-xl hover:text-accent transition duration-200">Ratgeber</a>
         <a href="/kontakt" @click="toggleMenu" class="text-xl hover:text-accent transition duration-200">Kontakt</a>
-        <NuxtLink
-          to="/kontakt"
-          @click="toggleMenu"
-          class="px-8 py-4 text-lg font-medium text-background bg-gradient-to-r from-accent to-orange-600 rounded-full transition-all duration-300 ease-in-out hover:shadow-[0_0_25px_rgba(255,153,0,0.6)] transform hover:scale-105"
-        >
-          Jetzt Kontaktieren
-        </NuxtLink>
+
       </div>
     </transition>
   </header>
