@@ -44,11 +44,21 @@ export default defineNuxtConfig({
     },
   },
 
-  routeRules: {},
-  particles: {
-    mode: "full",
-    lazy: true,
+  routeRules: {
+    "/": { swr: 900 },
+    "/blog": { swr: 900 },
+    "/blog/**": { prerender: true, swr: 900 },
+    "/projekte": { swr: 900 },
+    "/projekte/**": { prerender: true, swr: 900 },
+    "/api/**": { isr: false },
   },
+  nitro: {
+    prerender: {
+      crawlLinks: false, // don’t try to walk /blog at build
+      failOnError: false, // avoid aborting build if some prerender fails
+    },
+  },
+
   ogImage: { enabled: false },
   site: {
     url: "https://www.eulah.de",

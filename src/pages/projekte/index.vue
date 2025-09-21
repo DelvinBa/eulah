@@ -21,8 +21,8 @@
                 :class="[
                   'px-3 py-2 text-sm rounded-full border transition-all duration-200',
                   activeFilters.services.includes(service)
-                    ? 'bg-accent text-background border-accent'
-                    : 'bg-surface text-dark border-gray-300 hover:border-accent hover:text-accent'
+                    ? ' text-background '
+                    : 'bg-surface text-dark border-gray-300  hover:text-accent'
                 ]">
                 {{ service }}
               </button>
@@ -74,16 +74,10 @@
         </div>
       </div>
 
-      <!-- Projekt-Cards -->
-      <div v-if="filteredProjects.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div v-if="filteredProjects.length > 0"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
         <div v-for="(project, index) in filteredProjects" :key="project.id" :ref="el => projectElements[index] = el"
-          :class="[
-            'relative bg-surface-glossy rounded-lg overflow-hidden shadow-lg group transition-all duration-500 transform hover:scale-110 hover:shadow-glow text-dark',
-            { 'is-active-mobile': isMobile && activeProjectId === project.id }
-          ]">
-          <!-- Hintergrund-Leuchteffekt -->
-          <div class="absolute inset-0 bg-accent opacity-0 group-hover:opacity-20 transition-opacity duration-500">
-          </div>
+          class="relative bg-surface-glossy rounded-lg overflow-hidden shadow-lg group transition-all duration-500 transform hover:scale-105 hover:shadow-lg text-dark flex flex-col h-full">
 
           <!-- Bild -->
           <div class="overflow-hidden relative z-10">
@@ -92,11 +86,12 @@
           </div>
 
           <!-- Inhalt -->
-          <div class="p-6 relative z-20">
+          <div class="p-6 relative z-20 flex flex-col flex-grow">
             <div class="flex items-center justify-between mb-3">
               <h3 class="text-xl font-semibold text-primary">{{ project.title }}</h3>
               <span class="text-accent text-2xl">{{ project.icon }}</span>
             </div>
+
             <p class="text-dark text-sm mb-4">{{ project.description }}</p>
 
             <!-- Filter-Tags -->
@@ -111,10 +106,12 @@
               </span>
             </div>
 
-            <!-- Link zur Detailseite -->
-            <NuxtLink :to="`/projekte/${project.slug}`" class="gradient-border-button">
-              Mehr erfahren
-            </NuxtLink>
+            <!-- Button IMMER unten links -->
+            <div class="mt-auto">
+              <NuxtLink :to="`/projekte/${project.slug}`" class="gradient-border-button">
+                Mehr erfahren
+              </NuxtLink>
+            </div>
           </div>
         </div>
       </div>
@@ -277,22 +274,11 @@ onMounted(() => {
 
   intersectionRatios.value = projects.value.map(() => 0);
   projectElements.value.forEach((el) => observer.observe(el));
-
-  const hasReloaded = sessionStorage.getItem(`reloaded-${route.path}`);
-
-  if (!hasReloaded && import.meta.client) {
-    sessionStorage.setItem(`reloaded-${route.path}`, 'true');
-    window.location.reload();
-  }
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", handleResize);
   if (observer) observer.disconnect();
-
-  if (import.meta.client) {
-    sessionStorage.removeItem(`reloaded-${route.path}`);
-  }
 });
 
 function observerCallback(entries) {
@@ -305,7 +291,6 @@ function observerCallback(entries) {
     }
   });
 
-  const oldActiveId = activeProjectId.value;
   let maxRatio = 0, maxIndex = -1;
 
   intersectionRatios.value.forEach((ratio, i) => {
@@ -330,8 +315,15 @@ function observerCallback(entries) {
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
+/* Schlichter Hover-Effekt */
 .hover\:shadow-glow:hover {
-  box-shadow: 0 4px 20px rgba(77, 166, 255, 0.5);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  /* neutraler, weicher Schatten */
+}
+
+/* Overlay neutralisieren */
+.bg-accent {
+  background: transparent !important;
 }
 
 .gradient-border-button {

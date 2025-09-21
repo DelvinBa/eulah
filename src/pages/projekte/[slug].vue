@@ -86,22 +86,25 @@
             </section>
 
             <!-- Story -->
+            <!-- Story -->
             <section class="relative">
                 <div
                     class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-accent to-transparent">
                 </div>
-                <h2 class="text-3xl font-semibold text-center mb-10 text-primary">The Journey</h2>
-                <div class="prose prose-lg prose-custom text-dark leading-relaxed" v-html="formattedStory">
-
+                <h2 class="text-3xl font-semibold text-center mb-10 text-primary">Von der Idee zur Realität</h2>
+                <div class="prose prose-lg prose-custom text-dark leading-relaxed  mx-auto" v-html="formattedStory">
                 </div>
             </section>
+
+
+
 
             <!-- Gallery -->
             <section v-if="post.images?.length" class="relative">
                 <div
                     class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-accent to-transparent">
                 </div>
-                <h2 class="text-3xl font-semibold text-center mb-10 text-primary">Gallery</h2>
+                <h2 class="text-3xl font-semibold text-center mb-10 text-primary">Einblicke</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
                     <div v-for="(img, i) in post.images" :key="i"
                         class="cursor-pointer overflow-hidden rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-accent/30"
@@ -118,7 +121,7 @@
                 <div
                     class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-accent to-transparent">
                 </div>
-                <h2 class="text-3xl font-semibold text-center mb-10 text-primary">Let's Talk Numbers</h2>
+                <h2 class="text-3xl font-semibold text-center mb-10 text-primary">Fakten & Zahlen</h2>
                 <div class="prose prose-lg prose-custom mx-auto max-w-prose bg-surface p-8 rounded-xl shadow-inner">
                     <p class="text-dark text-lg whitespace-pre-line leading-relaxed">{{ formattedNumbers }}</p>
                 </div>
@@ -216,24 +219,9 @@ onMounted(() => {
         videoPlayer.value.addEventListener('play', () => (isPlaying.value = true))
         videoPlayer.value.addEventListener('pause', () => (isPlaying.value = false))
     }
-    // Check if we haven't reloaded yet
-    const hasReloaded = sessionStorage.getItem(`reloaded-${route.path}`)
 
-    if (!hasReloaded && import.meta.client) {
-        // Mark this page as reloaded
-        sessionStorage.setItem(`reloaded-${route.path}`, 'true')
-        // Reload the page
-        window.location.reload()
-    }
 })
 
-
-onBeforeUnmount(() => {
-    if (import.meta.client) {
-        // Remove the reload status for this page
-        sessionStorage.removeItem(`reloaded-${route.path}`)
-    }
-})
 
 
 

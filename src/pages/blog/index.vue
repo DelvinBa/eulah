@@ -59,7 +59,7 @@
             <!-- Blog Posts Grid -->
             <div v-if="paginatedPosts.length > 0"
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <article v-for="post in paginatedPosts" :key="post._id"
+                <article v-for="post in paginatedPosts" :key="post.path"
                     class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 cursor-pointer flex flex-col">
                     <NuxtLink :to="post.path" class="flex flex-col h-full">
                         <!-- Image Section -->
@@ -82,9 +82,8 @@
                             </div>
                         </div>
 
-                        <!-- Content Section - FIXED: Added flex-1 and proper flex structure -->
+                        <!-- Content Section -->
                         <div class="p-6 flex-1 flex flex-col min-h-0">
-                            <!-- Main content area -->
                             <div class="flex-1 mb-4">
                                 <h2
                                     class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-primary transition-colors">
@@ -95,9 +94,7 @@
                                 </p>
                             </div>
 
-                            <!-- Tags and Author Section - FIXED: Removed flex-shrink-0 and made it sticky to bottom -->
                             <div class="space-y-3 mt-auto">
-                                <!-- Tags -->
                                 <div v-if="post.tags && post.tags.length" class="flex flex-wrap gap-2">
                                     <button v-for="tag in post.tags" :key="tag" @click.stop.prevent="searchByTag(tag)"
                                         class="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-md hover:bg-gray-200 transition-colors">
@@ -105,7 +102,6 @@
                                     </button>
                                 </div>
 
-                                <!-- Author and Read More -->
                                 <div class="flex items-center justify-between pt-3 border-t border-gray-100">
                                     <div class="flex items-center gap-2">
                                         <div class="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
@@ -172,63 +168,61 @@
 </template>
 
 <script setup>
-const route = useRoute()
-
-// Reactive state
 const searchQuery = ref('')
 const currentPage = ref(1)
-const columns = ref(1)
 
-const { data: allPosts } = await useAsyncData(route.path, async () => {
+
+
+
+const { data: allPosts } = await useAsyncData('blog-list', async () => {
     try {
         const posts = await queryCollection('blog')
             .select('path', 'title', 'description', 'date', 'author', 'tags', 'image')
-            .all();
-        return posts || [];
+            .all()
+
+        // deterministisch sortieren (neueste zuerst)
+        return (posts || []).sort((a, b) => new Date(b.date) - new Date(a.date))
     } catch (err) {
-        console.error("🔥 Fehler beim Laden der Blog-Posts:", err);
-        throw new Error("Konnte Blog-Posts nicht laden");
+        console.error('🔥 Fehler beim Laden der Blog-Posts:', err)
+        throw new Error('Konnte Blog-Posts nicht laden')
     }
 }, {
     default: () => []
-});
+})
 
-// Computed: filter by search
+// Filter
 const filteredPosts = computed(() => {
     if (!allPosts.value) return []
-
     let posts = [...allPosts.value]
 
     if (searchQuery.value.trim()) {
-        const query = searchQuery.value.trim().toLowerCase()
+        const q = searchQuery.value.trim().toLowerCase()
         posts = posts.filter(post =>
-            post.title?.toLowerCase().includes(query) ||
-            post.description?.toLowerCase().includes(query) ||
-            post.tags?.some(tag => tag.toLowerCase().includes(query))
+            post.title?.toLowerCase().includes(q) ||
+            post.description?.toLowerCase().includes(q) ||
+            post.tags?.some(tag => tag.toLowerCase().includes(q))
         )
     }
 
     return posts
 })
 
-// Pagination helpers
-const itemsPerPage = computed(() => columns.value * 3)
-const totalPages = computed(() => Math.max(1, Math.ceil(filteredPosts.value.length / itemsPerPage.value)))
+// Pagination (fixe Größe → SSR/CSR gleich)
+const ITEMS_PER_PAGE = 12
+const totalPages = computed(() =>
+    Math.max(1, Math.ceil(filteredPosts.value.length / ITEMS_PER_PAGE))
+)
+
 const paginatedPosts = computed(() => {
-    const start = (currentPage.value - 1) * itemsPerPage.value
-    const end = start + itemsPerPage.value
-    return filteredPosts.value.slice(start, end)
+    const start = (currentPage.value - 1) * ITEMS_PER_PAGE
+    return filteredPosts.value.slice(start, start + ITEMS_PER_PAGE)
 })
 
 // Methods
 const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('de-DE', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-    });
-};
+    const date = new Date(dateString)
+    return date.toLocaleDateString('de-DE', { year: 'numeric', month: 'short', day: 'numeric' })
+}
 
 const clearSearch = () => {
     searchQuery.value = ''
@@ -250,44 +244,12 @@ const goToPage = (page) => {
 }
 
 // Watchers
-watch(searchQuery, () => {
-    currentPage.value = 1
-})
-
-// Responsive columns detection
-const updateColumns = () => {
-    if (typeof window === 'undefined') return
-    const w = window.innerWidth
-    if (w >= 1280) columns.value = 4      // xl
-    else if (w >= 1024) columns.value = 3 // lg  
-    else if (w >= 768) columns.value = 2  // md
-    else columns.value = 1                // sm
-}
-
-watch([filteredPosts, itemsPerPage], () => {
+watch(searchQuery, () => { currentPage.value = 1 })
+watch(filteredPosts, () => {
     if (currentPage.value > totalPages.value) currentPage.value = totalPages.value
 })
-
-onBeforeUnmount(() => {
-    if (import.meta.client) {
-        sessionStorage.removeItem(`reloaded-${route.path}`)
-        window.removeEventListener('resize', updateColumns)
-    }
-})
-
-onMounted(() => {
-    updateColumns()
-    if (import.meta.client) {
-        window.addEventListener('resize', updateColumns)
-    }
-
-    const hasReloaded = sessionStorage.getItem(`reloaded-${route.path}`)
-    if (!hasReloaded && import.meta.client) {
-        sessionStorage.setItem(`reloaded-${route.path}`, 'true')
-        window.location.reload()
-    }
-})
 </script>
+
 
 <style scoped>
 /* Line clamp utilities for text truncation */
