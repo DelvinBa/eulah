@@ -1,3 +1,5 @@
+import { defineOrganization } from "nuxt-schema-org/schema";
+
 export default defineNuxtConfig({
   ssr: true,
   modules: [
@@ -10,6 +12,7 @@ export default defineNuxtConfig({
     "@nuxt/fonts",
     "@nuxt/content",
     "nuxt-particles",
+    "nuxt-schema-org",
     "nuxt-security",
     [
       "nuxt-mail",
@@ -50,6 +53,8 @@ export default defineNuxtConfig({
     "/blog/**": { prerender: true, swr: 900 },
     "/projekte": { swr: 900 },
     "/projekte/**": { prerender: true, swr: 900 },
+    "/standorte": { swr: 900 },
+    "/standorte/**": { prerender: true, swr: 900 },
     "/api/**": { isr: false },
   },
   nitro: {
@@ -63,6 +68,45 @@ export default defineNuxtConfig({
   site: {
     url: "https://www.eulah.de",
     name: "Eulah IT",
+  },
+  schemaOrg: {
+    identity: defineOrganization({
+      "@id": "https://www.eulah.de/#organization",
+      name: "Eulah IT",
+      description: "",
+      url: "https://www.eulah.de",
+      logo: "https://www.eulah.de/logo.png",
+      telephone: "", // eure Hauptnummer
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ],
+          opens: "08:00",
+          closes: "19:00",
+        },
+      ],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "customer service",
+          telephone: "",
+          areaServed: "DE",
+          availableLanguage: ["de"],
+        },
+      ],
+      sameAs: [
+        "https://www.linkedin.com/company/107174661/",
+        "https://www.instagram.com/eulah_it/",
+        "https://www.tiktok.com/@eulah.de",
+      ],
+    }),
   },
 
   primevue: {

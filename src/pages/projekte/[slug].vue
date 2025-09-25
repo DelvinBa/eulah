@@ -356,6 +356,62 @@ function scrollToFunnel() {
     const funnel = document.getElementById('lead-funnel')
     if (funnel) funnel.scrollIntoView({ behavior: 'smooth' })
 }
+
+
+
+
+// ---- Runtime helpers
+const config = useRuntimeConfig()
+const siteUrl = (config.public?.siteUrl || 'https://www.eulah.de').replace(/\/$/, '')
+const orgId = `${siteUrl}/#organization`
+const pageUrl = `${siteUrl}${route.path}`
+
+// Absolute URLs für Medien
+const abs = (p) => !p ? undefined : (p.startsWith('http') ? p : `${siteUrl}${p.startsWith('/') ? '' : '/'}${p}`)
+const images = computed(() => (post.value?.images || []).map(abs).filter(Boolean))
+const videoUrl = computed(() => abs(post.value?.video))
+
+// Optional: kurze Summary aus subtitle/story
+const summary = computed(() => post.value?.subtitle || (post.value?.story || '').split('\n').slice(0, 2).join(' '))
+
+// WebPage + CaseStudy Schema
+useSchemaOrg([
+    {
+        '@type': 'WebPage',
+        '@id': `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: post.value?.title,
+        description: summary.value,
+        isPartOf: { '@id': `${siteUrl}/#website` },
+        about: { '@id': orgId },
+        primaryImageOfPage: images.value[0] ? { '@type': 'ImageObject', url: images.value[0] } : undefined
+    },
+    {
+        '@type': 'CaseStudy',             // <- passt perfekt für “Projekt”
+        '@id': `${pageUrl}#casestudy`,    // <- stabile ID dieser Case Study
+        url: pageUrl,
+        name: post.value?.title,
+        alternateName: post.value?.subtitle,
+        description: summary.value,
+        text: post.value?.story,          // langer Fließtext (Markdown gerendert)
+        publisher: { '@id': orgId },
+        author: { '@id': orgId },
+        creator: { '@id': orgId },
+        image: images.value.length ? images.value : undefined,
+        video: videoUrl.value ? {
+            '@type': 'VideoObject',
+            contentUrl: videoUrl.value,
+            thumbnailUrl: images.value[0] || undefined,
+            name: `${post.value?.title} – Demo`,
+            uploadDate: new Date().toISOString().slice(0, 10) // optional, wenn du kein Feld hast
+        } : undefined,
+        // Wenn relevant: Branche/Themen als Keywords
+        keywords: Array.isArray(post.value?.tags) ? post.value.tags.join(', ') : undefined
+    }
+])
+
+
+
 </script>
 
 <style>

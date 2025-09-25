@@ -170,6 +170,72 @@ function scrollToFunnel() {
     if (el) el.scrollIntoView({ behavior: 'smooth' })
     if (isMenuOpen.value) toggleMenu()
 }
+
+
+// --- Runtime + Helfer ---
+const config = useRuntimeConfig()
+const siteUrl = (config.public?.siteUrl || 'https://www.eulah.de').replace(/\/$/, '')
+const orgId = `${siteUrl}/#organization`
+const websiteId = `${siteUrl}/#website`
+const pageUrl = `${siteUrl}${route.path}`
+
+// Bild absolut machen
+const imageUrl = computed(() => {
+    const img = post.value?.image || ''
+    if (!img) return undefined
+    return img.startsWith('http') ? img : `${siteUrl}${img.startsWith('/') ? '' : '/'}${img}`
+})
+
+// Autor: wenn String eure Marke enthält -> Organization, sonst Person
+const authorNode = computed(() => {
+    const a = (post.value?.author || '').trim()
+    if (!a) return { '@id': orgId }
+    const isBrand = /eulah/i.test(a)
+    return isBrand ? { '@id': orgId } : { '@type': 'Person', 'name': a }
+})
+
+// SEO-Meta (hast du schon – hier nur sicherheitshalber canonical konsistent)
+useSeoMeta({
+    ogImage: imageUrl.value,
+    canonical: pageUrl
+})
+
+// --- Schema.org ---
+useSchemaOrg([
+    // WebPage (diese Seite)
+    {
+        '@type': 'WebPage',
+        '@id': `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: post.value?.title,
+        description: post.value?.description,
+        isPartOf: { '@id': websiteId },
+        about: { '@id': orgId },
+        primaryImageOfPage: imageUrl.value
+            ? { '@type': 'ImageObject', url: imageUrl.value }
+            : undefined
+    },
+
+    // BlogPosting (der Artikel)
+    {
+        '@type': 'BlogPosting',
+        '@id': `${pageUrl}#blogposting`,
+        mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
+        headline: post.value?.title,
+        image: imageUrl.value ? [imageUrl.value] : undefined,
+        datePublished: post.value?.date,
+        dateModified: post.value?.updatedAt || post.value?.date,
+        author: authorNode.value,
+        publisher: { '@id': orgId },
+        url: pageUrl,
+        keywords: Array.isArray(post.value?.tags) ? post.value.tags.join(', ') : undefined,
+        articleSection: Array.isArray(post.value?.tags) && post.value.tags.length ? post.value.tags[0] : undefined
+    },
+
+
+])
+
+
 </script>
 
 

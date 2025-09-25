@@ -1,18 +1,15 @@
-
 <template>
   <div class="bg-background text-text">
-    <Header />
+    <SharedHeader />
+    <SharedSiteBreadCrumbs />
     <main class="min-h-screen">
       <slot />
     </main>
-    <Footer />
+    <SharedFooter />
   </div>
 </template>
 
 <script setup>
-import Header from '~/components/shared/Header.vue';
-import Footer from '~/components/shared/Footer.vue';
-
 
 </script>
 

@@ -31,5 +31,36 @@ export default defineContentConfig({
         }),
       })
     ),
+    standorte: defineCollection(
+      asSitemapCollection({
+        type: "page",
+        source: "standorte/**/*.md",
+        schema: z.object({
+          title: z.string(), // "IT-Unternehmen in Bielefeld"
+          metaDescription: z.string().optional(),
+          slug: z.string().optional(), // falls Dateiname ≠ Slug
+          city: z.string(), // "Bielefeld"
+          region: z.string().optional(), // "NRW"
+          headline: z.string().optional(),
+          heroSubtitle: z.string().optional(),
+          heroImage: z.string().optional(),
+          ctaText: z.string().optional(),
+          ctaHref: z.string().optional(),
+          secondaryCtaText: z.string().optional(),
+          secondaryCtaHref: z.string().optional(),
+          badges: z.array(z.string()).optional(), // kleine Trust-Claims
+          usps: z.array(z.string()).optional(), // Bullet-Points
+          externalLinks: z
+            .array(
+              z.object({
+                label: z.string(),
+                href: z.string().url(),
+              })
+            )
+            .optional(),
+          businessName: z.string().optional(), // "Eulah IT"
+        }),
+      })
+    ),
   },
 });
