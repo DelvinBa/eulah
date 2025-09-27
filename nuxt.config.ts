@@ -11,7 +11,6 @@ export default defineNuxtConfig({
     "@nuxtjs/sitemap",
     "@nuxt/fonts",
     "@nuxt/content",
-    "nuxt-particles",
     "nuxt-schema-org",
     "nuxt-security",
     [

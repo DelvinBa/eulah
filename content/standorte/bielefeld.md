@@ -1,73 +1,99 @@
 ---
-title: "IT-Unternehmen in Bielefeld"
-metaDescription: "Eulah IT – Ihr IT-Unternehmen in Bielefeld: IT-Support, Cloud & IT-Sicherheit für KMU in Ostwestfalen-Lippe."
+# Core
 slug: "bielefeld"
-headline: "IT-Unternehmen in Bielefeld"
 city: "Bielefeld"
 region: "NRW"
-heroImage: "" # optional; wenn leer, wird automatisch ein Stadtbild geladen
-heroSubtitle: "Eulah IT – Ihr Partner für IT-Support, Cloud & Sicherheit in Ostwestfalen-Lippe."
-ctaText: "Jetzt Beratung anfragen"
-ctaHref: "/kontakt"
-# USPs optional – aktuell nicht gesondert gerendert
-usps:
-  - "Schnelle Reaktionszeiten & persönliche Ansprechpartner"
-  - "Bewährte Lösungen für KMU in OWL"
-  - "Sicherheit & Compliance von Anfang an"
-externalLinks:
-  - { label: "Stadt Bielefeld – Wirtschaft", href: "https://www.bielefeld.de" }
-  - { label: "IHK Ostwestfalen zu Bielefeld", href: "https://www.ostwestfalen.ihk.de" }
 businessName: "Eulah IT"
+
+# SEO
+title: "IT-Unternehmen in Bielefeld"
+metaTitle: "IT-Unternehmen in Bielefeld | Eulah IT"
+metaDescription: "IT-Unternehmen in Bielefeld für KMU: IT-Betrieb, Infrastruktur, Security, Cloud, Support, Software & Apps, Web, Automatisierung, Daten & KI – pragmatisch und persönlich."
+
+# Hero
+hero:
+  title: "IT-Unternehmen in Bielefeld"
+  subtitle: "Stabiler IT-Betrieb & Sicherheit – plus Software, Web, Automatisierung und KI für messbaren Fortschritt."
+  ctaText: "Jetzt Beratung anfragen"
+  ctaHref: "/kontakt"
+
+# Langer Fließtext (1): Nutzen & Arbeitsweise – balanciert IT + Software/Automation/KI
+longIntro: |
+  Viele mittelständische Teams suchen zwei Dinge zugleich: eine IT, die einfach funktioniert – und digitale Bausteine, die im Alltag wirklich Tempo bringen. Unser Ansatz verbindet beides. Wir stabilisieren Betrieb und Sicherheit dort, wo es heute bremst (z. B. Updates, Backups, Mehrfaktor-Anmeldung, Rechte), und schaffen parallel schnelle Ergebnisse bei Zusammenarbeit, Automatisierung oder kleinen Software-Vorhaben. So entstehen spürbare Verbesserungen, ohne den Betrieb auszubremsen.
+
+  Typische Anliegen, bei denen wir unterstützen:
+  - **Zusammenarbeit und Dateien vereinfachen:** Microsoft 365, SharePoint, OneDrive – sauber strukturiert, mit klaren Berechtigungen und kurzen Einweisungen.  
+  - **Server & Netzwerke modernisieren:** Migrationen, Virtualisierung, VPN, WLAN und Firewalls so planen, dass Ausfallzeiten minimal bleiben.  
+  - **Sicher von überall arbeiten:** Richtlinien und Endgeräte so aufsetzen, dass Homeoffice und Außendienst reibungslos funktionieren.  
+  - **Schnelle Hilfe & Betreuung:** Remote-Support, Vor-Ort-Einsätze, Monitoring, Wartung – ohne Ticket-Hürden, mit klaren Reaktionszeiten.  
+  - **Web & Sichtbarkeit aufbauen:** Websites und Landingpages, saubere Performance, nachvollziehbare Lead-Strecken – mit Fokus auf Anfragen statt nur „Design“.  
+  - **Apps & kleine Tools entwickeln:** Web-Apps (z. B. mit Vue/Nuxt), mobile Apps (Flutter/React Native) oder leichte Desktop-Tools – genau so groß, wie es der Use Case braucht.  
+  - **Prozesse automatisieren:** Von Formular-/Belegerkennung (OCR) über Workflows (n8n, Make, Power Automate, Zapier) bis zu automatisiertem Reporting – zuerst als Pilot, dann ausbauen.  
+  - **KI sinnvoll einsetzen:** Chat-Assistenz für interne Fragen, Text-/Belegerkennung, visuelle Prüfungen, Generieren von Entwürfen (Texte/Bilder/Code) – dort, wo es wirklich Nutzen stiftet.
+
+  Unser Vorgehen ist pragmatisch: Wir priorisieren nach Wirkung, setzen Änderungen schrittweise um und dokumentieren so, dass Ihr Team mitkommt. Wenn ein Thema Software oder KI betrifft, starten wir bewusst klein – mit einem klar umrissenen Pilot, messbaren Zielen und kurzer Time-to-Value.
+
+# Langer Fließtext (2): Lokaler Kontext, Beispiel & Orientierung
+longDeepDive: |
+  Viele Unternehmen in der Region haben gewachsene IT-Landschaften und gleichzeitig Ideen für Digitalisierung, Automatisierung oder eine neue Website. Beides lässt sich verbinden, wenn man strukturiert vorgeht: erst stabilisieren, dann vereinfachen – und parallel Pilotprojekte starten, die schnell Nutzen zeigen. So bleiben Teams arbeitsfähig und erleben, dass sich Investitionen auszahlen.
+
+  Ein Beispiel aus dem Alltag: Ein Betrieb wollte Homeoffice und Zusammenarbeit verlässlich machen und gleichzeitig manuelle Schritte reduzieren. Wir haben Zugänge vereinheitlicht, Berechtigungen transparent gestaltet, SharePoint/OneDrive strukturiert eingeführt und ein Backup-Konzept etabliert, das regelmäßig geprüft wird. Parallel entstand ein kleiner Automatisierungs-Pilot (Eingangsrechnungen per OCR erfassen und vorsortieren) sowie eine schlanke Landingpage mit klarer Kontaktstrecke. Ergebnis: weniger Rückfragen, weniger Kopierarbeit, mehr Anfragen – ohne großen Umbau.
+
+  Was Sie erwarten können:
+  - **Klarer Start:** Bestandsaufnahme in verständlicher Sprache, Quick-Wins zuerst.  
+  - **Plan mit Prioritäten:** Schritte, Aufwand, Zeitfenster und Verantwortlichkeiten – passend zu Zielen und Budget.  
+  - **Umsetzung ohne Stillstand:** Änderungen getestet, dokumentiert und so eingeführt, dass alle arbeitsfähig bleiben.  
+  - **Verlässlicher Betrieb & Weiterentwicklung:** Monitoring dort, wo es hilft; feste Routinen für Updates/Backups; erreichbarer Support.  
+  - **Software, Web, Automatisierung & KI mit Maß:** Keine „One-Size-fits-all“-Pakete – wir bauen, was zu Team und Prozess passt, und erweitern erst, wenn sich Nutzen zeigt.
+
+# Intro-Box (kurz)
+intro:
+  kicker: "Für mittelständische Teams"
+  bullets:
+    - "Alltag entlasten: stabile Systeme, klare Zuständigkeiten"
+    - "Pilot statt Mammutprojekt: Software, Web, Automation & KI mit schneller Wirkung"
+    - "Sicherheit mit Augenmaß – passend zu Ihren Abläufen"
+
+# Trust-Karten
+trust:
+  cards:
+    - title: "Greifbar & pragmatisch"
+      text: "Kurze Wege, klare Ansprechpartner und Lösungen, die im Alltag funktionieren – nicht nur auf dem Papier."
+    - title: "Sicherheit ohne Reibungsverlust"
+      text: "Von Basismaßnahmen bis Monitoring – so viel wie nötig, so schlank wie möglich."
+    - title: "Plan statt Flickwerk"
+      text: "Prioritäten, Aufwand, Zeitfenster – nachvollziehbar dokumentiert und Schritt für Schritt umgesetzt."
+
+# Lokale Sektion
+local:
+  heading: "IT, Software & KI – so, wie Ihr Team arbeitet"
+  paragraphs:
+    - "Ob Zusammenarbeit strukturieren, Server migrieren, eine Landingpage mit echtem Lead-Funnel bauen oder einen KI-Assistenten für interne Fragen testen: Wir gestalten Projekte so, dass sie den Arbeitsalltag spürbar erleichtern und schnell Nutzen bringen."
+    - "Automatisierung starten wir mit einem kleinen, messbaren Pilot (z. B. Belegerkennung, Prozess-Handovers, Reporting). Wenn sich der Effekt zeigt, wird aus dem Pilot ein belastbarer Baustein – Schritt für Schritt."
+
+# Kontextualisierte externe Ressourcen
+resources:
+  heading: "Hilfreiche Anlaufstellen"
+  items:
+    - label: "Stadt Bielefeld – Wirtschaft & Förderung"
+      href: "https://www.bielefeld.de"
+      blurb: "Programme, Kontakte und Angebote für Unternehmen vor Ort."
+    - label: "IHK Ostwestfalen zu Bielefeld"
+      href: "https://www.ostwestfalen.ihk.de"
+      blurb: "Veranstaltungen, Beratung und Netzwerke für den Mittelstand."
+    - label: "WEGE Bielefeld – Wirtschaftsentwicklung"
+      href: "https://www.wege-bielefeld.de"
+      blurb: "Unterstützung bei Projekten, Fragen und Kooperationen in der Stadt."
+
+# Nearby-Standorte
+nearby:
+  heading: "Weitere Standorte in der Nähe"
+  slugs: ["guetersloh", "herford", "minden"]
+
+# Bottom-CTA
+cta:
+  title: "Unverbindlich sprechen?"
+  text: "Wir hören zu, priorisieren gemeinsam und schlagen sinnvolle nächste Schritte vor."
+  ctaText: "Kontakt aufnehmen"
+  ctaHref: "/kontakt"
 ---
-
-# IT-Unternehmen in Bielefeld
-
-Als **Eulah IT** unterstützen wir Unternehmen in Bielefeld und ganz Ostwestfalen-Lippe dabei, ihre IT stabil, sicher und zukunftsfähig aufzustellen. Viele unserer Kundinnen und Kunden sind mittelständische Betriebe, die pragmatische Lösungen suchen: wenig Buzzwords, dafür schnelle Reaktionszeiten, klare Ansprechpartner und messbare Ergebnisse. Genau dafür steht Eulah IT – lokal verankert, technisch versiert und mit echter Hands-on-Mentalität.
-
-## Was Eulah IT in Bielefeld auszeichnet
-
-IT darf kein Bremsklotz sein. Unsere Rolle ist es, die Grundlage zu schaffen, damit Ihr Team reibungslos arbeiten kann – im Büro, im Homeoffice und unterwegs. **Eulah IT** denkt dabei ganzheitlich: Von Netzwerk und Endgeräten über Microsoft 365 und moderne Cloud-Infrastrukturen bis hin zu Backups, Monitoring und Security. Wir kommen schnell ins Tun, priorisieren nach Business-Impact und sorgen dafür, dass Lösungen langfristig tragfähig sind.  
-
-Gleichzeitig ist uns die Nähe wichtig. Wenn in **Bielefeld** etwas „brennt“, sind wir **persönlich erreichbar** – ob per Remote-Support oder vor Ort. Diese Mischung aus Verlässlichkeit, Tempo und ehrlicher Beratung ist der Grund, warum uns viele Kund:innen seit Jahren treu bleiben.
-
-## Leistungen für Unternehmen in Bielefeld
-
-**IT-Support & Helpdesk:**  
-Eulah IT bietet präzise Unterstützung – von der schnellen Störungshilfe bis zur vollständigen Betreuung Ihrer IT-Umgebung. Sie erreichen uns direkt, ohne Ticket-Hürden. Wiederkehrende Aufgaben automatisieren wir, damit Sie weniger Ausfälle und kürzere Reaktionszeiten erleben.
-
-**Cloud & Collaboration:**  
-Wir begleiten Sie auf dem Weg in die Cloud – Schritt für Schritt. Ob Microsoft 365, moderne Fileservices oder skalierbare Infrastruktur: Wir wählen pragmatisch, was zu Ihren Anforderungen passt, schulen Teams und sorgen für klare Prozesse.
-
-**IT-Sicherheit & Compliance:**  
-Security ist kein Produkt, sondern ein Prozess. Eulah IT etabliert Basisschutz (Patch- und Update-Management, MFA, sichere Konfigurationen), ergänzt Monitoring und Backup-Strategien und berücksichtigt Compliance-Vorgaben – ohne die Produktivität zu bremsen.
-
-**Digitalisierung & Workflows:**  
-Wo Abläufe heute noch manuell sind, helfen wir mit Automatisierung und schlanken Tools. Das Ziel: weniger Medienbrüche, weniger Copy-Paste, mehr Fokus auf Wertschöpfung.
-
-## Lokaler Bezug: Bielefeld & OWL
-
-Bielefeld ist das Herz von **Ostwestfalen-Lippe** – geprägt von Industrie, Handel, Hidden Champions und wachsender Tech-Szene. Genau hier passt der Ansatz von **Eulah IT**: solide, lösungsorientierte IT, die Geschäftsprozesse stärkt und Wachstum nicht behindert. Wir sprechen mit Geschäftsführung, IT-Verantwortlichen und Fachabteilungen auf Augenhöhe – damit Entscheidungen schnell getroffen und sauber umgesetzt werden.
-
-Ein Beispiel: Ein regionaler Produktionsbetrieb wollte **Homeoffice** und **Außendienst** verlässlich anbinden. Wir kombinierten sichere Zugänge, zentrale Benutzer- und Rechteverwaltung sowie kollaboratives Arbeiten mit Microsoft 365. Wichtig war dabei eine klare Berechtigungsstruktur und ein lückenloses Backup. Ergebnis: deutlich weniger Supportfälle, mehr Transparenz in der Zusammenarbeit und spürbar höhere Zufriedenheit im Team.
-
-## Zusammenarbeit mit Eulah IT: transparent & pragmatisch
-
-1. **Analyse & Priorisierung:** Wir schauen uns Ihre Umgebung an, identifizieren Risiken und Quick Wins – ohne endlose Audit-Schleifen.  
-2. **Plan statt Patchwork:** Auf Basis Ihrer Ziele entwickeln wir einen umsetzbaren Fahrplan – mit Kosten- und Zeitrahmen, der zu Ihrem Unternehmen passt.  
-3. **Umsetzung mit Augenmaß:** Änderungen erfolgen kontrolliert und getestet. Wir dokumentieren nachvollziehbar und schulen Ihr Team.  
-4. **Betrieb & Weiterentwicklung:** Proaktives Monitoring, regelmäßige Reviews und ein erreichbarer Support sorgen dafür, dass Ihre IT stabil bleibt.
-
-## Warum Eulah IT der richtige Partner in Bielefeld ist
-
-- **Greifbare Nähe:** Persönliche Ansprechpartner in NRW und schnelle Reaktionszeiten.  
-- **Technik mit Sinn:** Wir empfehlen nur, was zu Ihrem Geschäftsmodell passt – nicht, was gerade Trend ist.  
-- **Sicherheit First:** Vom Basis-Hardening bis zum Backup-Konzept ist Security integraler Bestandteil unserer Arbeit.  
-- **Langfristige Partnerschaft:** Unser Ziel ist eine nachhaltige, belastbare IT – nicht die kurzfristige Feuerwehr.
-
-## Ihr Kontakt zu Eulah IT in Bielefeld
-
-Sie suchen einen **zuverlässigen IT-Dienstleister in Bielefeld**? **Eulah IT** unterstützt Sie vom ersten Gespräch bis zum laufenden Betrieb – transparent, verbindlich und mit Blick fürs Wesentliche.  
-
-Ob Sie Hilfe bei einem akuten Thema brauchen oder Ihre IT insgesamt auf ein neues Niveau heben möchten: Sprechen Sie uns an. Gemeinsam finden wir den pragmatischen Weg, der zu Ihrem Unternehmen passt.  
-
-👉 [Kontakt aufnehmen](/kontakt)
